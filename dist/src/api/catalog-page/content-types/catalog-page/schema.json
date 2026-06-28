@@ -1,0 +1,126 @@
+{
+    "kind": "singleType",
+    "collectionName": "catalog_pages",
+    "info": {
+        "singularName": "catalog-page",
+        "pluralName": "catalog-pages",
+        "displayName": "Catalog Page"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {
+        "i18n": {
+            "localized": true
+        }
+    },
+    "attributes": {
+        "seo": {
+            "type": "component",
+            "component": "shared.seo",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "eyebrow": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "title": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "description": {
+            "type": "text",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "filterByLabel": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "categoryLabel": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "ageRangeLabel": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "allLabel": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "noResultsLabel": {
+            "type": "text",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "viewDetailsLabel": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "itemsLabel": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "filtersLabel": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        }
+    }
+}

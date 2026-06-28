@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_shared_badges",
+  "info": {
+    "displayName": "Badge",
+    "icon": "tag"
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

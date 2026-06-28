@@ -1,0 +1,49 @@
+{
+  "collectionName": "components_shared_featured_products",
+  "info": {
+    "displayName": "Featured Product",
+    "icon": "archive"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "tagline": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "badge": {
+      "type": "string",
+      "required": true
+    },
+    "ctaLabel": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "imageAlt": {
+      "type": "string",
+      "required": true
+    },
+    "theme": {
+      "type": "enumeration",
+      "enum": ["orange", "blue", "charcoal", "yellow"],
+      "default": "orange",
+      "required": true
+    },
+    "linkedCategory": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    }
+  }
+}

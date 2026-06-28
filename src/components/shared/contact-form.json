@@ -1,0 +1,61 @@
+{
+  "collectionName": "components_shared_contact_forms",
+  "info": {
+    "displayName": "Contact Form",
+    "icon": "mail"
+  },
+  "attributes": {
+    "firstNameLabel": {
+      "type": "string",
+      "required": true
+    },
+    "lastNameLabel": {
+      "type": "string",
+      "required": true
+    },
+    "emailLabel": {
+      "type": "string",
+      "required": true
+    },
+    "projectTypeLabel": {
+      "type": "string",
+      "required": true
+    },
+    "messageLabel": {
+      "type": "string",
+      "required": true
+    },
+    "firstNamePlaceholder": {
+      "type": "string",
+      "required": true
+    },
+    "lastNamePlaceholder": {
+      "type": "string",
+      "required": true
+    },
+    "emailPlaceholder": {
+      "type": "string",
+      "required": true
+    },
+    "projectTypePlaceholder": {
+      "type": "string",
+      "required": true
+    },
+    "messagePlaceholder": {
+      "type": "text",
+      "required": true
+    },
+    "projectOptions": {
+      "type": "text",
+      "required": true
+    },
+    "submitLabel": {
+      "type": "string",
+      "required": true
+    },
+    "note": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
