@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_shared_project_testimonials",
+  "info": {
+    "displayName": "Project Testimonial",
+    "icon": "quote"
+  },
+  "attributes": {
+    "quote": {
+      "type": "text",
+      "required": true
+    },
+    "author": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

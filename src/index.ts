@@ -266,6 +266,8 @@ async function seedProducts(
   categoryIds: Map<string, string>,
   cache: MediaCache,
 ) {
+  const productIds = new Map<string, string>();
+
   for (const item of kidsferaSeed.products) {
     const categoryDocumentId = categoryIds.get(item.categorySlug);
 
@@ -292,6 +294,8 @@ async function seedProducts(
       status: PUBLISHED_STATUS,
       data: defaultData as any,
     });
+
+    productIds.set(item.slug, created.documentId);
 
     for (const locale of kidsferaSeed.languages) {
       if (locale === DEFAULT_LOCALE) {
@@ -320,18 +324,37 @@ async function seedProducts(
       });
     }
   }
+
+  return productIds;
 }
 
-async function seedProjects(strapi: Core.Strapi, cache: MediaCache) {
+async function seedProjects(
+  strapi: Core.Strapi,
+  categoryIds: Map<string, string>,
+  productIds: Map<string, string>,
+  cache: MediaCache,
+) {
   for (const item of kidsferaSeed.projects) {
+    const categoryDocumentId = categoryIds.get(item.categorySlug);
+    const usedProducts = item.usedProductSlugs
+      .map((slug) => productIds.get(slug))
+      .filter((documentId): documentId is string => Boolean(documentId))
+      .map((documentId) => ({ documentId }));
+    const { projectType: _defaultProjectType, ...defaultLocaleFields } = item.locales[DEFAULT_LOCALE];
+
     const defaultData = (await transformMediaFields(
       strapi,
       {
         slug: item.slug,
         sortOrder: item.sortOrder,
         featured: item.featured,
+        themeColor: item.themeColor,
+        countryFlag: item.countryFlag,
         imageUrl: item.imageUrl,
-        ...item.locales[DEFAULT_LOCALE],
+        gallery: item.gallery[DEFAULT_LOCALE],
+        ...(categoryDocumentId ? { projectType: { documentId: categoryDocumentId } } : {}),
+        usedProducts,
+        ...defaultLocaleFields,
       },
       cache,
     )) as Record<string, unknown>;
@@ -346,6 +369,7 @@ async function seedProjects(strapi: Core.Strapi, cache: MediaCache) {
       if (locale === DEFAULT_LOCALE) {
         continue;
       }
+      const { projectType: _localizedProjectType, ...localizedFields } = item.locales[locale];
 
       const localizedData = (await transformMediaFields(
         strapi,
@@ -353,7 +377,12 @@ async function seedProjects(strapi: Core.Strapi, cache: MediaCache) {
           slug: item.slug,
           sortOrder: item.sortOrder,
           featured: item.featured,
-          ...item.locales[locale],
+          themeColor: item.themeColor,
+          countryFlag: item.countryFlag,
+          gallery: item.gallery[locale],
+          ...(categoryDocumentId ? { projectType: { documentId: categoryDocumentId } } : {}),
+          usedProducts,
+          ...localizedFields,
         },
         cache,
       )) as Record<string, unknown>;
@@ -448,8 +477,8 @@ export default {
 
       const categoryIds = await seedCategories(strapi, mediaCache);
 
-      await seedProducts(strapi, categoryIds, mediaCache);
-      await seedProjects(strapi, mediaCache);
+      const productIds = await seedProducts(strapi, categoryIds, mediaCache);
+      await seedProjects(strapi, categoryIds, productIds, mediaCache);
       await seedTestimonials(strapi);
     }
 

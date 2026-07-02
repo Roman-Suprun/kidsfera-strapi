@@ -1770,54 +1770,386 @@ export const kidsferaSeed = {
   projects: [
     {
       slug: "funworld-hamburg",
+      categorySlug: "shopping-centers",
       sortOrder: 1,
       featured: true,
+      themeColor: "#FF4500",
+      countryFlag: "🇩🇪",
+      usedProductSlugs: ["funmaze-pro-xl", "megatower-5000"],
       imageUrl:
         "https://images.unsplash.com/photo-1759776050712-2b7880af8cd4?w=700&h=500&fit=crop&auto=format",
+      gallery: sharedGallery([
+        {
+          url: "https://images.unsplash.com/photo-1759776050712-2b7880af8cd4?w=900&h=700&fit=crop&auto=format",
+          alt: "Indoor megapark play installation",
+        },
+        {
+          url: "https://images.unsplash.com/photo-1764419613897-8d76d0c0c850?w=900&h=700&fit=crop&auto=format",
+          alt: "Child inside a colorful play labyrinth",
+        },
+        {
+          url: "https://images.unsplash.com/photo-1760704892974-60b5ddb59825?w=900&h=700&fit=crop&auto=format",
+          alt: "Soft play tower inside a family destination",
+        },
+        {
+          url: "https://images.unsplash.com/photo-1759330203240-b89ccee8840f?w=900&h=700&fit=crop&auto=format",
+          alt: "Soft play and dry pool detail",
+        },
+      ]),
       locales: {
-        en: { title: "FunWorld Hamburg", subtitle: "Indoor megapark for a flagship family destination.", projectType: "Indoor Megapark" },
-        uk: { title: "FunWorld Hamburg", subtitle: "Критий мегапарк для флагманського сімейного центру.", projectType: "Критий мегапарк" },
-        ru: { title: "FunWorld Hamburg", subtitle: "Крытый мегапарк для флагманского семейного центра.", projectType: "Крытый мегапарк" },
-        pl: { title: "FunWorld Hamburg", subtitle: "Kryty megapark dla flagowego centrum rodzinnego.", projectType: "Kryty megapark" },
+        en: {
+          title: "FunWorld Hamburg",
+          subtitle: "Indoor megapark for a flagship family destination.",
+          projectType: "Indoor Megapark",
+          description:
+            "A flagship indoor family destination designed around high-throughput circulation, layered play moments, and a bold visual identity that works equally well for children and mall operators.",
+          location: "Hamburg, Germany",
+          clientName: "FunWorld Group",
+          area: "1,800 m²",
+          yearLabel: "2025",
+          testimonial: {
+            quote:
+              "Kidsfera delivered a complex indoor park with impressive coordination, strong detailing, and a very smooth launch timeline.",
+            author: "Marta Kowalska",
+            role: "Operations Director, FunWorld Group",
+          },
+        },
+        uk: {
+          title: "FunWorld Hamburg",
+          subtitle: "Критий мегапарк для флагманського сімейного центру.",
+          projectType: "Критий мегапарк",
+          description:
+            "Флагманський критий сімейний простір, спроєктований для інтенсивного потоку відвідувачів, багаторівневої гри та виразного візуального образу, який добре працює і для дітей, і для операторів молу.",
+          location: "Гамбург, Німеччина",
+          clientName: "FunWorld Group",
+          area: "1 800 м²",
+          yearLabel: "2025",
+          testimonial: {
+            quote:
+              "Kidsfera реалізувала складний критий парк з дуже чіткою координацією, якісними деталями та плавним запуском.",
+            author: "Марта Ковальська",
+            role: "Операційна директорка, FunWorld Group",
+          },
+        },
+        ru: {
+          title: "FunWorld Hamburg",
+          subtitle: "Крытый мегапарк для флагманского семейного центра.",
+          projectType: "Крытый мегапарк",
+          description:
+            "Флагманское крытое семейное пространство, спроектированное под высокий поток посетителей, многоуровневую игру и яркий визуальный образ, одинаково удобный для детей и операторов торгового центра.",
+          location: "Гамбург, Германия",
+          clientName: "FunWorld Group",
+          area: "1 800 м²",
+          yearLabel: "2025",
+          testimonial: {
+            quote:
+              "Kidsfera реализовала сложный крытый парк с очень точной координацией, качественной проработкой и плавным запуском.",
+            author: "Марта Ковальска",
+            role: "Операционный директор, FunWorld Group",
+          },
+        },
+        pl: {
+          title: "FunWorld Hamburg",
+          subtitle: "Kryty megapark dla flagowego centrum rodzinnego.",
+          projectType: "Kryty megapark",
+          description:
+            "Flagowa rodzinna strefa indoor zaprojektowana pod duży ruch odwiedzających, wielopoziomową zabawę i wyrazisty charakter wizualny atrakcyjny zarówno dla dzieci, jak i operatora centrum.",
+          location: "Hamburg, Niemcy",
+          clientName: "FunWorld Group",
+          area: "1 800 m²",
+          yearLabel: "2025",
+          testimonial: {
+            quote:
+              "Kidsfera zrealizowała złożony park kryty z bardzo dobrą koordynacją, mocnym detalem i sprawnym harmonogramem otwarcia.",
+            author: "Marta Kowalska",
+            role: "Dyrektor operacyjna, FunWorld Group",
+          },
+        },
       } satisfies Localized<Record<string, unknown>>,
     },
     {
       slug: "poznan-city-park",
+      categorySlug: "outdoor-parks",
       sortOrder: 2,
       featured: true,
+      themeColor: "#0055FF",
+      countryFlag: "🇵🇱",
+      usedProductSlugs: ["naturepark-classic", "ropenet-adventure"],
       imageUrl:
         "https://images.unsplash.com/photo-1767943211959-e30579f0bc4a?w=700&h=500&fit=crop&auto=format",
+      gallery: sharedGallery([
+        {
+          url: "https://images.unsplash.com/photo-1767943211959-e30579f0bc4a?w=900&h=700&fit=crop&auto=format",
+          alt: "Outdoor playground in a city park",
+        },
+        {
+          url: "https://images.unsplash.com/photo-1771169204750-3b1b20d98053?w=900&h=700&fit=crop&auto=format",
+          alt: "Outdoor playground equipment",
+        },
+        {
+          url: "https://images.unsplash.com/photo-1759776050712-2b7880af8cd4?w=900&h=700&fit=crop&auto=format",
+          alt: "Play structure detail in an outdoor park",
+        },
+      ]),
       locales: {
-        en: { title: "Poznań City Park", subtitle: "Owl-themed outdoor playground with natural materials.", projectType: "Outdoor Playground" },
-        uk: { title: "Poznań City Park", subtitle: "Вуличний майданчик у тематиці сови з природними матеріалами.", projectType: "Вуличний майданчик" },
-        ru: { title: "Poznań City Park", subtitle: "Уличная площадка в тематике совы с натуральными материалами.", projectType: "Уличная площадка" },
-        pl: { title: "Poznań City Park", subtitle: "Plac zabaw w motywie sowy z naturalnymi materiałami.", projectType: "Plac zabaw" },
+        en: {
+          title: "Poznań City Park",
+          subtitle: "Owl-themed outdoor playground with natural materials.",
+          projectType: "Outdoor Playground",
+          description:
+            "A civic outdoor playground scheme built around natural materials, rope movement, and a memorable owl-led theme that fits a public-park context without losing commercial-grade durability.",
+          location: "Poznań, Poland",
+          clientName: "City of Poznań",
+          area: "950 m²",
+          yearLabel: "2024",
+          testimonial: {
+            quote:
+              "The playground feels welcoming, durable, and instantly recognizable for local families. It became a natural anchor for the park.",
+            author: "Anna Michalak",
+            role: "Urban Projects Coordinator, City of Poznań",
+          },
+        },
+        uk: {
+          title: "Poznań City Park",
+          subtitle: "Вуличний майданчик у тематиці сови з природними матеріалами.",
+          projectType: "Вуличний майданчик",
+          description:
+            "Муніципальний вуличний майданчик, побудований навколо природних матеріалів, канатної активності та виразної тематики сови, яка добре працює в міському парку без втрати комерційної міцності.",
+          location: "Познань, Польща",
+          clientName: "Місто Познань",
+          area: "950 м²",
+          yearLabel: "2024",
+          testimonial: {
+            quote:
+              "Майданчик вийшов гостинним, міцним і дуже впізнаваним для місцевих родин. Він став природним центром усього парку.",
+            author: "Анна Міхалак",
+            role: "Координаторка міських проєктів, місто Познань",
+          },
+        },
+        ru: {
+          title: "Poznań City Park",
+          subtitle: "Уличная площадка в тематике совы с натуральными материалами.",
+          projectType: "Уличная площадка",
+          description:
+            "Муниципальная уличная площадка, построенная вокруг натуральных материалов, канатной активности и яркой темы совы, которая хорошо работает в городском парке без потери коммерческой прочности.",
+          location: "Познань, Польша",
+          clientName: "Город Познань",
+          area: "950 м²",
+          yearLabel: "2024",
+          testimonial: {
+            quote:
+              "Площадка получилась дружелюбной, прочной и очень узнаваемой для местных семей. Она стала естественным центром всего парка.",
+            author: "Анна Михалак",
+            role: "Координатор городских проектов, город Познань",
+          },
+        },
+        pl: {
+          title: "Poznań City Park",
+          subtitle: "Plac zabaw w motywie sowy z naturalnymi materiałami.",
+          projectType: "Plac zabaw",
+          description:
+            "Miejski plac zabaw oparty na naturalnych materiałach, ruchu linowym i wyrazistym motywie sowy, który dobrze wpisuje się w park publiczny bez utraty trwałości klasy komercyjnej.",
+          location: "Poznań, Polska",
+          clientName: "Miasto Poznań",
+          area: "950 m²",
+          yearLabel: "2024",
+          testimonial: {
+            quote:
+              "Plac zabaw okazał się przyjazny, trwały i od razu rozpoznawalny dla lokalnych rodzin. Stał się naturalnym sercem całego parku.",
+            author: "Anna Michalak",
+            role: "Koordynatorka projektów miejskich, Miasto Poznań",
+          },
+        },
       } satisfies Localized<Record<string, unknown>>,
     },
     {
       slug: "kidspace-dubai",
+      categorySlug: "shopping-centers",
       sortOrder: 3,
       featured: true,
+      themeColor: "#141210",
+      countryFlag: "🇦🇪",
+      usedProductSlugs: ["megatower-5000", "splashpit-xl"],
       imageUrl:
         "https://images.unsplash.com/photo-1630139026564-4a2bf5670879?w=700&h=500&fit=crop&auto=format",
+      gallery: sharedGallery([
+        {
+          url: "https://images.unsplash.com/photo-1630139026564-4a2bf5670879?w=900&h=700&fit=crop&auto=format",
+          alt: "Premium indoor playground zone",
+        },
+        {
+          url: "https://images.unsplash.com/photo-1760704892974-60b5ddb59825?w=900&h=700&fit=crop&auto=format",
+          alt: "Indoor attraction tower with slides",
+        },
+        {
+          url: "https://images.unsplash.com/photo-1759330203240-b89ccee8840f?w=900&h=700&fit=crop&auto=format",
+          alt: "Dry pool and soft play area",
+        },
+      ]),
       locales: {
-        en: { title: "KidSpace Dubai", subtitle: "Premium indoor attraction tailored to a hospitality venue.", projectType: "Premium Indoor" },
-        uk: { title: "KidSpace Dubai", subtitle: "Преміальний критий атракціон для готельно-розважальної локації.", projectType: "Преміальний indoor" },
-        ru: { title: "KidSpace Dubai", subtitle: "Премиальный крытый аттракцион для гостинично-развлекательной площадки.", projectType: "Премиальный indoor" },
-        pl: { title: "KidSpace Dubai", subtitle: "Premiumowa atrakcja kryta dla obiektu hospitality.", projectType: "Premium indoor" },
+        en: {
+          title: "KidSpace Dubai",
+          subtitle: "Premium indoor attraction tailored to a hospitality venue.",
+          projectType: "Premium Indoor",
+          description:
+            "A premium hospitality-oriented indoor concept balancing immersive soft play, polished finishes, and compact circulation logic for a venue that needed both wow-factor and operational clarity.",
+          location: "Dubai, United Arab Emirates",
+          clientName: "KidSpace Hospitality",
+          area: "1,250 m²",
+          yearLabel: "2025",
+          testimonial: {
+            quote:
+              "The final park feels premium, easy to supervise, and highly photogenic, which mattered a lot for our hospitality audience.",
+            author: "Amal Nasser",
+            role: "General Manager, KidSpace Hospitality",
+          },
+        },
+        uk: {
+          title: "KidSpace Dubai",
+          subtitle: "Преміальний критий атракціон для готельно-розважальної локації.",
+          projectType: "Преміальний indoor",
+          description:
+            "Преміальний критий концепт для hospitality-локації, який поєднує занурювальний soft play, акуратні оздоблення та компактну логіку руху для простору, де важливі і wow-ефект, і операційна зручність.",
+          location: "Дубай, ОАЕ",
+          clientName: "KidSpace Hospitality",
+          area: "1 250 м²",
+          yearLabel: "2025",
+          testimonial: {
+            quote:
+              "Готовий парк виглядає преміально, його легко контролювати, і він дуже фотогенічний, що було важливо для нашої hospitality-аудиторії.",
+            author: "Амал Нассер",
+            role: "Генеральна менеджерка, KidSpace Hospitality",
+          },
+        },
+        ru: {
+          title: "KidSpace Dubai",
+          subtitle: "Премиальный крытый аттракцион для гостинично-развлекательной площадки.",
+          projectType: "Премиальный indoor",
+          description:
+            "Премиальный крытый концепт для hospitality-объекта, сочетающий immersive soft play, аккуратную отделку и компактную логику движения для площадки, где важны и wow-эффект, и операционная ясность.",
+          location: "Дубай, ОАЭ",
+          clientName: "KidSpace Hospitality",
+          area: "1 250 м²",
+          yearLabel: "2025",
+          testimonial: {
+            quote:
+              "Готовый парк выглядит премиально, его легко контролировать, и он очень фотогеничен, что было важно для нашей hospitality-аудитории.",
+            author: "Амал Нассер",
+            role: "Генеральный менеджер, KidSpace Hospitality",
+          },
+        },
+        pl: {
+          title: "KidSpace Dubai",
+          subtitle: "Premiumowa atrakcja kryta dla obiektu hospitality.",
+          projectType: "Premium indoor",
+          description:
+            "Premiumowy koncept indoor dla obiektu hospitality, łączący immersyjną strefę soft play, dopracowane wykończenia i zwartą logikę ruchu w miejscu, gdzie liczył się zarówno efekt wow, jak i przejrzysta obsługa.",
+          location: "Dubaj, ZEA",
+          clientName: "KidSpace Hospitality",
+          area: "1 250 m²",
+          yearLabel: "2025",
+          testimonial: {
+            quote:
+              "Końcowy park wygląda premium, jest łatwy do nadzoru i bardzo fotogeniczny, co było ważne dla naszej grupy gości.",
+            author: "Amal Nasser",
+            role: "General Manager, KidSpace Hospitality",
+          },
+        },
       } satisfies Localized<Record<string, unknown>>,
     },
     {
       slug: "leapfrog-stockholm",
+      categorySlug: "soft-play",
       sortOrder: 4,
       featured: true,
+      themeColor: "#FF1493",
+      countryFlag: "🇸🇪",
+      usedProductSlugs: ["splashpit-xl", "homehaven-mini"],
       imageUrl:
         "https://images.unsplash.com/photo-1760704892974-60b5ddb59825?w=700&h=500&fit=crop&auto=format",
+      gallery: sharedGallery([
+        {
+          url: "https://images.unsplash.com/photo-1760704892974-60b5ddb59825?w=900&h=700&fit=crop&auto=format",
+          alt: "Soft play zone in Stockholm",
+        },
+        {
+          url: "https://images.unsplash.com/photo-1759330203240-b89ccee8840f?w=900&h=700&fit=crop&auto=format",
+          alt: "Dry pool and toddler soft play detail",
+        },
+        {
+          url: "https://images.unsplash.com/photo-1764419613897-8d76d0c0c850?w=900&h=700&fit=crop&auto=format",
+          alt: "Interactive play corridor for children",
+        },
+      ]),
       locales: {
-        en: { title: "Leapfrog Stockholm", subtitle: "Soft play zone with color-led toddler programming.", projectType: "Soft Play Zone" },
-        uk: { title: "Leapfrog Stockholm", subtitle: "Soft-play зона з кольоровим програмуванням для малюків.", projectType: "Soft-play зона" },
-        ru: { title: "Leapfrog Stockholm", subtitle: "Soft-play зона с цветовым зонированием для малышей.", projectType: "Soft-play зона" },
-        pl: { title: "Leapfrog Stockholm", subtitle: "Strefa soft play z kolorystycznym programem dla maluchów.", projectType: "Strefa soft play" },
+        en: {
+          title: "Leapfrog Stockholm",
+          subtitle: "Soft play zone with color-led toddler programming.",
+          projectType: "Soft Play Zone",
+          description:
+            "A soft-play environment planned for toddler programming, parent visibility, and a cheerful color-led atmosphere that keeps the space active through repeat family visits.",
+          location: "Stockholm, Sweden",
+          clientName: "Leapfrog Family Club",
+          area: "620 m²",
+          yearLabel: "2024",
+          testimonial: {
+            quote:
+              "Parents immediately understood the space, children stayed engaged longer, and the zone now supports our daily programming beautifully.",
+            author: "Elin Bergstrom",
+            role: "Operations Lead, Leapfrog Family Club",
+          },
+        },
+        uk: {
+          title: "Leapfrog Stockholm",
+          subtitle: "Soft-play зона з кольоровим програмуванням для малюків.",
+          projectType: "Soft-play зона",
+          description:
+            "Soft-play простір, спланований для програм для малюків, хорошої видимості для батьків та яскравої кольорової атмосфери, яка підтримує регулярні сімейні візити.",
+          location: "Стокгольм, Швеція",
+          clientName: "Leapfrog Family Club",
+          area: "620 м²",
+          yearLabel: "2024",
+          testimonial: {
+            quote:
+              "Батьки одразу зрозуміли простір, діти довше залишаються залученими, а зона тепер чудово підтримує наші щоденні програми.",
+            author: "Елін Бергстрем",
+            role: "Керівниця операцій, Leapfrog Family Club",
+          },
+        },
+        ru: {
+          title: "Leapfrog Stockholm",
+          subtitle: "Soft-play зона с цветовым зонированием для малышей.",
+          projectType: "Soft-play зона",
+          description:
+            "Soft-play пространство, спланированное для программ для малышей, хорошей видимости для родителей и яркой цветовой атмосферы, поддерживающей регулярные семейные визиты.",
+          location: "Стокгольм, Швеция",
+          clientName: "Leapfrog Family Club",
+          area: "620 м²",
+          yearLabel: "2024",
+          testimonial: {
+            quote:
+              "Родители сразу поняли логику пространства, дети стали дольше вовлекаться, а зона теперь отлично поддерживает наши ежедневные программы.",
+            author: "Элин Бергстром",
+            role: "Руководитель операционной деятельности, Leapfrog Family Club",
+          },
+        },
+        pl: {
+          title: "Leapfrog Stockholm",
+          subtitle: "Strefa soft play z kolorystycznym programem dla maluchów.",
+          projectType: "Strefa soft play",
+          description:
+            "Przestrzeń soft play zaplanowana pod programy dla maluchów, dobrą widoczność dla rodziców i radosną kolorystyczną atmosferę, która zachęca rodziny do częstych powrotów.",
+          location: "Sztokholm, Szwecja",
+          clientName: "Leapfrog Family Club",
+          area: "620 m²",
+          yearLabel: "2024",
+          testimonial: {
+            quote:
+              "Rodzice od razu zrozumieli układ przestrzeni, dzieci dłużej pozostają zaangażowane, a strefa świetnie wspiera nasz codzienny program.",
+            author: "Elin Bergstrom",
+            role: "Operations Lead, Leapfrog Family Club",
+          },
+        },
       } satisfies Localized<Record<string, unknown>>,
     },
   ],
