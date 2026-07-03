@@ -40,7 +40,10 @@ async function buildProjectData(
   const { projectType: _ignoredProjectType, ...localizedFields } = localized;
   const galleryItems = item.gallery?.[locale] ?? [];
   const gallery = [];
-  const categoryDocumentId = categoryIds.get(item.categorySlug);
+  const categoryRelations = (item.categorySlugs ?? [item.categorySlug])
+    .map((slug) => categoryIds.get(slug))
+    .filter(Boolean)
+    .map((documentId) => ({ documentId }));
 
   for (const galleryItem of galleryItems) {
     const imageId = await uploadImageFromUrl(strapi, galleryItem.url, galleryItem.alt, mediaCache);
@@ -70,7 +73,7 @@ async function buildProjectData(
     featured: item.featured,
     themeColor: item.themeColor,
     countryFlag: item.countryFlag,
-    ...(categoryDocumentId ? { projectType: { documentId: categoryDocumentId } } : {}),
+    ...(categoryRelations.length ? { projectType: categoryRelations } : {}),
     usedProducts,
     gallery,
     ...(heroImageId ? { image: heroImageId } : {}),

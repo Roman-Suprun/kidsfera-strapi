@@ -269,9 +269,15 @@ async function seedProducts(
   const productIds = new Map<string, string>();
 
   for (const item of kidsferaSeed.products) {
-    const categoryDocumentId = categoryIds.get(item.categorySlug);
+    const categorySlugs = (
+      ("categorySlugs" in item ? item.categorySlugs : undefined) ?? [item.categorySlug]
+    ) as string[];
+    const categoryRelations = categorySlugs
+      .map((slug) => categoryIds.get(slug))
+      .filter((documentId): documentId is string => Boolean(documentId))
+      .map((documentId) => ({ documentId }));
 
-    if (!categoryDocumentId) {
+    if (!categoryRelations.length) {
       continue;
     }
 
@@ -281,7 +287,7 @@ async function seedProducts(
         slug: item.slug,
         sortOrder: item.sortOrder,
         featured: item.featured,
-        category: { documentId: categoryDocumentId },
+        category: categoryRelations,
         certifications: item.certifications[DEFAULT_LOCALE],
         gallery: item.gallery[DEFAULT_LOCALE],
         ...item.locales[DEFAULT_LOCALE],
@@ -308,7 +314,7 @@ async function seedProducts(
           slug: item.slug,
           sortOrder: item.sortOrder,
           featured: item.featured,
-          category: { documentId: categoryDocumentId },
+          category: categoryRelations,
           certifications: item.certifications[locale],
           gallery: item.gallery[locale],
           ...item.locales[locale],
@@ -335,7 +341,13 @@ async function seedProjects(
   cache: MediaCache,
 ) {
   for (const item of kidsferaSeed.projects) {
-    const categoryDocumentId = categoryIds.get(item.categorySlug);
+    const categorySlugs = (
+      ("categorySlugs" in item ? item.categorySlugs : undefined) ?? [item.categorySlug]
+    ) as string[];
+    const categoryRelations = categorySlugs
+      .map((slug) => categoryIds.get(slug))
+      .filter((documentId): documentId is string => Boolean(documentId))
+      .map((documentId) => ({ documentId }));
     const usedProducts = item.usedProductSlugs
       .map((slug) => productIds.get(slug))
       .filter((documentId): documentId is string => Boolean(documentId))
@@ -352,7 +364,7 @@ async function seedProjects(
         countryFlag: item.countryFlag,
         imageUrl: item.imageUrl,
         gallery: item.gallery[DEFAULT_LOCALE],
-        ...(categoryDocumentId ? { projectType: { documentId: categoryDocumentId } } : {}),
+        ...(categoryRelations.length ? { projectType: categoryRelations } : {}),
         usedProducts,
         ...defaultLocaleFields,
       },
@@ -380,7 +392,7 @@ async function seedProjects(
           themeColor: item.themeColor,
           countryFlag: item.countryFlag,
           gallery: item.gallery[locale],
-          ...(categoryDocumentId ? { projectType: { documentId: categoryDocumentId } } : {}),
+          ...(categoryRelations.length ? { projectType: categoryRelations } : {}),
           usedProducts,
           ...localizedFields,
         },
