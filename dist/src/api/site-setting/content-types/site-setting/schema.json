@@ -77,6 +77,15 @@
                 }
             }
         },
+        "navAboutLabel": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
         "navContactLabel": {
             "type": "string",
             "required": true,
@@ -111,6 +120,30 @@
                 }
             }
         },
+        "businessHoursLabel": {
+            "type": "string",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "businessHoursPrimary": {
+            "type": "string",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "businessHoursSecondary": {
+            "type": "string",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
         "contactEmail": {
             "type": "email",
             "required": true
@@ -122,6 +155,16 @@
         "contactAddress": {
             "type": "text",
             "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "socialLinks": {
+            "type": "component",
+            "repeatable": true,
+            "component": "shared.social-link",
             "pluginOptions": {
                 "i18n": {
                     "localized": true

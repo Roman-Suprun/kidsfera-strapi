@@ -47,9 +47,6 @@
                 }
             }
         },
-        "imageUrl": {
-            "type": "text"
-        },
         "image": {
             "type": "media",
             "multiple": false,
@@ -81,9 +78,15 @@
         },
         "products": {
             "type": "relation",
-            "relation": "oneToMany",
+            "relation": "manyToMany",
             "target": "api::product.product",
             "mappedBy": "category"
+        },
+        "projects": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::project.project",
+            "mappedBy": "projectType"
         }
     }
 }

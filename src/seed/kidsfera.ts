@@ -37,6 +37,7 @@ export const kidsferaSeed = {
       navCatalogLabel: "Catalog",
       navProjectsLabel: "Projects",
       navProcessLabel: "Process",
+      navAboutLabel: "About",
       navContactLabel: "Contact",
       navCtaLabel: "Get a Quote",
       footerDescription:
@@ -68,6 +69,7 @@ export const kidsferaSeed = {
       navCatalogLabel: "Каталог",
       navProjectsLabel: "Проєкти",
       navProcessLabel: "Процес",
+      navAboutLabel: "Про нас",
       navContactLabel: "Контакт",
       navCtaLabel: "Отримати пропозицію",
       footerDescription:
@@ -99,6 +101,7 @@ export const kidsferaSeed = {
       navCatalogLabel: "Каталог",
       navProjectsLabel: "Проекты",
       navProcessLabel: "Процесс",
+      navAboutLabel: "О нас",
       navContactLabel: "Контакт",
       navCtaLabel: "Получить предложение",
       footerDescription:
@@ -130,6 +133,7 @@ export const kidsferaSeed = {
       navCatalogLabel: "Katalog",
       navProjectsLabel: "Realizacje",
       navProcessLabel: "Proces",
+      navAboutLabel: "O nas",
       navContactLabel: "Kontakt",
       navCtaLabel: "Zapytaj o ofertę",
       footerDescription:
@@ -881,6 +885,576 @@ export const kidsferaSeed = {
         submitLabel: "Wyślij zapytanie",
         note: "Odpowiadamy w ciągu 24 godzin · Zero spamu",
       },
+    },
+  } satisfies Localized<Record<string, unknown>>,
+  aboutPage: {
+    en: {
+      seo: {
+        metaTitle: "Kidsfera | About Us",
+        metaDescription:
+          "Meet the team, factory, values, and certifications behind Kidsfera's children's attraction systems.",
+        canonicalPath: "/en/about",
+      },
+      heroEyebrow: "About Us",
+      heroTitle: "We build\nchildren's dreams",
+      heroDescription:
+        "Since 2006 Kidsfera designs and manufactures attractions that inspire children to explore, move, and imagine.",
+      heroImageUrl:
+        "https://images.unsplash.com/photo-1581091212991-8891c7d4bd9b?w=1600&h=900&fit=crop&auto=format",
+      heroStats: [
+        { value: "840+", label: "Projects" },
+        { value: "32", label: "Countries" },
+        { value: "18", label: "Years" },
+        { value: "2.4M", label: "Kids Daily" },
+      ],
+      storyEyebrow: "Our Story",
+      storyTitle: "From a garage to a\n14,000 m² factory",
+      storyParagraph1:
+        "In 2006, Jan Kowalski assembled the first labyrinth in a rented garage in Poznań. Clients were queuing before the paint dried. A year later the first workshop opened — 800 m². Five years later came the first international contract.",
+      storyParagraph2:
+        "Today our 14,000 m² factory produces over 80 projects per year — from backyard playsets to three-storey entertainment megaparks. Everything is designed, welded, painted, and tested under one roof in Poland.",
+      milestones: [
+        { year: "2006", text: "First labyrinth assembled in a Poznań garage" },
+        { year: "2009", text: "100th completed project" },
+        { year: "2012", text: "Own factory opens (5,000 m²)" },
+        { year: "2016", text: "ISO 9001 certification" },
+        { year: "2018", text: "Factory expands to 14,000 m²" },
+        { year: "2021", text: "500+ projects, entry into Asian markets" },
+        { year: "2024", text: "840+ projects across 32 countries" },
+      ],
+      valuesEyebrow: "Our Values",
+      valuesTitle: "Why clients trust us",
+      values: [
+        {
+          title: "Safety First",
+          description:
+            "Every component meets EN 1176, ASTM, and CE. Independent audit is mandatory before every shipment.",
+          icon: "🛡️",
+          theme: "orange",
+        },
+        {
+          title: "Hand-Crafted",
+          description:
+            "Welding, coating, installation — no outsourcing. 280 craftspeople under one roof.",
+          icon: "🔨",
+          theme: "blue",
+        },
+        {
+          title: "Built to Last",
+          description:
+            "HDPE does not rot, powder coat does not peel, steel is galvanised. 10–15 year warranty depending on series.",
+          icon: "⏳",
+          theme: "yellow",
+        },
+        {
+          title: "On-Time Delivery",
+          description:
+            "8 weeks from design to shipment for standard configurations. We have never missed an opening date.",
+          icon: "🚀",
+          theme: "green",
+        },
+      ],
+      factoryEyebrow: "Our Factory",
+      factoryTitle: "The heart of Kidsfera",
+      factoryDescription:
+        "Poznań, ul. Fabryczna 12. 14,000 m², 280 employees, 6 production lines. This is where every labyrinth, climbing wall, and trampoline arena we sell is born.",
+      factoryImageUrl:
+        "https://images.unsplash.com/photo-1716643863806-989dd76ae093?w=900&h=700&fit=crop&auto=format",
+      factoryLocationLabel: "Poznań, Poland",
+      factoryAddress: "ul. Fabryczna 12",
+      factoryStats: [
+        { value: "14,000 m²", label: "Factory floor" },
+        { value: "280", label: "Employees" },
+        { value: "6", label: "Production lines" },
+        { value: "80+", label: "Projects per year" },
+      ],
+      teamEyebrow: "The Team",
+      teamTitle: "The people behind Kidsfera",
+      teamMembers: [
+        {
+          name: "Jan Kowalski",
+          role: "Founder & CEO",
+          bio: "Mechanical engineer, father of three. Built the first labyrinth by hand in 2006.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+        {
+          name: "Marta Nowak",
+          role: "Head of Design",
+          bio: "Architect with 18 years of experience. Specialises in children's spaces and neuro-design.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1572021335469-31706a17aaef?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+        {
+          name: "Piotr Wiśniewski",
+          role: "Production Director",
+          bio: "Has run the factory since 2011. Under his leadership output has quadrupled.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+        {
+          name: "Anna Dąbrowska",
+          role: "International Sales",
+          bio: "Covers 32 countries. Has conducted over 400 negotiations across 5 continents.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1581091212991-8891c7d4bd9b?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+      ],
+      certificationsEyebrow: "Certifications",
+      certificationsTitle: "Verified by independent bodies",
+      certifications: [
+        { label: "EN 1176 — Playground equipment and surfacing" },
+        { label: "EN 13219 — Trampolining equipment" },
+        { label: "EN 12572 — Artificial climbing structures" },
+        { label: "ASTM F1292 — Impact attenuation of surfacing" },
+        { label: "CE — EU conformity marking" },
+        { label: "ISO 9001 — Quality management system" },
+      ],
+      safetyCalloutIcon: "🏆",
+      safetyCalloutTitle: "18 years of zero\nsafety incidents",
+      safetyCalloutDescription:
+        "Every product is independently tested before shipment. No Kidsfera installation has ever been involved in a recordable safety incident since our founding in 2006.",
+      safetyBadges: [
+        { label: "EN 1176" },
+        { label: "CE" },
+        { label: "ISO 9001" },
+        { label: "ASTM" },
+        { label: "EN 13219" },
+        { label: "EN 12572" },
+      ],
+      ctaTitle: "Ready to work\nwith us?",
+      ctaDescription:
+        "Contact our team and get a tailored proposal for your project within 24 hours.",
+      ctaPrimaryLabel: "Get a Quote",
+      ctaPrimaryHref: "/#contact",
+      ctaSecondaryLabel: "Browse Catalog",
+      ctaSecondaryHref: "/catalog",
+    },
+    uk: {
+      seo: {
+        metaTitle: "Kidsfera | Про нас",
+        metaDescription:
+          "Познайомтеся з командою, заводом, цінностями та сертифікаціями Kidsfera.",
+        canonicalPath: "/uk/about",
+      },
+      heroEyebrow: "Про нас",
+      heroTitle: "Ми будуємо\nмрії дітей",
+      heroDescription:
+        "З 2006 року Kidsfera проєктує та виробляє атракціони, що надихають дітей досліджувати, рухатись та уявляти.",
+      heroImageUrl:
+        "https://images.unsplash.com/photo-1581091212991-8891c7d4bd9b?w=1600&h=900&fit=crop&auto=format",
+      heroStats: [
+        { value: "840+", label: "Проєктів" },
+        { value: "32", label: "Країни" },
+        { value: "18", label: "Років" },
+        { value: "2.4M", label: "Дітей щодня" },
+      ],
+      storyEyebrow: "Наша історія",
+      storyTitle: "Від гаража до\n14 000 м² заводу",
+      storyParagraph1:
+        "У 2006 році Jan Kowalski зібрав перший лабіринт у орендованому гаражі в Познані. Замовники стояли в черзі ще до того, як фарба висохла. Через рік відкрився перший цех — 800 м². Через п'ять років з'явився перший міжнародний контракт.",
+      storyParagraph2:
+        "Сьогодні наш завод площею 14 000 м² виробляє понад 80 проєктів на рік — від домашніх майданчиків до триповерхових розважальних комплексів. Усе проєктується, зварюється, фарбується та тестується під одним дахом у Польщі.",
+      milestones: [
+        { year: "2006", text: "Перший лабіринт зібраний у гаражі в Познані" },
+        { year: "2009", text: "100-й реалізований проєкт" },
+        { year: "2012", text: "Відкриття власного заводу (5 000 м²)" },
+        { year: "2016", text: "Сертифікація ISO 9001" },
+        { year: "2018", text: "Розширення заводу до 14 000 м²" },
+        { year: "2021", text: "500+ проєктів, вихід на ринки Азії" },
+        { year: "2024", text: "840+ проєктів у 32 країнах" },
+      ],
+      valuesEyebrow: "Наші цінності",
+      valuesTitle: "Чому нам довіряють",
+      values: [
+        {
+          title: "Безпека передусім",
+          description:
+            "Кожна деталь відповідає EN 1176, ASTM та CE. Незалежний аудит обов'язковий перед кожним відвантаженням.",
+          icon: "🛡️",
+          theme: "orange",
+        },
+        {
+          title: "Ручна праця",
+          description:
+            "Зварювання, покриття, монтаж — ніякого аутсорсингу. 280 майстрів на одному заводі.",
+          icon: "🔨",
+          theme: "blue",
+        },
+        {
+          title: "Довговічність",
+          description:
+            "HDPE не гниє, порошкова фарба не облазить, сталь оцинкована. Гарантія 10–15 років залежно від серії.",
+          icon: "⏳",
+          theme: "yellow",
+        },
+        {
+          title: "Дотримання строків",
+          description:
+            "8 тижнів від дизайну до відвантаження для стандартних конфігурацій. Ми ніколи не зривали дату відкриття.",
+          icon: "🚀",
+          theme: "green",
+        },
+      ],
+      factoryEyebrow: "Наш завод",
+      factoryTitle: "Серце Kidsfera",
+      factoryDescription:
+        "Познань, вул. Fabryczna 12. 14 000 м², 280 співробітників, 6 виробничих ліній. Тут народжується кожен лабіринт, скелодром та батутна арена, яку ми продаємо.",
+      factoryImageUrl:
+        "https://images.unsplash.com/photo-1716643863806-989dd76ae093?w=900&h=700&fit=crop&auto=format",
+      factoryLocationLabel: "Познань, Польща",
+      factoryAddress: "вул. Fabryczna 12",
+      factoryStats: [
+        { value: "14 000 м²", label: "Площа заводу" },
+        { value: "280", label: "Співробітників" },
+        { value: "6", label: "Виробничих ліній" },
+        { value: "80+", label: "Проєктів на рік" },
+      ],
+      teamEyebrow: "Команда",
+      teamTitle: "Люди за Kidsfera",
+      teamMembers: [
+        {
+          name: "Jan Kowalski",
+          role: "Засновник та CEO",
+          bio: "Інженер-механік, батько трьох дітей. Зібрав перший лабіринт власноруч у 2006 році.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+        {
+          name: "Marta Nowak",
+          role: "Директор дизайну",
+          bio: "Архітектор з 18-річним досвідом. Спеціалізується на дитячих просторах та нейродизайні.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1572021335469-31706a17aaef?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+        {
+          name: "Piotr Wiśniewski",
+          role: "Директор виробництва",
+          bio: "Керує заводом з 2011 року. Під його керівництвом продуктивність зросла вчетверо.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+        {
+          name: "Anna Dąbrowska",
+          role: "Міжнародні продажі",
+          bio: "Відповідає за 32 країни. Провела понад 400 переговорів на 5 континентах.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1581091212991-8891c7d4bd9b?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+      ],
+      certificationsEyebrow: "Сертифікати",
+      certificationsTitle: "Перевірено незалежними органами",
+      certifications: [
+        { label: "EN 1176 — Обладнання та покриття дитячих майданчиків" },
+        { label: "EN 13219 — Батутне обладнання" },
+        { label: "EN 12572 — Штучні скельні конструкції" },
+        { label: "ASTM F1292 — Ударне поглинання покриттів" },
+        { label: "CE — Відповідність стандартам ЄС" },
+        { label: "ISO 9001 — Управління якістю" },
+      ],
+      safetyCalloutIcon: "🏆",
+      safetyCalloutTitle: "18 років без\nінцидентів безпеки",
+      safetyCalloutDescription:
+        "Кожен продукт проходить незалежні випробування перед відвантаженням. Від моменту заснування у 2006 році жоден об'єкт Kidsfera не мав зафіксованого інциденту безпеки.",
+      safetyBadges: [
+        { label: "EN 1176" },
+        { label: "CE" },
+        { label: "ISO 9001" },
+        { label: "ASTM" },
+        { label: "EN 13219" },
+        { label: "EN 12572" },
+      ],
+      ctaTitle: "Готові працювати\nз нами?",
+      ctaDescription:
+        "Зв'яжіться з нашою командою та отримайте персональну пропозицію для вашого проєкту протягом 24 годин.",
+      ctaPrimaryLabel: "Отримати пропозицію",
+      ctaPrimaryHref: "/#contact",
+      ctaSecondaryLabel: "Переглянути каталог",
+      ctaSecondaryHref: "/catalog",
+    },
+    ru: {
+      seo: {
+        metaTitle: "Kidsfera | О нас",
+        metaDescription:
+          "Познакомьтесь с командой, заводом, ценностями и сертификацией Kidsfera.",
+        canonicalPath: "/ru/about",
+      },
+      heroEyebrow: "О нас",
+      heroTitle: "Мы строим\nмечты детей",
+      heroDescription:
+        "С 2006 года Kidsfera проектирует и производит аттракционы, которые вдохновляют детей исследовать, двигаться и воображать.",
+      heroImageUrl:
+        "https://images.unsplash.com/photo-1581091212991-8891c7d4bd9b?w=1600&h=900&fit=crop&auto=format",
+      heroStats: [
+        { value: "840+", label: "Проектов" },
+        { value: "32", label: "Страны" },
+        { value: "18", label: "Лет" },
+        { value: "2.4M", label: "Детей в день" },
+      ],
+      storyEyebrow: "Наша история",
+      storyTitle: "От гаража до\n14 000 м² завода",
+      storyParagraph1:
+        "В 2006 году Jan Kowalski собрал первый лабиринт в арендованном гараже в Познани. Клиенты стояли в очереди ещё до того, как высохла краска. Через год открылся первый цех — 800 м². Через пять лет появился первый международный контракт.",
+      storyParagraph2:
+        "Сегодня наш завод площадью 14 000 м² производит более 80 проектов в год — от домашних площадок до трёхэтажных развлекательных комплексов. Всё проектируется, сваривается, красится и тестируется под одной крышей в Польше.",
+      milestones: [
+        { year: "2006", text: "Первый лабиринт собран в гараже в Познани" },
+        { year: "2009", text: "100-й реализованный проект" },
+        { year: "2012", text: "Открытие собственного завода (5 000 м²)" },
+        { year: "2016", text: "Сертификация ISO 9001" },
+        { year: "2018", text: "Расширение завода до 14 000 м²" },
+        { year: "2021", text: "500+ проектов, выход на рынки Азии" },
+        { year: "2024", text: "840+ проектов в 32 странах" },
+      ],
+      valuesEyebrow: "Наши ценности",
+      valuesTitle: "Почему нам доверяют",
+      values: [
+        {
+          title: "Безопасность прежде всего",
+          description:
+            "Каждая деталь соответствует EN 1176, ASTM и CE. Независимый аудит обязателен перед каждой отгрузкой.",
+          icon: "🛡️",
+          theme: "orange",
+        },
+        {
+          title: "Ручная работа",
+          description:
+            "Сварка, покрытие, монтаж — никакого аутсорсинга. 280 мастеров под одной крышей.",
+          icon: "🔨",
+          theme: "blue",
+        },
+        {
+          title: "Долговечность",
+          description:
+            "HDPE не гниёт, порошковая краска не облезает, сталь оцинкована. Гарантия 10–15 лет в зависимости от серии.",
+          icon: "⏳",
+          theme: "yellow",
+        },
+        {
+          title: "Соблюдение сроков",
+          description:
+            "8 недель от дизайна до отгрузки для стандартных конфигураций. Мы никогда не срывали дату открытия.",
+          icon: "🚀",
+          theme: "green",
+        },
+      ],
+      factoryEyebrow: "Наш завод",
+      factoryTitle: "Сердце Kidsfera",
+      factoryDescription:
+        "Познань, ул. Fabryczna 12. 14 000 м², 280 сотрудников, 6 производственных линий. Здесь рождается каждый лабиринт, скалодром и батутная арена, которую мы продаём.",
+      factoryImageUrl:
+        "https://images.unsplash.com/photo-1716643863806-989dd76ae093?w=900&h=700&fit=crop&auto=format",
+      factoryLocationLabel: "Познань, Польша",
+      factoryAddress: "ул. Fabryczna 12",
+      factoryStats: [
+        { value: "14 000 м²", label: "Площадь завода" },
+        { value: "280", label: "Сотрудников" },
+        { value: "6", label: "Производственных линий" },
+        { value: "80+", label: "Проектов в год" },
+      ],
+      teamEyebrow: "Команда",
+      teamTitle: "Люди за Kidsfera",
+      teamMembers: [
+        {
+          name: "Jan Kowalski",
+          role: "Основатель и CEO",
+          bio: "Инженер-механик, отец троих детей. Собрал первый лабиринт своими руками в 2006 году.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+        {
+          name: "Marta Nowak",
+          role: "Директор по дизайну",
+          bio: "Архитектор с 18-летним опытом. Специализируется на детских пространствах и нейродизайне.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1572021335469-31706a17aaef?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+        {
+          name: "Piotr Wiśniewski",
+          role: "Директор производства",
+          bio: "Руководит заводом с 2011 года. Под его руководством производительность выросла в четыре раза.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+        {
+          name: "Anna Dąbrowska",
+          role: "Международные продажи",
+          bio: "Отвечает за 32 страны. Провела более 400 переговоров на 5 континентах.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1581091212991-8891c7d4bd9b?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+      ],
+      certificationsEyebrow: "Сертификаты",
+      certificationsTitle: "Проверено независимыми органами",
+      certifications: [
+        { label: "EN 1176 — Оборудование и покрытия детских площадок" },
+        { label: "EN 13219 — Батутное оборудование" },
+        { label: "EN 12572 — Искусственные скальные конструкции" },
+        { label: "ASTM F1292 — Ударопоглощение покрытий" },
+        { label: "CE — Соответствие стандартам ЕС" },
+        { label: "ISO 9001 — Управление качеством" },
+      ],
+      safetyCalloutIcon: "🏆",
+      safetyCalloutTitle: "18 лет без\nинцидентов безопасности",
+      safetyCalloutDescription:
+        "Каждый продукт проходит независимые испытания перед отгрузкой. С момента основания в 2006 году ни один объект Kidsfera не был связан с зафиксированным инцидентом безопасности.",
+      safetyBadges: [
+        { label: "EN 1176" },
+        { label: "CE" },
+        { label: "ISO 9001" },
+        { label: "ASTM" },
+        { label: "EN 13219" },
+        { label: "EN 12572" },
+      ],
+      ctaTitle: "Готовы работать\nс нами?",
+      ctaDescription:
+        "Свяжитесь с нашей командой и получите персональное предложение для вашего проекта в течение 24 часов.",
+      ctaPrimaryLabel: "Получить предложение",
+      ctaPrimaryHref: "/#contact",
+      ctaSecondaryLabel: "Смотреть каталог",
+      ctaSecondaryHref: "/catalog",
+    },
+    pl: {
+      seo: {
+        metaTitle: "Kidsfera | O nas",
+        metaDescription:
+          "Poznaj zespół, fabrykę, wartości i certyfikacje stojące za marką Kidsfera.",
+        canonicalPath: "/pl/about",
+      },
+      heroEyebrow: "O nas",
+      heroTitle: "Budujemy\nmarzenia dzieci",
+      heroDescription:
+        "Od 2006 roku Kidsfera projektuje i produkuje atrakcje, które inspirują dzieci do odkrywania, ruchu i wyobraźni.",
+      heroImageUrl:
+        "https://images.unsplash.com/photo-1581091212991-8891c7d4bd9b?w=1600&h=900&fit=crop&auto=format",
+      heroStats: [
+        { value: "840+", label: "Projektów" },
+        { value: "32", label: "Kraje" },
+        { value: "18", label: "Lat" },
+        { value: "2.4M", label: "Dzieci dziennie" },
+      ],
+      storyEyebrow: "Nasza historia",
+      storyTitle: "Od garażu do fabryki\n14 000 m²",
+      storyParagraph1:
+        "W 2006 roku Jan Kowalski złożył pierwszy labirynt w wynajętym garażu w Poznaniu. Klienci ustawiali się w kolejce, zanim farba wyschła. Rok później otworzył się pierwszy warsztat — 800 m². Pięć lat później pojawił się pierwszy kontrakt międzynarodowy.",
+      storyParagraph2:
+        "Dziś nasza fabryka o powierzchni 14 000 m² produkuje ponad 80 projektów rocznie — od domowych placów zabaw po trzypiętrowe megaparki rozrywki. Wszystko jest projektowane, spawane, lakierowane i testowane pod jednym dachem w Polsce.",
+      milestones: [
+        { year: "2006", text: "Pierwszy labirynt złożony w garażu w Poznaniu" },
+        { year: "2009", text: "100. zrealizowany projekt" },
+        { year: "2012", text: "Otwarcie własnej fabryki (5 000 m²)" },
+        { year: "2016", text: "Certyfikacja ISO 9001" },
+        { year: "2018", text: "Rozbudowa fabryki do 14 000 m²" },
+        { year: "2021", text: "500+ projektów, wejście na rynki azjatyckie" },
+        { year: "2024", text: "840+ projektów w 32 krajach" },
+      ],
+      valuesEyebrow: "Nasze wartości",
+      valuesTitle: "Dlaczego klienci nam ufają",
+      values: [
+        {
+          title: "Bezpieczeństwo przede wszystkim",
+          description:
+            "Każdy element spełnia normy EN 1176, ASTM i CE. Niezależny audit obowiązkowy przed każdą wysyłką.",
+          icon: "🛡️",
+          theme: "orange",
+        },
+        {
+          title: "Rękodzieło",
+          description:
+            "Spawanie, lakierowanie, montaż — bez outsourcingu. 280 rzemieślników pod jednym dachem.",
+          icon: "🔨",
+          theme: "blue",
+        },
+        {
+          title: "Trwałość",
+          description:
+            "HDPE nie gnije, farba proszkowa nie odpada, stal jest ocynkowana. Gwarancja 10–15 lat zależnie od serii.",
+          icon: "⏳",
+          theme: "yellow",
+        },
+        {
+          title: "Dotrzymanie terminów",
+          description:
+            "8 tygodni od projektu do wysyłki dla standardowych konfiguracji. Nigdy nie spóźniliśmy się na otwarcie.",
+          icon: "🚀",
+          theme: "green",
+        },
+      ],
+      factoryEyebrow: "Nasza fabryka",
+      factoryTitle: "Serce Kidsfera",
+      factoryDescription:
+        "Poznań, ul. Fabryczna 12. 14 000 m², 280 pracowników, 6 linii produkcyjnych. Tutaj rodzi się każdy labirynt, ścianka wspinaczkowa i arena trampolinowa, którą sprzedajemy.",
+      factoryImageUrl:
+        "https://images.unsplash.com/photo-1716643863806-989dd76ae093?w=900&h=700&fit=crop&auto=format",
+      factoryLocationLabel: "Poznań, Polska",
+      factoryAddress: "ul. Fabryczna 12",
+      factoryStats: [
+        { value: "14 000 m²", label: "Powierzchnia fabryki" },
+        { value: "280", label: "Pracowników" },
+        { value: "6", label: "Linii produkcyjnych" },
+        { value: "80+", label: "Projektów rocznie" },
+      ],
+      teamEyebrow: "Zespół",
+      teamTitle: "Ludzie za Kidsfera",
+      teamMembers: [
+        {
+          name: "Jan Kowalski",
+          role: "Założyciel i CEO",
+          bio: "Inżynier mechanik, ojciec trojga dzieci. Złożył pierwszy labirynt własnoręcznie w 2006 roku.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+        {
+          name: "Marta Nowak",
+          role: "Dyrektor ds. designu",
+          bio: "Architektka z 18-letnim doświadczeniem. Specjalizuje się w przestrzeniach dla dzieci i neurodesignie.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1572021335469-31706a17aaef?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+        {
+          name: "Piotr Wiśniewski",
+          role: "Dyrektor produkcji",
+          bio: "Zarządza fabryką od 2011 roku. Pod jego kierownictwem wydajność wzrosła czterokrotnie.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+        {
+          name: "Anna Dąbrowska",
+          role: "Sprzedaż międzynarodowa",
+          bio: "Odpowiada za 32 kraje. Prowadziła ponad 400 negocjacji na 5 kontynentach.",
+          imageUrl:
+            "https://images.unsplash.com/photo-1581091212991-8891c7d4bd9b?w=400&h=400&fit=crop&crop=face&auto=format",
+        },
+      ],
+      certificationsEyebrow: "Certyfikaty",
+      certificationsTitle: "Weryfikowane przez niezależne jednostki",
+      certifications: [
+        { label: "EN 1176 — Wyposażenie i nawierzchnie placów zabaw" },
+        { label: "EN 13219 — Wyposażenie trampolinowe" },
+        { label: "EN 12572 — Sztuczne ściany wspinaczkowe" },
+        { label: "ASTM F1292 — Amortyzacja uderzeń nawierzchni" },
+        { label: "CE — Oznakowanie zgodności UE" },
+        { label: "ISO 9001 — System zarządzania jakością" },
+      ],
+      safetyCalloutIcon: "🏆",
+      safetyCalloutTitle: "18 lat bez\nincydentów bezpieczeństwa",
+      safetyCalloutDescription:
+        "Każdy produkt jest niezależnie testowany przed wysyłką. Od momentu powstania w 2006 roku żadna instalacja Kidsfera nie była związana z odnotowanym incydentem bezpieczeństwa.",
+      safetyBadges: [
+        { label: "EN 1176" },
+        { label: "CE" },
+        { label: "ISO 9001" },
+        { label: "ASTM" },
+        { label: "EN 13219" },
+        { label: "EN 12572" },
+      ],
+      ctaTitle: "Gotowi pracować\nz nami?",
+      ctaDescription:
+        "Skontaktuj się z naszym zespołem i otrzymaj dopasowaną ofertę dla swojego projektu w ciągu 24 godzin.",
+      ctaPrimaryLabel: "Zapytaj o ofertę",
+      ctaPrimaryHref: "/#contact",
+      ctaSecondaryLabel: "Przeglądaj katalog",
+      ctaSecondaryHref: "/catalog",
     },
   } satisfies Localized<Record<string, unknown>>,
   categoriesPage: {

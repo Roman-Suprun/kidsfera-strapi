@@ -38,15 +38,27 @@
                 }
             }
         },
-        "imageUrl": {
-            "type": "text"
-        },
         "image": {
             "type": "media",
             "multiple": false,
             "allowedTypes": ["images"]
         },
         "projectType": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::category.category",
+            "inversedBy": "projects"
+        },
+        "description": {
+            "type": "richtext",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "location": {
             "type": "string",
             "required": true,
             "pluginOptions": {
@@ -54,6 +66,65 @@
                     "localized": true
                 }
             }
+        },
+        "clientName": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "area": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "yearLabel": {
+            "type": "string",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "themeColor": {
+            "type": "string",
+            "default": "#FF4500"
+        },
+        "countryFlag": {
+            "type": "string"
+        },
+        "gallery": {
+            "type": "component",
+            "repeatable": true,
+            "component": "shared.image-link",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "testimonial": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.project-testimonial",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "usedProducts": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::product.product"
         },
         "sortOrder": {
             "type": "integer",

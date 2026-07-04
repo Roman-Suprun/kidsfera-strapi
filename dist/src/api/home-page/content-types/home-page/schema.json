@@ -111,9 +111,6 @@
                 }
             }
         },
-        "heroImageUrl": {
-            "type": "text"
-        },
         "heroImage": {
             "type": "media",
             "multiple": false,

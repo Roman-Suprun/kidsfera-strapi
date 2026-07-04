@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.syncAllMediaFields = void 0;
+exports.syncAllMediaFields = exports.uploadImageFromUrl = exports.createMediaCache = void 0;
 const node_crypto_1 = __importDefault(require("node:crypto"));
 const promises_1 = __importDefault(require("node:fs/promises"));
 const node_os_1 = __importDefault(require("node:os"));
@@ -14,6 +14,11 @@ const SINGLE_TYPE_SEO_FIELDS = [
     { uid: "api::categories-page.categories-page", field: "seo" },
     { uid: "api::catalog-page.catalog-page", field: "seo" },
 ];
+const PUBLISHED_STATUS = "published";
+function createMediaCache() {
+    return new Map();
+}
+exports.createMediaCache = createMediaCache;
 function isRecord(value) {
     return typeof value === "object" && value !== null && !Array.isArray(value);
 }
@@ -26,6 +31,90 @@ function hasMedia(value) {
 function getUrl(value) {
     return typeof value === "string" && value.trim().length > 0 ? value : null;
 }
+function sanitizeRelation(value) {
+    if (!isRecord(value) || typeof value.documentId !== "string") {
+        return undefined;
+    }
+    return { documentId: value.documentId };
+}
+function sanitizeFeaturedProductComponent(value) {
+    if (!isRecord(value)) {
+        return value;
+    }
+    return {
+        title: value.title,
+        tagline: value.tagline,
+        description: value.description,
+        badge: value.badge,
+        ctaLabel: value.ctaLabel,
+        imageUrl: value.imageUrl,
+        image: value.image,
+        imageAlt: value.imageAlt,
+        theme: value.theme,
+        linkedCategory: sanitizeRelation(value.linkedCategory),
+    };
+}
+function sanitizeImageLinkComponent(value) {
+    if (!isRecord(value)) {
+        return value;
+    }
+    return {
+        url: value.url,
+        image: value.image,
+        alt: value.alt,
+    };
+}
+function sanitizeSeoComponent(value) {
+    if (!isRecord(value)) {
+        return value;
+    }
+    return {
+        metaTitle: value.metaTitle,
+        metaDescription: value.metaDescription,
+        ogTitle: value.ogTitle,
+        ogDescription: value.ogDescription,
+        canonicalPath: value.canonicalPath,
+        ogImageUrl: value.ogImageUrl,
+        ogImage: value.ogImage,
+        noIndex: value.noIndex,
+    };
+}
+function isMediaRecord(value) {
+    return (typeof value.mime === "string" ||
+        typeof value.provider === "string" ||
+        ("formats" in value && typeof value.url === "string"));
+}
+function sanitizeDocumentInput(value, asRelation = true) {
+    if (Array.isArray(value)) {
+        return value.map((item) => sanitizeDocumentInput(item));
+    }
+    if (!isRecord(value)) {
+        return value;
+    }
+    if (isMediaRecord(value)) {
+        return typeof value.id === "number" ? value.id : undefined;
+    }
+    if (asRelation && typeof value.documentId === "string") {
+        return { documentId: value.documentId };
+    }
+    return Object.fromEntries(Object.entries(value)
+        .filter(([key]) => ![
+        "id",
+        "documentId",
+        "createdAt",
+        "updatedAt",
+        "publishedAt",
+        "locale",
+        "localizations",
+        "createdBy",
+        "updatedBy",
+    ].includes(key))
+        .map(([key, nestedValue]) => [key, sanitizeDocumentInput(nestedValue)])
+        .filter(([, nestedValue]) => nestedValue !== undefined));
+}
+function buildDocumentData(value) {
+    return sanitizeDocumentInput(value, false);
+}
 function buildUploadName(url) {
     const digest = node_crypto_1.default.createHash("sha1").update(url).digest("hex").slice(0, 16);
     return `kidsfera-${digest}`;
@@ -33,7 +122,7 @@ function buildUploadName(url) {
 async function findFirstDocument(strapi, uid, locale) {
     const entries = await strapi.documents(uid).findMany({
         locale,
-        status: "draft",
+        status: PUBLISHED_STATUS,
         populate: "*",
     });
     return (Array.isArray(entries) ? entries[0] : entries);
@@ -41,7 +130,7 @@ async function findFirstDocument(strapi, uid, locale) {
 async function findManyDocuments(strapi, uid, locale) {
     const entries = await strapi.documents(uid).findMany({
         locale,
-        status: "draft",
+        status: PUBLISHED_STATUS,
         populate: "*",
     });
     return (Array.isArray(entries) ? entries : []);
@@ -63,7 +152,8 @@ async function uploadImageFromUrl(strapi, url, alt, cache) {
     try {
         const fileService = strapi.plugin("upload").service("file");
         const uploadService = strapi.plugin("upload").service("upload");
-        const inputFile = await fileService.fetchUrlToInputFile(url, tmpDir);
+        const fetchedInput = await fileService.fetchUrlToInputFile(url, tmpDir);
+        const inputFile = fetchedInput.file;
         const fileName = node_path_1.default.basename(new URL(url).pathname) || `${uploadName}.jpg`;
         if (!inputFile.originalFilename) {
             inputFile.originalFilename = fileName;
@@ -95,6 +185,7 @@ async function uploadImageFromUrl(strapi, url, alt, cache) {
         await promises_1.default.rm(tmpDir, { recursive: true, force: true });
     }
 }
+exports.uploadImageFromUrl = uploadImageFromUrl;
 async function syncSeoComponent(strapi, seo, cache) {
     if (!isRecord(seo)) {
         return { changed: false, value: seo };
@@ -133,8 +224,10 @@ async function syncSingleTypeSeoFields(strapi, locales, cache) {
             await strapi.documents(uid).update({
                 documentId: entry.documentId,
                 locale,
+                status: PUBLISHED_STATUS,
                 data: {
-                    [field]: nextSeo.value,
+                    ...buildDocumentData(entry),
+                    [field]: sanitizeSeoComponent(nextSeo.value),
                 },
             });
         }
@@ -172,7 +265,7 @@ async function syncHomePageMedia(strapi, locales, cache) {
             };
         }));
         if (changed) {
-            nextData.featuredProducts = nextFeaturedProducts;
+            nextData.featuredProducts = nextFeaturedProducts.map((item) => sanitizeFeaturedProductComponent(item));
         }
         if (!changed) {
             continue;
@@ -180,7 +273,11 @@ async function syncHomePageMedia(strapi, locales, cache) {
         await strapi.documents("api::home-page.home-page").update({
             documentId: entry.documentId,
             locale,
-            data: nextData,
+            status: PUBLISHED_STATUS,
+            data: {
+                ...buildDocumentData(entry),
+                ...nextData,
+            },
         });
     }
 }
@@ -203,7 +300,7 @@ async function syncCategoryMedia(strapi, locales, cache) {
             }
             const nextSeo = await syncSeoComponent(strapi, entry.seo, cache);
             if (nextSeo.changed) {
-                nextData.seo = nextSeo.value;
+                nextData.seo = sanitizeSeoComponent(nextSeo.value);
                 changed = true;
             }
             if (!changed) {
@@ -212,6 +309,7 @@ async function syncCategoryMedia(strapi, locales, cache) {
             await strapi.documents("api::category.category").update({
                 documentId: entry.documentId,
                 locale,
+                status: PUBLISHED_STATUS,
                 data: nextData,
             });
         }
@@ -243,11 +341,11 @@ async function syncProductMedia(strapi, locales, cache) {
                 };
             }));
             if (changed) {
-                nextData.gallery = nextGallery;
+                nextData.gallery = nextGallery.map((item) => sanitizeImageLinkComponent(item));
             }
             const nextSeo = await syncSeoComponent(strapi, entry.seo, cache);
             if (nextSeo.changed) {
-                nextData.seo = nextSeo.value;
+                nextData.seo = sanitizeSeoComponent(nextSeo.value);
                 changed = true;
             }
             if (!changed) {
@@ -256,6 +354,7 @@ async function syncProductMedia(strapi, locales, cache) {
             await strapi.documents("api::product.product").update({
                 documentId: entry.documentId,
                 locale,
+                status: PUBLISHED_STATUS,
                 data: nextData,
             });
         }
@@ -276,6 +375,7 @@ async function syncProjectMedia(strapi, locales, cache) {
             await strapi.documents("api::project.project").update({
                 documentId: entry.documentId,
                 locale,
+                status: PUBLISHED_STATUS,
                 data: {
                     image: mediaId,
                 },
@@ -284,7 +384,7 @@ async function syncProjectMedia(strapi, locales, cache) {
     }
 }
 async function syncAllMediaFields(strapi, locales) {
-    const cache = new Map();
+    const cache = createMediaCache();
     await syncSingleTypeSeoFields(strapi, locales, cache);
     await syncHomePageMedia(strapi, locales, cache);
     await syncCategoryMedia(strapi, locales, cache);

@@ -8,6 +8,7 @@ const PUBLISHED_STATUS = 'published';
 const STORE_UIDS = [
   'api::site-setting.site-setting',
   'api::home-page.home-page',
+  'api::about-page.about-page',
   'api::categories-page.categories-page',
   'api::catalog-page.catalog-page',
   'api::product-page.product-page',
@@ -43,44 +44,6 @@ async function transformMediaFields(
   const nextValue: Record<string, unknown> = {};
 
   for (const [key, nestedValue] of Object.entries(value)) {
-    if (key === 'heroImageUrl') {
-      const url = getString(nestedValue);
-      const mediaId = url ? await uploadImageFromUrl(strapi, url, null, cache) : null;
-
-      if (mediaId) {
-        nextValue.heroImage = mediaId;
-      }
-
-      continue;
-    }
-
-    if (key === 'imageUrl') {
-      const url = getString(nestedValue);
-      const alt =
-        getString(value.imageAlt) ??
-        getString(value.title) ??
-        getString(value.name) ??
-        getString(value.subtitle);
-      const mediaId = url ? await uploadImageFromUrl(strapi, url, alt, cache) : null;
-
-      if (mediaId) {
-        nextValue.image = mediaId;
-      }
-
-      continue;
-    }
-
-    if (key === 'url' && getString(value.alt)) {
-      const url = getString(nestedValue);
-      const mediaId = url ? await uploadImageFromUrl(strapi, url, getString(value.alt), cache) : null;
-
-      if (mediaId) {
-        nextValue.image = mediaId;
-      }
-
-      continue;
-    }
-
     if (key === 'ogImageUrl') {
       const url = getString(nestedValue);
       const mediaId = url
@@ -94,6 +57,34 @@ async function transformMediaFields(
 
       if (mediaId) {
         nextValue.ogImage = mediaId;
+      }
+
+      continue;
+    }
+
+    if (key.endsWith('ImageUrl')) {
+      const url = getString(nestedValue);
+      const targetKey = key === 'imageUrl' ? 'image' : key.replace(/Url$/, '');
+      const alt =
+        getString(value.imageAlt) ??
+        getString(value.title) ??
+        getString(value.name) ??
+        getString(value.subtitle);
+      const mediaId = url ? await uploadImageFromUrl(strapi, url, alt, cache) : null;
+
+      if (mediaId) {
+        nextValue[targetKey] = mediaId;
+      }
+
+      continue;
+    }
+
+    if (key === 'url' && getString(value.alt)) {
+      const url = getString(nestedValue);
+      const mediaId = url ? await uploadImageFromUrl(strapi, url, getString(value.alt), cache) : null;
+
+      if (mediaId) {
+        nextValue.image = mediaId;
       }
 
       continue;
@@ -201,6 +192,42 @@ async function createLocalizedSingle(
       locale,
       status: PUBLISHED_STATUS,
       data: localizedData as any,
+    });
+  }
+}
+
+async function ensureLocalizedSingle(
+  strapi: Core.Strapi,
+  uid: string,
+  dataByLocale: Record<string, Record<string, unknown>>,
+  cache: MediaCache,
+) {
+  const existingDefault = await strapi.db.query(uid).findOne({
+    where: { locale: DEFAULT_LOCALE },
+  });
+
+  if (!existingDefault) {
+    await createLocalizedSingle(strapi, uid, dataByLocale, cache);
+  }
+}
+
+async function ensureSiteSettingsFields(strapi: Core.Strapi) {
+  for (const locale of kidsferaSeed.languages) {
+    const existing = await strapi.db.query('api::site-setting.site-setting').findOne({
+      where: { locale },
+    });
+
+    if (!existing?.documentId || existing.navAboutLabel) {
+      continue;
+    }
+
+    await strapi.documents('api::site-setting.site-setting').update({
+      documentId: existing.documentId,
+      locale,
+      status: PUBLISHED_STATUS,
+      data: {
+        navAboutLabel: kidsferaSeed.siteSettings[locale].navAboutLabel,
+      } as any,
     });
   }
 }
@@ -456,42 +483,28 @@ export default {
     const mediaCache = createMediaCache();
 
     if (autoSeedEnabled && (await shouldSeed(strapi))) {
-      await createLocalizedSingle(
-        strapi,
-        'api::site-setting.site-setting',
-        kidsferaSeed.siteSettings,
-        mediaCache,
-      );
-      await createLocalizedSingle(
-        strapi,
-        'api::home-page.home-page',
-        kidsferaSeed.homePage,
-        mediaCache,
-      );
-      await createLocalizedSingle(
-        strapi,
-        'api::categories-page.categories-page',
-        kidsferaSeed.categoriesPage,
-        mediaCache,
-      );
-      await createLocalizedSingle(
-        strapi,
-        'api::catalog-page.catalog-page',
-        kidsferaSeed.catalogPage,
-        mediaCache,
-      );
-      await createLocalizedSingle(
-        strapi,
-        'api::product-page.product-page',
-        kidsferaSeed.productPage,
-        mediaCache,
-      );
+      await createLocalizedSingle(strapi, 'api::site-setting.site-setting', kidsferaSeed.siteSettings, mediaCache);
+      await createLocalizedSingle(strapi, 'api::home-page.home-page', kidsferaSeed.homePage, mediaCache);
+      await createLocalizedSingle(strapi, 'api::about-page.about-page', kidsferaSeed.aboutPage, mediaCache);
+      await createLocalizedSingle(strapi, 'api::categories-page.categories-page', kidsferaSeed.categoriesPage, mediaCache);
+      await createLocalizedSingle(strapi, 'api::catalog-page.catalog-page', kidsferaSeed.catalogPage, mediaCache);
+      await createLocalizedSingle(strapi, 'api::product-page.product-page', kidsferaSeed.productPage, mediaCache);
 
       const categoryIds = await seedCategories(strapi, mediaCache);
 
       const productIds = await seedProducts(strapi, categoryIds, mediaCache);
       await seedProjects(strapi, categoryIds, productIds, mediaCache);
       await seedTestimonials(strapi);
+    }
+
+    if (autoSeedEnabled) {
+      await ensureLocalizedSingle(
+        strapi,
+        'api::about-page.about-page',
+        kidsferaSeed.aboutPage,
+        mediaCache,
+      );
+      await ensureSiteSettingsFields(strapi);
     }
 
   },

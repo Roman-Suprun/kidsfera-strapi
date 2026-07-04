@@ -26,9 +26,6 @@
             "type": "boolean",
             "default": false
         },
-        "ogImageUrl": {
-            "type": "text"
-        },
         "ogImage": {
             "type": "media",
             "multiple": false,
