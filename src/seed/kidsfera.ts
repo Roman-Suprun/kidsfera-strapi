@@ -42,9 +42,18 @@ export const kidsferaSeed = {
       footerDescription:
         "Kidsfera designs and manufactures children's attraction systems for malls, parks, family centres, and private clients.",
       footerCopyright: "© 2026 Kidsfera. All rights reserved.",
+      businessHoursLabel: "Working Hours",
+      businessHoursPrimary: "Mon–Fri: 9:00–18:00",
+      businessHoursSecondary: "Sat: 10:00–15:00 · Sun: closed",
       contactEmail: "hello@kidsfera.example",
       contactPhone: "+48 61 234 5678",
       contactAddress: "ul. Fabryczna 12, Poznań, Poland",
+      socialLinks: [
+        { label: "Facebook", href: "https://facebook.com/kidsfera", platform: "facebook" },
+        { label: "Instagram", href: "https://instagram.com/kidsfera", platform: "instagram" },
+        { label: "LinkedIn", href: "https://linkedin.com/company/kidsfera", platform: "linkedin" },
+        { label: "YouTube", href: "https://youtube.com/@kidsfera", platform: "youtube" },
+      ],
     },
     uk: {
       siteName: "Kidsfera",
@@ -64,9 +73,18 @@ export const kidsferaSeed = {
       footerDescription:
         "Kidsfera проєктує та виробляє дитячі атракціони для торгових центрів, парків, сімейних центрів і приватних клієнтів.",
       footerCopyright: "© 2026 Kidsfera. Всі права захищені.",
+      businessHoursLabel: "Графік роботи",
+      businessHoursPrimary: "Пн–Пт: 9:00–18:00",
+      businessHoursSecondary: "Сб: 10:00–15:00 · Нд: вихідний",
       contactEmail: "hello@kidsfera.example",
       contactPhone: "+48 61 234 5678",
       contactAddress: "вул. Fabryczna 12, Познань, Польща",
+      socialLinks: [
+        { label: "Facebook", href: "https://facebook.com/kidsfera", platform: "facebook" },
+        { label: "Instagram", href: "https://instagram.com/kidsfera", platform: "instagram" },
+        { label: "LinkedIn", href: "https://linkedin.com/company/kidsfera", platform: "linkedin" },
+        { label: "YouTube", href: "https://youtube.com/@kidsfera", platform: "youtube" },
+      ],
     },
     ru: {
       siteName: "Kidsfera",
@@ -86,9 +104,18 @@ export const kidsferaSeed = {
       footerDescription:
         "Kidsfera проектирует и производит детские аттракционы для торговых центров, парков, семейных центров и частных клиентов.",
       footerCopyright: "© 2026 Kidsfera. Все права защищены.",
+      businessHoursLabel: "График работы",
+      businessHoursPrimary: "Пн–Пт: 9:00–18:00",
+      businessHoursSecondary: "Сб: 10:00–15:00 · Вс: выходной",
       contactEmail: "hello@kidsfera.example",
       contactPhone: "+48 61 234 5678",
       contactAddress: "ул. Fabryczna 12, Познань, Польша",
+      socialLinks: [
+        { label: "Facebook", href: "https://facebook.com/kidsfera", platform: "facebook" },
+        { label: "Instagram", href: "https://instagram.com/kidsfera", platform: "instagram" },
+        { label: "LinkedIn", href: "https://linkedin.com/company/kidsfera", platform: "linkedin" },
+        { label: "YouTube", href: "https://youtube.com/@kidsfera", platform: "youtube" },
+      ],
     },
     pl: {
       siteName: "Kidsfera",
@@ -108,9 +135,18 @@ export const kidsferaSeed = {
       footerDescription:
         "Kidsfera projektuje i produkuje atrakcje dla dzieci do galerii handlowych, parków, centrów rodzinnych i klientów prywatnych.",
       footerCopyright: "© 2026 Kidsfera. Wszelkie prawa zastrzeżone.",
+      businessHoursLabel: "Godziny pracy",
+      businessHoursPrimary: "Pon–Pt: 9:00–18:00",
+      businessHoursSecondary: "Sob: 10:00–15:00 · Niedz.: zamknięte",
       contactEmail: "hello@kidsfera.example",
       contactPhone: "+48 61 234 5678",
       contactAddress: "ul. Fabryczna 12, Poznań, Polska",
+      socialLinks: [
+        { label: "Facebook", href: "https://facebook.com/kidsfera", platform: "facebook" },
+        { label: "Instagram", href: "https://instagram.com/kidsfera", platform: "instagram" },
+        { label: "LinkedIn", href: "https://linkedin.com/company/kidsfera", platform: "linkedin" },
+        { label: "YouTube", href: "https://youtube.com/@kidsfera", platform: "youtube" },
+      ],
     },
   } satisfies Localized<Record<string, unknown>>,
   homePage: {
