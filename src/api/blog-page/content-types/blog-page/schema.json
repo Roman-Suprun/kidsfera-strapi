@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "site_settings",
+  "collectionName": "blog_pages",
   "info": {
-    "singularName": "site-setting",
-    "pluralName": "site-settings",
-    "displayName": "Site Settings"
+    "singularName": "blog-page",
+    "pluralName": "blog-pages",
+    "displayName": "Blog Page"
   },
   "options": {
     "draftAndPublish": true
@@ -15,24 +15,7 @@
     }
   },
   "attributes": {
-    "siteName": {
-      "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "siteTagline": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "defaultSeo": {
+    "seo": {
       "type": "component",
       "component": "shared.seo",
       "pluginOptions": {
@@ -41,7 +24,7 @@
         }
       }
     },
-    "navCategoriesLabel": {
+    "heroEyebrow": {
       "type": "string",
       "required": true,
       "pluginOptions": {
@@ -50,118 +33,7 @@
         }
       }
     },
-    "navCatalogLabel": {
-      "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "navProjectsLabel": {
-      "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "navProcessLabel": {
-      "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "navAboutLabel": {
-      "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "navBlogLabel": {
-      "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "navContactLabel": {
-      "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "navCtaLabel": {
-      "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "footerDescription": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "footerCopyright": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "businessHoursLabel": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "businessHoursPrimary": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "businessHoursSecondary": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "contactEmail": {
-      "type": "email",
-      "required": true
-    },
-    "contactPhone": {
-      "type": "string",
-      "required": true
-    },
-    "contactAddress": {
+    "heroTitle": {
       "type": "text",
       "required": true,
       "pluginOptions": {
@@ -170,10 +42,81 @@
         }
       }
     },
-    "socialLinks": {
-      "type": "component",
-      "repeatable": true,
-      "component": "shared.social-link",
+    "heroSubtitle": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "readMoreLabel": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "readTimeLabel": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "minutesShortLabel": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "allCategoriesLabel": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "backToBlogLabel": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "relatedArticlesTitle": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "authorLabel": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "emptyStateText": {
+      "type": "string",
+      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true

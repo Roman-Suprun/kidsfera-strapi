@@ -16,6 +16,13 @@ const sharedBadges = (labels: string[]) => ({
   pl: labels.map((label) => ({ label })),
 });
 
+const sharedLocale = <T,>(value: T): Localized<T> => ({
+  en: value,
+  uk: value,
+  ru: value,
+  pl: value,
+});
+
 export const kidsferaSeed = {
   locales: [
     { code: "en", name: "English" },
@@ -38,6 +45,7 @@ export const kidsferaSeed = {
       navProjectsLabel: "Projects",
       navProcessLabel: "Process",
       navAboutLabel: "About",
+      navBlogLabel: "Blog",
       navContactLabel: "Contact",
       navCtaLabel: "Get a Quote",
       footerDescription:
@@ -70,6 +78,7 @@ export const kidsferaSeed = {
       navProjectsLabel: "Проєкти",
       navProcessLabel: "Процес",
       navAboutLabel: "Про нас",
+      navBlogLabel: "Блог",
       navContactLabel: "Контакт",
       navCtaLabel: "Отримати пропозицію",
       footerDescription:
@@ -102,6 +111,7 @@ export const kidsferaSeed = {
       navProjectsLabel: "Проекты",
       navProcessLabel: "Процесс",
       navAboutLabel: "О нас",
+      navBlogLabel: "Блог",
       navContactLabel: "Контакт",
       navCtaLabel: "Получить предложение",
       footerDescription:
@@ -134,6 +144,7 @@ export const kidsferaSeed = {
       navProjectsLabel: "Realizacje",
       navProcessLabel: "Proces",
       navAboutLabel: "O nas",
+      navBlogLabel: "Blog",
       navContactLabel: "Kontakt",
       navCtaLabel: "Zapytaj o ofertę",
       footerDescription:
@@ -2173,6 +2184,391 @@ export const kidsferaSeed = {
       notFoundTitle: "Nie znaleziono produktu",
     },
   } satisfies Localized<Record<string, unknown>>,
+  blogPage: {
+    en: {
+      seo: {
+        metaTitle: "Kidsfera Blog",
+        metaDescription:
+          "Thoughts, research, and practical insights on attraction businesses, play design, and child development.",
+        canonicalPath: "/en/blogs",
+      },
+      heroEyebrow: "Kidsfera Blog",
+      heroTitle: "Thoughts, research\n& insights",
+      heroSubtitle:
+        "On the business of attractions, the design of play spaces, and the science of child development.",
+      readMoreLabel: "Read article",
+      readTimeLabel: "min read",
+      minutesShortLabel: "min",
+      allCategoriesLabel: "All",
+      backToBlogLabel: "Back to Blog",
+      relatedArticlesTitle: "Related Articles",
+      authorLabel: "By",
+      emptyStateText: "No articles in this category yet.",
+    },
+    uk: {
+      seo: {
+        metaTitle: "Блог Kidsfera",
+        metaDescription:
+          "Думки, дослідження та практичні інсайти про бізнес атракціонів, дизайн ігрових просторів і розвиток дитини.",
+        canonicalPath: "/uk/blogs",
+      },
+      heroEyebrow: "Блог Kidsfera",
+      heroTitle: "Думки, дослідження\nта інсайти",
+      heroSubtitle:
+        "Про бізнес атракціонів, дизайн просторів гри та науку дитячого розвитку.",
+      readMoreLabel: "Читати далі",
+      readTimeLabel: "хв читання",
+      minutesShortLabel: "хв",
+      allCategoriesLabel: "Всі",
+      backToBlogLabel: "Назад до блогу",
+      relatedArticlesTitle: "Схожі статті",
+      authorLabel: "Автор",
+      emptyStateText: "У цій категорії ще немає статей.",
+    },
+    ru: {
+      seo: {
+        metaTitle: "Блог Kidsfera",
+        metaDescription:
+          "Мысли, исследования и практические инсайты о бизнесе аттракционов, дизайне игровых пространств и развитии ребёнка.",
+        canonicalPath: "/ru/blogs",
+      },
+      heroEyebrow: "Блог Kidsfera",
+      heroTitle: "Мысли, исследования\nи инсайты",
+      heroSubtitle:
+        "О бизнесе аттракционов, дизайне игровых пространств и науке детского развития.",
+      readMoreLabel: "Читать далее",
+      readTimeLabel: "мин чтения",
+      minutesShortLabel: "мин",
+      allCategoriesLabel: "Все",
+      backToBlogLabel: "Назад к блогу",
+      relatedArticlesTitle: "Похожие статьи",
+      authorLabel: "Автор",
+      emptyStateText: "В этой категории пока нет статей.",
+    },
+    pl: {
+      seo: {
+        metaTitle: "Blog Kidsfera",
+        metaDescription:
+          "Myśli, badania i praktyczne spostrzeżenia o biznesie atrakcji, projektowaniu stref zabawy i rozwoju dziecka.",
+        canonicalPath: "/pl/blogs",
+      },
+      heroEyebrow: "Blog Kidsfera",
+      heroTitle: "Myśli, badania\ni spostrzeżenia",
+      heroSubtitle:
+        "O biznesie atrakcji, projektowaniu przestrzeni zabaw i nauce rozwoju dziecka.",
+      readMoreLabel: "Czytaj artykuł",
+      readTimeLabel: "min czytania",
+      minutesShortLabel: "min",
+      allCategoriesLabel: "Wszystkie",
+      backToBlogLabel: "Wróć do bloga",
+      relatedArticlesTitle: "Podobne artykuły",
+      authorLabel: "Autor",
+      emptyStateText: "W tej kategorii nie ma jeszcze artykułów.",
+    },
+  } satisfies Localized<Record<string, unknown>>,
+  blogCategories: [
+    {
+      slug: "business",
+      color: "#FF4500",
+      sortOrder: 1,
+      locales: {
+        en: { name: "Business" },
+        uk: { name: "Бізнес" },
+        ru: { name: "Бизнес" },
+        pl: { name: "Biznes" },
+      },
+    },
+    {
+      slug: "design",
+      color: "#0055FF",
+      sortOrder: 2,
+      locales: {
+        en: { name: "Design" },
+        uk: { name: "Дизайн" },
+        ru: { name: "Дизайн" },
+        pl: { name: "Design" },
+      },
+    },
+    {
+      slug: "safety",
+      color: "#00C853",
+      sortOrder: 3,
+      locales: {
+        en: { name: "Safety" },
+        uk: { name: "Безпека" },
+        ru: { name: "Безопасность" },
+        pl: { name: "Bezpieczenstwo" },
+      },
+    },
+    {
+      slug: "attractions",
+      color: "#8B00FF",
+      sortOrder: 4,
+      locales: {
+        en: { name: "Attractions" },
+        uk: { name: "Атракціони" },
+        ru: { name: "Аттракционы" },
+        pl: { name: "Atrakcje" },
+      },
+    },
+    {
+      slug: "lifestyle",
+      color: "#FF1493",
+      sortOrder: 5,
+      locales: {
+        en: { name: "Lifestyle" },
+        uk: { name: "Стиль життя" },
+        ru: { name: "Образ жизни" },
+        pl: { name: "Styl zycia" },
+      },
+    },
+  ],
+  blogPosts: [
+    {
+      slug: "indoor-play-retail",
+      categorySlug: "business",
+      publishDate: "2024-11-12",
+      readTimeMinutes: 7,
+      sortOrder: 1,
+      featured: true,
+      locales: sharedLocale({
+        title: "How Indoor Play Parks Became the Most Profitable Square Metre in Retail",
+        excerpt:
+          "Footfall data from 28 shopping centres across Europe reveals a surprising winner in the battle for customer dwell time, and it is not the food court.",
+        authorName: "Anna Dabrowska",
+        authorRole: "Head of International Sales",
+        coverImageUrl:
+          "https://images.unsplash.com/photo-1759776050712-2b7880af8cd4?w=1200&h=700&fit=crop&auto=format",
+        seo: {
+          metaTitle: "How Indoor Play Parks Became the Most Profitable Square Metre in Retail",
+          metaDescription:
+            "A practical look at why family play zones extend dwell time and increase revenue for shopping centres.",
+        },
+        bodySections: [
+          {
+            heading: "The data does not lie",
+            text:
+              "Across 28 shopping-centre projects, attractions with a dedicated children's play zone produced materially longer average dwell times than those without. That extra time translated into higher spend across food, fashion, and impulse categories.",
+          },
+          {
+            heading: "Why parents spend more",
+            text:
+              "When children are occupied and safe, parents browse more freely and stay longer. That changes the commercial value of the entire venue, not only the attraction itself.",
+          },
+          {
+            heading: "The ROI case",
+            text:
+              "A well-run indoor play installation can create direct ticket revenue, party revenue, and meaningful secondary lift for neighbouring tenants. For many operators, the investment case is strongest when the full ecosystem is considered.",
+          },
+          {
+            heading: "What this means for operators",
+            text:
+              "A play zone is no longer a decorative amenity. In the right format, it becomes a serious retention and revenue strategy for retail, hospitality, and mixed-use destinations.",
+          },
+        ],
+      }),
+    },
+    {
+      slug: "labyrinth-spatial-intelligence",
+      categorySlug: "design",
+      publishDate: "2024-10-03",
+      readTimeMinutes: 5,
+      sortOrder: 2,
+      featured: false,
+      locales: sharedLocale({
+        title: "The Science of Play: Why Labyrinths Boost Children's Spatial Intelligence",
+        excerpt:
+          "Our design team explains why wrong turns, hidden sightlines, and gradual challenge are so effective for developing brains.",
+        authorName: "Marta Nowak",
+        authorRole: "Head of Design",
+        coverImageUrl:
+          "https://images.unsplash.com/photo-1764419613897-8d76d0c0c850?w=1200&h=700&fit=crop&auto=format",
+        seo: {
+          metaTitle: "Why Labyrinths Boost Children's Spatial Intelligence",
+          metaDescription:
+            "How maze-style attractions train orientation, persistence, and spatial reasoning through play.",
+        },
+        bodySections: [
+          {
+            heading: "What happens in the brain",
+            text:
+              "As children navigate a maze, they actively build and revise internal maps. Every turn and correction reinforces the brain systems responsible for orientation and spatial reasoning.",
+          },
+          {
+            heading: "Dead ends are features",
+            text:
+              "The wrong path is often the most valuable moment. It asks a child to re-evaluate, adapt, and try again, which turns play into a form of executive-function training.",
+          },
+          {
+            heading: "Designing for cognitive growth",
+            text:
+              "The best labyrinths layer challenge gradually. Wider early passages, subtle landmarks, and strategic visibility help children stay engaged without tipping into frustration.",
+          },
+        ],
+      }),
+    },
+    {
+      slug: "trampoline-park-launch-checklist",
+      categorySlug: "attractions",
+      publishDate: "2024-08-16",
+      readTimeMinutes: 8,
+      sortOrder: 3,
+      featured: false,
+      locales: sharedLocale({
+        title: "Opening a Trampoline Park: The 4 Numbers to Model Before You Sign a Lease",
+        excerpt:
+          "Before the design moodboards and launch campaigns, there are four operational numbers that determine whether a trampoline park works commercially.",
+        authorName: "Anna Dabrowska",
+        authorRole: "Head of International Sales",
+        coverImageUrl:
+          "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&h=700&fit=crop&auto=format",
+        seo: {
+          metaTitle: "Opening a Trampoline Park: The 4 Numbers to Model",
+          metaDescription:
+            "A practical checklist for operators planning a trampoline attraction from lease to launch.",
+        },
+        bodySections: [
+          {
+            heading: "Ceiling height and clear span",
+            text:
+              "A trampoline concept can look convincing on paper while failing in the real shell. Ceiling height, column grid, and circulation zones define what is actually buildable.",
+          },
+          {
+            heading: "Commercial-grade equipment",
+            text:
+              "Consumer-grade products are not designed for repeated, multi-user commercial loads. Equipment specification has to be aligned with certification, maintenance, and insurance from day one.",
+          },
+          {
+            heading: "Insurance and throughput",
+            text:
+              "Ticket pricing matters, but capacity, waiver flow, staffing, and claims exposure matter just as much. The right model balances all four before a lease is signed.",
+          },
+        ],
+      }),
+    },
+    {
+      slug: "playground-safety-checklist",
+      categorySlug: "safety",
+      publishDate: "2024-07-22",
+      readTimeMinutes: 6,
+      sortOrder: 4,
+      featured: false,
+      locales: sharedLocale({
+        title: "5 Things to Check Before Buying a Commercial Playground",
+        excerpt:
+          "After hundreds of completed projects, these are the questions buyers forget to ask and the answers that separate good suppliers from great ones.",
+        authorName: "Jan Kowalski",
+        authorRole: "Founder and CEO",
+        coverImageUrl:
+          "https://images.unsplash.com/photo-1767943211959-e30579f0bc4a?w=1200&h=700&fit=crop&auto=format",
+        seo: {
+          metaTitle: "5 Things to Check Before Buying a Commercial Playground",
+          metaDescription:
+            "A practical safety and procurement checklist for commercial playground buyers.",
+        },
+        bodySections: [
+          {
+            heading: "Who manufactures the equipment",
+            text:
+              "If a supplier cannot clearly explain where the product is made and who controls quality, that uncertainty follows the entire project.",
+          },
+          {
+            heading: "What the certification covers",
+            text:
+              "Certification on a component is not the same thing as conformity of a full installation. Buyers should confirm what applies to the finished build on their actual site.",
+          },
+          {
+            heading: "How installation is handled",
+            text:
+              "Installation quality is a safety issue, not just a programme issue. Ask who installs, how they are trained, and who signs off the final inspection.",
+          },
+          {
+            heading: "What the warranty really means",
+            text:
+              "The marketing summary is never enough. Read what is covered, what is excluded, and how claims are processed before the contract is signed.",
+          },
+        ],
+      }),
+    },
+    {
+      slug: "dubai-vs-stockholm",
+      categorySlug: "lifestyle",
+      publishDate: "2024-06-14",
+      readTimeMinutes: 5,
+      sortOrder: 5,
+      featured: false,
+      locales: sharedLocale({
+        title: "Dubai vs Stockholm: What Two Opposite Markets Taught Us About How Children Play",
+        excerpt:
+          "Two very different projects showed us what is universal in children's behaviour and what needs to change from one market to another.",
+        authorName: "Marta Nowak",
+        authorRole: "Head of Design",
+        coverImageUrl:
+          "https://images.unsplash.com/photo-1630139026564-4a2bf5670879?w=1200&h=700&fit=crop&auto=format",
+        seo: {
+          metaTitle: "Dubai vs Stockholm: What Two Opposite Markets Taught Us",
+          metaDescription:
+            "Lessons from two culturally different play-space projects and what they revealed about childhood behaviour.",
+        },
+        bodySections: [
+          {
+            heading: "What was universal",
+            text:
+              "In both projects, children quickly sought height, scanned the environment, and mapped the space before fully committing to play. That behaviour showed up regardless of context.",
+          },
+          {
+            heading: "What was different",
+            text:
+              "Family movement patterns, desired sightlines, and the balance between group play and solo discovery changed dramatically between the two markets.",
+          },
+          {
+            heading: "What design teams should learn",
+            text:
+              "Strong attractions respond to both human universals and local behaviour. The magic lives in designing for both at the same time.",
+          },
+        ],
+      }),
+    },
+    {
+      slug: "family-centre-membership-economics",
+      categorySlug: "business",
+      publishDate: "2024-05-28",
+      readTimeMinutes: 6,
+      sortOrder: 6,
+      featured: false,
+      locales: sharedLocale({
+        title: "The Membership Model for Family Entertainment Centres Is Stronger Than Most Operators Think",
+        excerpt:
+          "Single-ticket revenue is visible, but recurring family membership revenue often becomes the real stabiliser in year two.",
+        authorName: "Anna Dabrowska",
+        authorRole: "Head of International Sales",
+        coverImageUrl:
+          "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=1200&h=700&fit=crop&auto=format",
+        seo: {
+          metaTitle: "The Membership Model for Family Entertainment Centres",
+          metaDescription:
+            "Why recurring family memberships can transform the economics of indoor entertainment venues.",
+        },
+        bodySections: [
+          {
+            heading: "Predictability beats spikes",
+            text:
+              "Birthday peaks and weekend spikes are important, but predictable recurring revenue creates calmer staffing, better stock planning, and stronger resilience in slower months.",
+          },
+          {
+            heading: "Design influences retention",
+            text:
+              "Families renew when the venue keeps feeling fresh. Zoning, progressive challenge, and age-layered experiences matter as much as the pricing model itself.",
+          },
+          {
+            heading: "Membership is an operational strategy",
+            text:
+              "The strongest membership programmes are coordinated with events, food and beverage, and school-holiday programming rather than treated as a simple discount product.",
+          },
+        ],
+      }),
+    },
+  ],
   categories: [
     {
       slug: "shopping-centers",
