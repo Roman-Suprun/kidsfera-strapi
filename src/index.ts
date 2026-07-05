@@ -9,6 +9,7 @@ const STORE_UIDS = [
   'api::site-setting.site-setting',
   'api::home-page.home-page',
   'api::about-page.about-page',
+  'api::delivery-payment-page.delivery-payment-page',
   'api::categories-page.categories-page',
   'api::catalog-page.catalog-page',
   'api::product-page.product-page',
@@ -486,6 +487,12 @@ export default {
       await createLocalizedSingle(strapi, 'api::site-setting.site-setting', kidsferaSeed.siteSettings, mediaCache);
       await createLocalizedSingle(strapi, 'api::home-page.home-page', kidsferaSeed.homePage, mediaCache);
       await createLocalizedSingle(strapi, 'api::about-page.about-page', kidsferaSeed.aboutPage, mediaCache);
+      await createLocalizedSingle(
+        strapi,
+        'api::delivery-payment-page.delivery-payment-page',
+        kidsferaSeed.deliveryPaymentPage,
+        mediaCache,
+      );
       await createLocalizedSingle(strapi, 'api::categories-page.categories-page', kidsferaSeed.categoriesPage, mediaCache);
       await createLocalizedSingle(strapi, 'api::catalog-page.catalog-page', kidsferaSeed.catalogPage, mediaCache);
       await createLocalizedSingle(strapi, 'api::product-page.product-page', kidsferaSeed.productPage, mediaCache);
@@ -502,6 +509,12 @@ export default {
         strapi,
         'api::about-page.about-page',
         kidsferaSeed.aboutPage,
+        mediaCache,
+      );
+      await ensureLocalizedSingle(
+        strapi,
+        'api::delivery-payment-page.delivery-payment-page',
+        kidsferaSeed.deliveryPaymentPage,
         mediaCache,
       );
       await ensureSiteSettingsFields(strapi);
