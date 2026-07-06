@@ -2776,6 +2776,41 @@ export const kidsferaSeed = {
         },
       } satisfies Localized<Record<string, unknown>>,
     },
+    {
+      slug: "trampoline-labyrinths",
+      themeColor: "#FF6F00",
+      emoji: "🤸",
+      imageUrl:
+        "https://images.unsplash.com/photo-1751235640841-d8d1035a80f0?w=700&h=500&fit=crop&auto=format",
+      sortOrder: 7,
+      featured: false,
+      locales: {
+        en: {
+          name: "Trampoline Labyrinths",
+          description:
+            "Multi-level labyrinth systems with integrated trampoline elements for active indoor play spaces.",
+          cardDescription: "Hybrid maze-and-jump attractions for high-energy family venues.",
+        },
+        uk: {
+          name: "Лабіринти з батутом",
+          description:
+            "Багаторівневі лабіринтові системи з інтегрованими батутними елементами для активних критих ігрових просторів.",
+          cardDescription: "Гібридні лабіринти та jump-атракціони для енергійних сімейних локацій.",
+        },
+        ru: {
+          name: "Лабиринты с батутом",
+          description:
+            "Многоуровневые лабиринтовые системы со встроенными батутными элементами для активных крытых игровых пространств.",
+          cardDescription: "Гибридные лабиринты и jump-аттракционы для энергичных семейных локаций.",
+        },
+        pl: {
+          name: "Labirynty z trampoliną",
+          description:
+            "Wielopoziomowe systemy labiryntowe ze zintegrowanymi elementami trampolinowymi do aktywnych krytych stref zabawy.",
+          cardDescription: "Hybrydowe labirynty i atrakcje jump do energetycznych przestrzeni rodzinnych.",
+        },
+      } satisfies Localized<Record<string, unknown>>,
+    },
   ],
   products: [
     {

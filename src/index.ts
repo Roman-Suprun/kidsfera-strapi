@@ -304,6 +304,64 @@ async function seedCategories(strapi: Core.Strapi, cache: MediaCache) {
   return categoryIds;
 }
 
+async function ensureCategories(strapi: Core.Strapi, cache: MediaCache) {
+  for (const item of kidsferaSeed.categories) {
+    const existing = await strapi.db.query('api::category.category').findOne({
+      where: { slug: item.slug, locale: DEFAULT_LOCALE },
+    });
+
+    if (existing) {
+      continue;
+    }
+
+    const defaultData = (await transformMediaFields(
+      strapi,
+      {
+        slug: item.slug,
+        themeColor: item.themeColor,
+        emoji: item.emoji,
+        imageUrl: item.imageUrl,
+        sortOrder: item.sortOrder,
+        featured: item.featured,
+        ...item.locales[DEFAULT_LOCALE],
+      },
+      cache,
+    )) as Record<string, unknown>;
+
+    const created = await strapi.documents('api::category.category').create({
+      locale: DEFAULT_LOCALE,
+      status: PUBLISHED_STATUS,
+      data: defaultData as any,
+    });
+
+    for (const locale of kidsferaSeed.languages) {
+      if (locale === DEFAULT_LOCALE) {
+        continue;
+      }
+
+      const localizedData = (await transformMediaFields(
+        strapi,
+        {
+          slug: item.slug,
+          themeColor: item.themeColor,
+          emoji: item.emoji,
+          sortOrder: item.sortOrder,
+          featured: item.featured,
+          ...item.locales[locale],
+        },
+        cache,
+      )) as Record<string, unknown>;
+
+      await strapi.documents('api::category.category').update({
+        documentId: created.documentId,
+        locale,
+        status: PUBLISHED_STATUS,
+        data: localizedData as any,
+      });
+    }
+  }
+}
+
 async function seedBlogCategories(strapi: Core.Strapi) {
   const categoryIds = new Map<string, string>();
 
@@ -650,6 +708,7 @@ export default {
         mediaCache,
       );
       await ensureSiteSettingsFields(strapi);
+      await ensureCategories(strapi, mediaCache);
 
       if (await isCollectionEmpty(strapi, 'api::blog-category.blog-category')) {
         await seedBlogCategories(strapi);

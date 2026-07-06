@@ -8,9 +8,13 @@ const STORE_UIDS = [
     'api::site-setting.site-setting',
     'api::home-page.home-page',
     'api::about-page.about-page',
+    'api::blog-page.blog-page',
+    'api::delivery-payment-page.delivery-payment-page',
     'api::categories-page.categories-page',
     'api::catalog-page.catalog-page',
     'api::product-page.product-page',
+    'api::blog-category.blog-category',
+    'api::blog-post.blog-post',
     'api::category.category',
     'api::product.product',
     'api::project.project',
@@ -144,16 +148,24 @@ async function ensureSiteSettingsFields(strapi) {
         const existing = await strapi.db.query('api::site-setting.site-setting').findOne({
             where: { locale },
         });
-        if (!(existing === null || existing === void 0 ? void 0 : existing.documentId) || existing.navAboutLabel) {
+        if (!(existing === null || existing === void 0 ? void 0 : existing.documentId)) {
+            continue;
+        }
+        const nextData = {};
+        if (!existing.navAboutLabel) {
+            nextData.navAboutLabel = kidsfera_1.kidsferaSeed.siteSettings[locale].navAboutLabel;
+        }
+        if (!existing.navBlogLabel) {
+            nextData.navBlogLabel = kidsfera_1.kidsferaSeed.siteSettings[locale].navBlogLabel;
+        }
+        if (!Object.keys(nextData).length) {
             continue;
         }
         await strapi.documents('api::site-setting.site-setting').update({
             documentId: existing.documentId,
             locale,
             status: PUBLISHED_STATUS,
-            data: {
-                navAboutLabel: kidsfera_1.kidsferaSeed.siteSettings[locale].navAboutLabel,
-            },
+            data: nextData,
         });
     }
 }
@@ -192,6 +204,82 @@ async function seedCategories(strapi, cache) {
                 locale,
                 status: PUBLISHED_STATUS,
                 data: localizedData,
+            });
+        }
+    }
+    return categoryIds;
+}
+async function ensureCategories(strapi, cache) {
+    for (const item of kidsfera_1.kidsferaSeed.categories) {
+        const existing = await strapi.db.query('api::category.category').findOne({
+            where: { slug: item.slug, locale: DEFAULT_LOCALE },
+        });
+        if (existing) {
+            continue;
+        }
+        const defaultData = (await transformMediaFields(strapi, {
+            slug: item.slug,
+            themeColor: item.themeColor,
+            emoji: item.emoji,
+            imageUrl: item.imageUrl,
+            sortOrder: item.sortOrder,
+            featured: item.featured,
+            ...item.locales[DEFAULT_LOCALE],
+        }, cache));
+        const created = await strapi.documents('api::category.category').create({
+            locale: DEFAULT_LOCALE,
+            status: PUBLISHED_STATUS,
+            data: defaultData,
+        });
+        for (const locale of kidsfera_1.kidsferaSeed.languages) {
+            if (locale === DEFAULT_LOCALE) {
+                continue;
+            }
+            const localizedData = (await transformMediaFields(strapi, {
+                slug: item.slug,
+                themeColor: item.themeColor,
+                emoji: item.emoji,
+                sortOrder: item.sortOrder,
+                featured: item.featured,
+                ...item.locales[locale],
+            }, cache));
+            await strapi.documents('api::category.category').update({
+                documentId: created.documentId,
+                locale,
+                status: PUBLISHED_STATUS,
+                data: localizedData,
+            });
+        }
+    }
+}
+async function seedBlogCategories(strapi) {
+    const categoryIds = new Map();
+    for (const item of kidsfera_1.kidsferaSeed.blogCategories) {
+        const created = await strapi.documents('api::blog-category.blog-category').create({
+            locale: DEFAULT_LOCALE,
+            status: PUBLISHED_STATUS,
+            data: {
+                slug: item.slug,
+                color: item.color,
+                sortOrder: item.sortOrder,
+                ...item.locales[DEFAULT_LOCALE],
+            },
+        });
+        categoryIds.set(item.slug, created.documentId);
+        for (const locale of kidsfera_1.kidsferaSeed.languages) {
+            if (locale === DEFAULT_LOCALE) {
+                continue;
+            }
+            await strapi.documents('api::blog-category.blog-category').update({
+                documentId: created.documentId,
+                locale,
+                status: PUBLISHED_STATUS,
+                data: {
+                    slug: item.slug,
+                    color: item.color,
+                    sortOrder: item.sortOrder,
+                    ...item.locales[locale],
+                },
             });
         }
     }
@@ -327,11 +415,59 @@ async function seedTestimonials(strapi) {
         }
     }
 }
+async function seedBlogPosts(strapi, blogCategoryIds, cache) {
+    for (const item of kidsfera_1.kidsferaSeed.blogPosts) {
+        const categoryDocumentId = blogCategoryIds.get(item.categorySlug);
+        if (!categoryDocumentId) {
+            continue;
+        }
+        const defaultData = (await transformMediaFields(strapi, {
+            slug: item.slug,
+            publishDate: item.publishDate,
+            readTimeMinutes: item.readTimeMinutes,
+            sortOrder: item.sortOrder,
+            featured: item.featured,
+            category: { documentId: categoryDocumentId },
+            ...item.locales[DEFAULT_LOCALE],
+        }, cache));
+        const created = await strapi.documents('api::blog-post.blog-post').create({
+            locale: DEFAULT_LOCALE,
+            status: PUBLISHED_STATUS,
+            data: defaultData,
+        });
+        for (const locale of kidsfera_1.kidsferaSeed.languages) {
+            if (locale === DEFAULT_LOCALE) {
+                continue;
+            }
+            const localizedData = (await transformMediaFields(strapi, {
+                slug: item.slug,
+                publishDate: item.publishDate,
+                readTimeMinutes: item.readTimeMinutes,
+                sortOrder: item.sortOrder,
+                featured: item.featured,
+                category: { documentId: categoryDocumentId },
+                ...item.locales[locale],
+            }, cache));
+            await strapi.documents('api::blog-post.blog-post').update({
+                documentId: created.documentId,
+                locale,
+                status: PUBLISHED_STATUS,
+                data: localizedData,
+            });
+        }
+    }
+}
 async function shouldSeed(strapi) {
     const existingSettings = await strapi.db.query('api::site-setting.site-setting').findOne({
         where: { locale: DEFAULT_LOCALE },
     });
     return !existingSettings;
+}
+async function isCollectionEmpty(strapi, uid) {
+    const existingEntry = await strapi.db.query(uid).findOne({
+        where: { locale: DEFAULT_LOCALE },
+    });
+    return !existingEntry;
 }
 exports.default = {
     register() { },
@@ -344,17 +480,35 @@ exports.default = {
             await createLocalizedSingle(strapi, 'api::site-setting.site-setting', kidsfera_1.kidsferaSeed.siteSettings, mediaCache);
             await createLocalizedSingle(strapi, 'api::home-page.home-page', kidsfera_1.kidsferaSeed.homePage, mediaCache);
             await createLocalizedSingle(strapi, 'api::about-page.about-page', kidsfera_1.kidsferaSeed.aboutPage, mediaCache);
+            await createLocalizedSingle(strapi, 'api::blog-page.blog-page', kidsfera_1.kidsferaSeed.blogPage, mediaCache);
+            await createLocalizedSingle(strapi, 'api::delivery-payment-page.delivery-payment-page', kidsfera_1.kidsferaSeed.deliveryPaymentPage, mediaCache);
             await createLocalizedSingle(strapi, 'api::categories-page.categories-page', kidsfera_1.kidsferaSeed.categoriesPage, mediaCache);
             await createLocalizedSingle(strapi, 'api::catalog-page.catalog-page', kidsfera_1.kidsferaSeed.catalogPage, mediaCache);
             await createLocalizedSingle(strapi, 'api::product-page.product-page', kidsfera_1.kidsferaSeed.productPage, mediaCache);
             const categoryIds = await seedCategories(strapi, mediaCache);
+            const blogCategoryIds = await seedBlogCategories(strapi);
             const productIds = await seedProducts(strapi, categoryIds, mediaCache);
             await seedProjects(strapi, categoryIds, productIds, mediaCache);
             await seedTestimonials(strapi);
+            await seedBlogPosts(strapi, blogCategoryIds, mediaCache);
         }
         if (autoSeedEnabled) {
             await ensureLocalizedSingle(strapi, 'api::about-page.about-page', kidsfera_1.kidsferaSeed.aboutPage, mediaCache);
+            await ensureLocalizedSingle(strapi, 'api::blog-page.blog-page', kidsfera_1.kidsferaSeed.blogPage, mediaCache);
+            await ensureLocalizedSingle(strapi, 'api::delivery-payment-page.delivery-payment-page', kidsfera_1.kidsferaSeed.deliveryPaymentPage, mediaCache);
             await ensureSiteSettingsFields(strapi);
+            await ensureCategories(strapi, mediaCache);
+            if (await isCollectionEmpty(strapi, 'api::blog-category.blog-category')) {
+                await seedBlogCategories(strapi);
+            }
+            if (await isCollectionEmpty(strapi, 'api::blog-post.blog-post')) {
+                const categories = await strapi.documents('api::blog-category.blog-category').findMany({
+                    locale: DEFAULT_LOCALE,
+                    status: PUBLISHED_STATUS,
+                });
+                const categoryIds = new Map((Array.isArray(categories) ? categories : []).map((category) => [category.slug, category.documentId]));
+                await seedBlogPosts(strapi, categoryIds, mediaCache);
+            }
         }
     },
 };
