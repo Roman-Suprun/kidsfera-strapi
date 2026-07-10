@@ -20,7 +20,9 @@ const STORE_UIDS = [
   'api::product.product',
   'api::project.project',
   'api::testimonial.testimonial',
+  'api::feedback.feedback',
 ] as const;
+const PUBLIC_CREATE_UIDS = ['api::feedback.feedback'] as const;
 
 type MediaCache = ReturnType<typeof createMediaCache>;
 
@@ -155,6 +157,31 @@ async function enablePublicPermissions(strapi: Core.Strapi) {
 
     nextPermissions[apiName].controllers[controllerName].find = { enabled: true };
     nextPermissions[apiName].controllers[controllerName].findOne = { enabled: true };
+  }
+
+  for (const uid of PUBLIC_CREATE_UIDS) {
+    const model = strapi.contentType(uid);
+
+    if (!model) {
+      continue;
+    }
+
+    const controllerName = model.info.singularName;
+    const apiName = uid.split('.')[0];
+
+    if (!apiName) {
+      continue;
+    }
+
+    if (!nextPermissions[apiName]) {
+      nextPermissions[apiName] = { controllers: {} };
+    }
+
+    if (!nextPermissions[apiName].controllers[controllerName]) {
+      nextPermissions[apiName].controllers[controllerName] = {};
+    }
+
+    nextPermissions[apiName].controllers[controllerName].create = { enabled: true };
   }
 
   await roleService.updateRole(publicRole.id, {
