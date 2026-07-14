@@ -1429,6 +1429,56 @@ exports.kidsferaSeed = {
             filtersLabel: "Filtry",
         },
     },
+    projectsPage: {
+        en: {
+            seo: {
+                metaTitle: "Kidsfera | Projects",
+                metaDescription: "Explore installed play spaces delivered by Kidsfera across malls, parks, and family destinations worldwide.",
+                canonicalPath: "/en/projects",
+            },
+            eyebrow: "Installed Projects",
+            title: "840+ spaces\nbuilt for play",
+            subtitle: "From Dubai to Stockholm, we build destinations where children move, discover, and return with their families.",
+            filterAllLabel: "All",
+            viewProjectLabel: "View Project",
+        },
+        uk: {
+            seo: {
+                metaTitle: "Kidsfera | Проєкти",
+                metaDescription: "Перегляньте реалізовані ігрові простори Kidsfera у торгових центрах, парках і сімейних локаціях по всьому світу.",
+                canonicalPath: "/uk/projects",
+            },
+            eyebrow: "Реалізовані проєкти",
+            title: "840+ просторів\nдля гри",
+            subtitle: "Від Дубаю до Стокгольма ми створюємо локації, куди діти хочуть повертатися разом із сім'ями.",
+            filterAllLabel: "Всі",
+            viewProjectLabel: "Детальніше",
+        },
+        ru: {
+            seo: {
+                metaTitle: "Kidsfera | Проекты",
+                metaDescription: "Изучите реализованные игровые пространства Kidsfera для торговых центров, парков и семейных локаций по всему миру.",
+                canonicalPath: "/ru/projects",
+            },
+            eyebrow: "Реализованные проекты",
+            title: "840+ пространств\nдля игры",
+            subtitle: "От Дубая до Стокгольма мы создаём места, куда дети и семьи хотят возвращаться снова.",
+            filterAllLabel: "Все",
+            viewProjectLabel: "Подробнее",
+        },
+        pl: {
+            seo: {
+                metaTitle: "Kidsfera | Realizacje",
+                metaDescription: "Poznaj zrealizowane przestrzenie zabaw Kidsfera w galeriach handlowych, parkach i rodzinnych destynacjach na całym świecie.",
+                canonicalPath: "/pl/projects",
+            },
+            eyebrow: "Zrealizowane projekty",
+            title: "840+ przestrzeni\ndo zabawy",
+            subtitle: "Od Dubaju po Sztokholm tworzymy miejsca, do których dzieci i rodziny chcą wracać.",
+            filterAllLabel: "Wszystkie",
+            viewProjectLabel: "Zobacz projekt",
+        },
+    },
     deliveryPaymentPage: {
         en: {
             seo: {

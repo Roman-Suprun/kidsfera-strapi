@@ -12,6 +12,7 @@ const STORE_UIDS = [
     'api::delivery-payment-page.delivery-payment-page',
     'api::categories-page.categories-page',
     'api::catalog-page.catalog-page',
+    'api::projects-page.projects-page',
     'api::product-page.product-page',
     'api::blog-category.blog-category',
     'api::blog-post.blog-post',
@@ -19,7 +20,9 @@ const STORE_UIDS = [
     'api::product.product',
     'api::project.project',
     'api::testimonial.testimonial',
+    'api::feedback.feedback',
 ];
+const PUBLIC_CREATE_UIDS = ['api::feedback.feedback'];
 function isRecord(value) {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
@@ -109,6 +112,24 @@ async function enablePublicPermissions(strapi) {
         }
         nextPermissions[apiName].controllers[controllerName].find = { enabled: true };
         nextPermissions[apiName].controllers[controllerName].findOne = { enabled: true };
+    }
+    for (const uid of PUBLIC_CREATE_UIDS) {
+        const model = strapi.contentType(uid);
+        if (!model) {
+            continue;
+        }
+        const controllerName = model.info.singularName;
+        const apiName = uid.split('.')[0];
+        if (!apiName) {
+            continue;
+        }
+        if (!nextPermissions[apiName]) {
+            nextPermissions[apiName] = { controllers: {} };
+        }
+        if (!nextPermissions[apiName].controllers[controllerName]) {
+            nextPermissions[apiName].controllers[controllerName] = {};
+        }
+        nextPermissions[apiName].controllers[controllerName].create = { enabled: true };
     }
     await roleService.updateRole(publicRole.id, {
         ...role,
@@ -484,6 +505,7 @@ exports.default = {
             await createLocalizedSingle(strapi, 'api::delivery-payment-page.delivery-payment-page', kidsfera_1.kidsferaSeed.deliveryPaymentPage, mediaCache);
             await createLocalizedSingle(strapi, 'api::categories-page.categories-page', kidsfera_1.kidsferaSeed.categoriesPage, mediaCache);
             await createLocalizedSingle(strapi, 'api::catalog-page.catalog-page', kidsfera_1.kidsferaSeed.catalogPage, mediaCache);
+            await createLocalizedSingle(strapi, 'api::projects-page.projects-page', kidsfera_1.kidsferaSeed.projectsPage, mediaCache);
             await createLocalizedSingle(strapi, 'api::product-page.product-page', kidsfera_1.kidsferaSeed.productPage, mediaCache);
             const categoryIds = await seedCategories(strapi, mediaCache);
             const blogCategoryIds = await seedBlogCategories(strapi);
@@ -496,6 +518,7 @@ exports.default = {
             await ensureLocalizedSingle(strapi, 'api::about-page.about-page', kidsfera_1.kidsferaSeed.aboutPage, mediaCache);
             await ensureLocalizedSingle(strapi, 'api::blog-page.blog-page', kidsfera_1.kidsferaSeed.blogPage, mediaCache);
             await ensureLocalizedSingle(strapi, 'api::delivery-payment-page.delivery-payment-page', kidsfera_1.kidsferaSeed.deliveryPaymentPage, mediaCache);
+            await ensureLocalizedSingle(strapi, 'api::projects-page.projects-page', kidsfera_1.kidsferaSeed.projectsPage, mediaCache);
             await ensureSiteSettingsFields(strapi);
             await ensureCategories(strapi, mediaCache);
             if (await isCollectionEmpty(strapi, 'api::blog-category.blog-category')) {

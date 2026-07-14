@@ -3,9 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createMediaCache = createMediaCache;
-exports.uploadImageFromUrl = uploadImageFromUrl;
-exports.syncAllMediaFields = syncAllMediaFields;
+exports.syncAllMediaFields = exports.uploadImageFromUrl = exports.createMediaCache = void 0;
 const node_crypto_1 = __importDefault(require("node:crypto"));
 const promises_1 = __importDefault(require("node:fs/promises"));
 const node_os_1 = __importDefault(require("node:os"));
@@ -20,6 +18,7 @@ const PUBLISHED_STATUS = "published";
 function createMediaCache() {
     return new Map();
 }
+exports.createMediaCache = createMediaCache;
 function isRecord(value) {
     return typeof value === "object" && value !== null && !Array.isArray(value);
 }
@@ -186,6 +185,7 @@ async function uploadImageFromUrl(strapi, url, alt, cache) {
         await promises_1.default.rm(tmpDir, { recursive: true, force: true });
     }
 }
+exports.uploadImageFromUrl = uploadImageFromUrl;
 async function syncSeoComponent(strapi, seo, cache) {
     if (!isRecord(seo)) {
         return { changed: false, value: seo };
@@ -391,3 +391,4 @@ async function syncAllMediaFields(strapi, locales) {
     await syncProductMedia(strapi, locales, cache);
     await syncProjectMedia(strapi, locales, cache);
 }
+exports.syncAllMediaFields = syncAllMediaFields;
