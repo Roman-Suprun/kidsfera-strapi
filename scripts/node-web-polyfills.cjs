@@ -1,5 +1,10 @@
 const { ReadableStream, TransformStream, WritableStream } = require("node:stream/web");
 const { Blob, File } = require("node:buffer");
+const { webcrypto } = require("node:crypto");
+
+if (typeof globalThis.crypto === "undefined" || typeof globalThis.crypto.getRandomValues !== "function") {
+  globalThis.crypto = webcrypto;
+}
 
 if (typeof globalThis.ReadableStream === "undefined") {
   globalThis.ReadableStream = ReadableStream;

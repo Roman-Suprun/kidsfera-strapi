@@ -20,6 +20,11 @@ const sharedLocale = (value) => ({
     ru: value,
     pl: value,
 });
+const footerGroup = (title, items) => ({
+    title,
+    items: items.map((item) => (typeof item === 'string' ? { label: item } : item)),
+});
+const footerBadges = () => ['EN 1176', 'CE', 'ISO 9001', 'ASTM F1292'].map((label) => ({ label }));
 exports.kidsferaSeed = {
     locales: [
         { code: "en", name: "English" },
@@ -58,6 +63,17 @@ exports.kidsferaSeed = {
                 { label: "LinkedIn", href: "https://linkedin.com/company/kidsfera", platform: "linkedin" },
                 { label: "YouTube", href: "https://youtube.com/@kidsfera", platform: "youtube" },
             ],
+            footerLinkGroups: [
+                footerGroup('Products', ['Labyrinths', 'Playgrounds', 'Climbing Walls', 'Ball Pits']),
+                footerGroup('Company', ['About Us', 'Our Factory', 'Projects', 'Certifications']),
+                footerGroup('Legal', [
+                    'Privacy Policy',
+                    { label: 'Terms of Sale', href: '/delivery-payment' },
+                    'EN 1176 Docs',
+                    'GDPR',
+                ]),
+            ],
+            footerBadges: footerBadges(),
         },
         uk: {
             siteName: "Kidsfera",
@@ -89,6 +105,17 @@ exports.kidsferaSeed = {
                 { label: "LinkedIn", href: "https://linkedin.com/company/kidsfera", platform: "linkedin" },
                 { label: "YouTube", href: "https://youtube.com/@kidsfera", platform: "youtube" },
             ],
+            footerLinkGroups: [
+                footerGroup('Продукція', ['Лабіринти', 'Майданчики', 'Скелодроми', 'Сухі басейни']),
+                footerGroup('Компанія', ['Про нас', 'Наш завод', 'Проєкти', 'Сертифікати']),
+                footerGroup('Документи', [
+                    'Конфіденційність',
+                    { label: 'Умови продажу', href: '/delivery-payment' },
+                    'EN 1176',
+                    'GDPR',
+                ]),
+            ],
+            footerBadges: footerBadges(),
         },
         ru: {
             siteName: "Kidsfera",
@@ -120,6 +147,17 @@ exports.kidsferaSeed = {
                 { label: "LinkedIn", href: "https://linkedin.com/company/kidsfera", platform: "linkedin" },
                 { label: "YouTube", href: "https://youtube.com/@kidsfera", platform: "youtube" },
             ],
+            footerLinkGroups: [
+                footerGroup('Продукция', ['Лабиринты', 'Площадки', 'Скалодромы', 'Сухие бассейны']),
+                footerGroup('Компания', ['О нас', 'Наш завод', 'Проекты', 'Сертификаты']),
+                footerGroup('Документы', [
+                    'Конфиденциальность',
+                    { label: 'Условия продажи', href: '/delivery-payment' },
+                    'EN 1176',
+                    'GDPR',
+                ]),
+            ],
+            footerBadges: footerBadges(),
         },
         pl: {
             siteName: "Kidsfera",
@@ -151,6 +189,17 @@ exports.kidsferaSeed = {
                 { label: "LinkedIn", href: "https://linkedin.com/company/kidsfera", platform: "linkedin" },
                 { label: "YouTube", href: "https://youtube.com/@kidsfera", platform: "youtube" },
             ],
+            footerLinkGroups: [
+                footerGroup('Produkty', ['Labirynty', 'Place zabaw', 'Ścianki', 'Suche baseny']),
+                footerGroup('Firma', ['O nas', 'Nasza fabryka', 'Realizacje', 'Certyfikaty']),
+                footerGroup('Dokumenty', [
+                    'Polityka prywatności',
+                    { label: 'Warunki sprzedaży', href: '/delivery-payment' },
+                    'EN 1176',
+                    'RODO',
+                ]),
+            ],
+            footerBadges: footerBadges(),
         },
     },
     homePage: {

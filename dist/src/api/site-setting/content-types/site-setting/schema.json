@@ -179,6 +179,26 @@
                     "localized": true
                 }
             }
+        },
+        "footerLinkGroups": {
+            "type": "component",
+            "repeatable": true,
+            "component": "shared.footer-link-group",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "footerBadges": {
+            "type": "component",
+            "repeatable": true,
+            "component": "shared.badge",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
         }
     }
 }

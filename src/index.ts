@@ -263,6 +263,14 @@ async function ensureSiteSettingsFields(strapi: Core.Strapi) {
       nextData.navBlogLabel = kidsferaSeed.siteSettings[locale].navBlogLabel;
     }
 
+    if (!Array.isArray(existing.footerLinkGroups) || existing.footerLinkGroups.length === 0) {
+      nextData.footerLinkGroups = kidsferaSeed.siteSettings[locale].footerLinkGroups;
+    }
+
+    if (!Array.isArray(existing.footerBadges) || existing.footerBadges.length === 0) {
+      nextData.footerBadges = kidsferaSeed.siteSettings[locale].footerBadges;
+    }
+
     if (!Object.keys(nextData).length) {
       continue;
     }

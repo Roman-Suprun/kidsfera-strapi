@@ -179,6 +179,12 @@ async function ensureSiteSettingsFields(strapi) {
         if (!existing.navBlogLabel) {
             nextData.navBlogLabel = kidsfera_1.kidsferaSeed.siteSettings[locale].navBlogLabel;
         }
+        if (!Array.isArray(existing.footerLinkGroups) || existing.footerLinkGroups.length === 0) {
+            nextData.footerLinkGroups = kidsfera_1.kidsferaSeed.siteSettings[locale].footerLinkGroups;
+        }
+        if (!Array.isArray(existing.footerBadges) || existing.footerBadges.length === 0) {
+            nextData.footerBadges = kidsfera_1.kidsferaSeed.siteSettings[locale].footerBadges;
+        }
         if (!Object.keys(nextData).length) {
             continue;
         }
