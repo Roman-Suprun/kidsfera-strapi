@@ -11,6 +11,8 @@ const STORE_UIDS = [
   'api::about-page.about-page',
   'api::blog-page.blog-page',
   'api::delivery-payment-page.delivery-payment-page',
+  'api::privacy-policy-page.privacy-policy-page',
+  'api::gdpr-page.gdpr-page',
   'api::categories-page.categories-page',
   'api::catalog-page.catalog-page',
   'api::projects-page.projects-page',
@@ -24,6 +26,24 @@ const STORE_UIDS = [
   'api::feedback.feedback',
 ] as const;
 const PUBLIC_CREATE_UIDS = ['api::feedback.feedback'] as const;
+const LEGAL_FOOTER_HREFS: Record<string, Record<string, string>> = {
+  en: {
+    'Privacy Policy': '/privacy-policy',
+    GDPR: '/gdpr',
+  },
+  uk: {
+    'Конфіденційність': '/privacy-policy',
+    GDPR: '/gdpr',
+  },
+  ru: {
+    'Конфиденциальность': '/privacy-policy',
+    GDPR: '/gdpr',
+  },
+  pl: {
+    'Polityka prywatności': '/privacy-policy',
+    RODO: '/gdpr',
+  },
+};
 
 type MediaCache = ReturnType<typeof createMediaCache>;
 
@@ -33,6 +53,53 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function getString(value: unknown) {
   return typeof value === 'string' && value.trim().length > 0 ? value : null;
+}
+
+function addMissingLegalFooterLinks(locale: string, footerLinkGroups: unknown) {
+  if (!Array.isArray(footerLinkGroups)) {
+    return null;
+  }
+
+  const hrefsByLabel = LEGAL_FOOTER_HREFS[locale];
+
+  if (!hrefsByLabel) {
+    return null;
+  }
+
+  let hasChanges = false;
+
+  const nextGroups = footerLinkGroups.map((group) => {
+    if (!isRecord(group) || !Array.isArray(group.items)) {
+      return group;
+    }
+
+    const nextItems = group.items.map((item) => {
+      if (!isRecord(item) || getString(item.href)) {
+        return item;
+      }
+
+      const label = getString(item.label);
+      const href = label ? hrefsByLabel[label] : null;
+
+      if (!href) {
+        return item;
+      }
+
+      hasChanges = true;
+
+      return {
+        ...item,
+        href,
+      };
+    });
+
+    return {
+      ...group,
+      items: nextItems,
+    };
+  });
+
+  return hasChanges ? nextGroups : null;
 }
 
 async function transformMediaFields(
@@ -265,6 +332,13 @@ async function ensureSiteSettingsFields(strapi: Core.Strapi) {
 
     if (!Array.isArray(existing.footerLinkGroups) || existing.footerLinkGroups.length === 0) {
       nextData.footerLinkGroups = kidsferaSeed.siteSettings[locale].footerLinkGroups;
+    }
+    else {
+      const nextFooterGroups = addMissingLegalFooterLinks(locale, existing.footerLinkGroups);
+
+      if (nextFooterGroups) {
+        nextData.footerLinkGroups = nextFooterGroups;
+      }
     }
 
     if (!Array.isArray(existing.footerBadges) || existing.footerBadges.length === 0) {
@@ -711,6 +785,18 @@ export default {
         kidsferaSeed.deliveryPaymentPage,
         mediaCache,
       );
+      await createLocalizedSingle(
+        strapi,
+        'api::privacy-policy-page.privacy-policy-page',
+        kidsferaSeed.privacyPolicyPage,
+        mediaCache,
+      );
+      await createLocalizedSingle(
+        strapi,
+        'api::gdpr-page.gdpr-page',
+        kidsferaSeed.gdprPage,
+        mediaCache,
+      );
       await createLocalizedSingle(strapi, 'api::categories-page.categories-page', kidsferaSeed.categoriesPage, mediaCache);
       await createLocalizedSingle(strapi, 'api::catalog-page.catalog-page', kidsferaSeed.catalogPage, mediaCache);
       await createLocalizedSingle(strapi, 'api::projects-page.projects-page', kidsferaSeed.projectsPage, mediaCache);
@@ -742,6 +828,18 @@ export default {
         strapi,
         'api::delivery-payment-page.delivery-payment-page',
         kidsferaSeed.deliveryPaymentPage,
+        mediaCache,
+      );
+      await ensureLocalizedSingle(
+        strapi,
+        'api::privacy-policy-page.privacy-policy-page',
+        kidsferaSeed.privacyPolicyPage,
+        mediaCache,
+      );
+      await ensureLocalizedSingle(
+        strapi,
+        'api::gdpr-page.gdpr-page',
+        kidsferaSeed.gdprPage,
         mediaCache,
       );
       await ensureLocalizedSingle(
