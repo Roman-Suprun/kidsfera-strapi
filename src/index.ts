@@ -207,6 +207,99 @@ function addMissingLegalFooterLinks(locale: string, footerLinkGroups: unknown) {
   return hasChanges ? nextGroups : null;
 }
 
+function mergeMissingFooterLinkGroups(
+  existingFooterLinkGroups: unknown,
+  defaultFooterLinkGroups: unknown,
+) {
+  if (!Array.isArray(existingFooterLinkGroups) || !Array.isArray(defaultFooterLinkGroups)) {
+    return null;
+  }
+
+  const existingGroups = existingFooterLinkGroups.map((group) => (isRecord(group) ? group : null));
+  let hasChanges = false;
+  const nextGroups = [...existingFooterLinkGroups];
+
+  for (const defaultGroup of defaultFooterLinkGroups) {
+    if (!isRecord(defaultGroup)) {
+      continue;
+    }
+
+    const defaultTitle = getString(defaultGroup.title);
+
+    if (!defaultTitle) {
+      continue;
+    }
+
+    const existingGroupIndex = existingGroups.findIndex((group) => getString(group?.title) === defaultTitle);
+
+    if (existingGroupIndex === -1) {
+      nextGroups.push(defaultGroup);
+      hasChanges = true;
+      continue;
+    }
+
+    const existingGroup = existingGroups[existingGroupIndex];
+
+    if (!existingGroup || !Array.isArray(existingGroup.items) || !Array.isArray(defaultGroup.items)) {
+      continue;
+    }
+
+    const existingLabels = new Set(
+      existingGroup.items
+        .filter(isRecord)
+        .map((item) => getString(item.label))
+        .filter((label): label is string => Boolean(label)),
+    );
+    const missingItems = defaultGroup.items.filter((item) => {
+      if (!isRecord(item)) {
+        return false;
+      }
+
+      const label = getString(item.label);
+      return Boolean(label && !existingLabels.has(label));
+    });
+
+    if (!missingItems.length) {
+      continue;
+    }
+
+    nextGroups[existingGroupIndex] = {
+      ...existingGroup,
+      items: [...existingGroup.items, ...missingItems],
+    };
+    hasChanges = true;
+  }
+
+  return hasChanges ? nextGroups : null;
+}
+
+function mergeMissingFooterBadges(existingFooterBadges: unknown, defaultFooterBadges: unknown) {
+  if (!Array.isArray(existingFooterBadges) || !Array.isArray(defaultFooterBadges)) {
+    return null;
+  }
+
+  const existingLabels = new Set(
+    existingFooterBadges
+      .filter(isRecord)
+      .map((badge) => getString(badge.label))
+      .filter((label): label is string => Boolean(label)),
+  );
+  const missingBadges = defaultFooterBadges.filter((badge) => {
+    if (!isRecord(badge)) {
+      return false;
+    }
+
+    const label = getString(badge.label);
+    return Boolean(label && !existingLabels.has(label));
+  });
+
+  if (!missingBadges.length) {
+    return null;
+  }
+
+  return [...existingFooterBadges, ...missingBadges];
+}
+
 async function transformMediaFields(
   strapi: Core.Strapi,
   value: unknown,
@@ -443,15 +536,35 @@ async function ensureSiteSettingsFields(strapi: Core.Strapi) {
       nextData.footerLinkGroups = kidsferaSeed.siteSettings[locale].footerLinkGroups;
     }
     else {
-      const nextFooterGroups = addMissingLegalFooterLinks(locale, existing.footerLinkGroups);
+      const mergedFooterGroups = mergeMissingFooterLinkGroups(
+        existing.footerLinkGroups,
+        kidsferaSeed.siteSettings[locale].footerLinkGroups,
+      );
+      const footerGroupsWithLegalLinks = addMissingLegalFooterLinks(
+        locale,
+        mergedFooterGroups ?? existing.footerLinkGroups,
+      );
 
-      if (nextFooterGroups) {
-        nextData.footerLinkGroups = nextFooterGroups;
+      if (footerGroupsWithLegalLinks) {
+        nextData.footerLinkGroups = footerGroupsWithLegalLinks;
+      }
+      else if (mergedFooterGroups) {
+        nextData.footerLinkGroups = mergedFooterGroups;
       }
     }
 
     if (!Array.isArray(existing.footerBadges) || existing.footerBadges.length === 0) {
       nextData.footerBadges = kidsferaSeed.siteSettings[locale].footerBadges;
+    }
+    else {
+      const mergedFooterBadges = mergeMissingFooterBadges(
+        existing.footerBadges,
+        kidsferaSeed.siteSettings[locale].footerBadges,
+      );
+
+      if (mergedFooterBadges) {
+        nextData.footerBadges = mergedFooterBadges;
+      }
     }
 
     if (!Object.keys(nextData).length) {
