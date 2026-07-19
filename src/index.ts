@@ -368,11 +368,24 @@ async function ensureLocalizedSingle(
   }
 }
 
+async function findSiteSettingsDocument(
+  strapi: Core.Strapi,
+  locale: string,
+) {
+  const entries = await strapi.documents('api::site-setting.site-setting').findMany({
+    locale,
+    status: PUBLISHED_STATUS,
+    populate: '*',
+  } as any);
+
+  return (Array.isArray(entries) ? entries[0] : entries) as
+    | ({ documentId?: string | null } & Record<string, unknown>)
+    | null;
+}
+
 async function ensureSiteSettingsFields(strapi: Core.Strapi) {
   for (const locale of kidsferaSeed.languages) {
-    const existing = await strapi.db.query('api::site-setting.site-setting').findOne({
-      where: { locale },
-    });
+    const existing = await findSiteSettingsDocument(strapi, locale);
 
     if (!existing?.documentId) {
       continue;
