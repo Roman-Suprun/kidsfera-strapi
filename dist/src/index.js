@@ -3,7 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const kidsfera_1 = require("./seed/kidsfera");
 const media_library_1 = require("./utils/media-library");
 const DEFAULT_LOCALE = 'en';
+const DRAFT_STATUS = 'draft';
 const PUBLISHED_STATUS = 'published';
+const LANGUAGE_SWITCHER_KEYS = ['showEnglish', 'showUkrainian', 'showRussian', 'showPolish'];
 const STORE_UIDS = [
     'api::site-setting.site-setting',
     'api::home-page.home-page',
@@ -43,6 +45,7 @@ const LEGAL_FOOTER_HREFS = {
         RODO: '/gdpr',
     },
 };
+let isSyncingSiteSettingLanguages = false;
 function isRecord(value) {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
@@ -51,12 +54,72 @@ function getString(value) {
 }
 function getMissingLanguageSwitcherSettings(existing, defaults) {
     const nextData = {};
-    for (const key of ['showEnglish', 'showUkrainian', 'showRussian', 'showPolish']) {
+    for (const key of LANGUAGE_SWITCHER_KEYS) {
         if (typeof existing[key] !== 'boolean' && typeof defaults[key] === 'boolean') {
             nextData[key] = defaults[key];
         }
     }
     return nextData;
+}
+function extractLanguageSwitcherSettings(value) {
+    const nextData = {};
+    for (const key of LANGUAGE_SWITCHER_KEYS) {
+        const currentValue = value[key];
+        if (typeof currentValue === 'boolean') {
+            nextData[key] = currentValue;
+        }
+    }
+    return nextData;
+}
+function hasDifferentLanguageSwitcherSettings(entry, target) {
+    return LANGUAGE_SWITCHER_KEYS.some((key) => typeof target[key] === 'boolean' && entry[key] !== target[key]);
+}
+function getMostRecentlyUpdatedEntry(entries) {
+    return [...entries].sort((left, right) => {
+        const leftTime = left.updatedAt ? new Date(left.updatedAt).getTime() : 0;
+        const rightTime = right.updatedAt ? new Date(right.updatedAt).getTime() : 0;
+        return rightTime - leftTime;
+    })[0];
+}
+async function syncSiteSettingLanguageSwitcherSettings(strapi, documentId, sourceLocale) {
+    var _a;
+    if (isSyncingSiteSettingLanguages) {
+        return;
+    }
+    const entries = await strapi.db.query('api::site-setting.site-setting').findMany({
+        where: { documentId },
+    });
+    if (!Array.isArray(entries) || entries.length < 2) {
+        return;
+    }
+    const sourceEntry = (_a = entries.find((entry) => entry.locale === sourceLocale)) !== null && _a !== void 0 ? _a : getMostRecentlyUpdatedEntry(entries);
+    if (!sourceEntry) {
+        return;
+    }
+    const nextLanguageSettings = extractLanguageSwitcherSettings(sourceEntry);
+    if (!Object.keys(nextLanguageSettings).length) {
+        return;
+    }
+    isSyncingSiteSettingLanguages = true;
+    try {
+        for (const entry of entries) {
+            if (!entry.locale || entry.locale === sourceEntry.locale) {
+                continue;
+            }
+            if (!hasDifferentLanguageSwitcherSettings(entry, nextLanguageSettings)) {
+                continue;
+            }
+            await strapi.documents('api::site-setting.site-setting').update({
+                documentId,
+                locale: entry.locale,
+                status: entry.publishedAt ? PUBLISHED_STATUS : DRAFT_STATUS,
+                data: nextLanguageSettings,
+            });
+        }
+    }
+    finally {
+        isSyncingSiteSettingLanguages = false;
+    }
 }
 function addMissingLegalFooterLinks(locale, footerLinkGroups) {
     if (!Array.isArray(footerLinkGroups)) {
@@ -570,6 +633,23 @@ async function isCollectionEmpty(strapi, uid) {
 exports.default = {
     register() { },
     async bootstrap({ strapi }) {
+        strapi.db.lifecycles.subscribe({
+            models: ['api::site-setting.site-setting'],
+            async afterCreate(event) {
+                const result = event.result;
+                if (!(result === null || result === void 0 ? void 0 : result.documentId)) {
+                    return;
+                }
+                await syncSiteSettingLanguageSwitcherSettings(strapi, result.documentId, result.locale);
+            },
+            async afterUpdate(event) {
+                const result = event.result;
+                if (!(result === null || result === void 0 ? void 0 : result.documentId)) {
+                    return;
+                }
+                await syncSiteSettingLanguageSwitcherSettings(strapi, result.documentId, result.locale);
+            },
+        });
         await ensureLocales(strapi);
         await enablePublicPermissions(strapi);
         const autoSeedEnabled = process.env.STRAPI_SEED_DEMO_CONTENT !== 'false';
@@ -601,6 +681,12 @@ exports.default = {
             await ensureLocalizedSingle(strapi, 'api::gdpr-page.gdpr-page', kidsfera_1.kidsferaSeed.gdprPage, mediaCache);
             await ensureLocalizedSingle(strapi, 'api::projects-page.projects-page', kidsfera_1.kidsferaSeed.projectsPage, mediaCache);
             await ensureSiteSettingsFields(strapi);
+            const existingSiteSettings = await strapi.db.query('api::site-setting.site-setting').findOne({
+                where: { locale: DEFAULT_LOCALE },
+            });
+            if (existingSiteSettings === null || existingSiteSettings === void 0 ? void 0 : existingSiteSettings.documentId) {
+                await syncSiteSettingLanguageSwitcherSettings(strapi, existingSiteSettings.documentId);
+            }
             await ensureCategories(strapi, mediaCache);
             if (await isCollectionEmpty(strapi, 'api::blog-category.blog-category')) {
                 await seedBlogCategories(strapi);
