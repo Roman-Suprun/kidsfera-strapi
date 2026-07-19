@@ -55,6 +55,21 @@ function getString(value: unknown) {
   return typeof value === 'string' && value.trim().length > 0 ? value : null;
 }
 
+function getMissingLanguageSwitcherSettings(
+  existing: Record<string, unknown>,
+  defaults: Record<string, unknown>,
+) {
+  const nextData: Record<string, unknown> = {};
+
+  for (const key of ['showEnglish', 'showUkrainian', 'showRussian', 'showPolish']) {
+    if (typeof existing[key] !== 'boolean' && typeof defaults[key] === 'boolean') {
+      nextData[key] = defaults[key];
+    }
+  }
+
+  return nextData;
+}
+
 function addMissingLegalFooterLinks(locale: string, footerLinkGroups: unknown) {
   if (!Array.isArray(footerLinkGroups)) {
     return null;
@@ -321,6 +336,10 @@ async function ensureSiteSettingsFields(strapi: Core.Strapi) {
     }
 
     const nextData: Record<string, unknown> = {};
+    Object.assign(
+      nextData,
+      getMissingLanguageSwitcherSettings(existing as Record<string, unknown>, kidsferaSeed.siteSettings[locale]),
+    );
 
     if (!existing.navAboutLabel) {
       nextData.navAboutLabel = kidsferaSeed.siteSettings[locale].navAboutLabel;

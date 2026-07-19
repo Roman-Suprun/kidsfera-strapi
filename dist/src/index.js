@@ -10,6 +10,8 @@ const STORE_UIDS = [
     'api::about-page.about-page',
     'api::blog-page.blog-page',
     'api::delivery-payment-page.delivery-payment-page',
+    'api::privacy-policy-page.privacy-policy-page',
+    'api::gdpr-page.gdpr-page',
     'api::categories-page.categories-page',
     'api::catalog-page.catalog-page',
     'api::projects-page.projects-page',
@@ -23,11 +25,73 @@ const STORE_UIDS = [
     'api::feedback.feedback',
 ];
 const PUBLIC_CREATE_UIDS = ['api::feedback.feedback'];
+const LEGAL_FOOTER_HREFS = {
+    en: {
+        'Privacy Policy': '/privacy-policy',
+        GDPR: '/gdpr',
+    },
+    uk: {
+        'Конфіденційність': '/privacy-policy',
+        GDPR: '/gdpr',
+    },
+    ru: {
+        'Конфиденциальность': '/privacy-policy',
+        GDPR: '/gdpr',
+    },
+    pl: {
+        'Polityka prywatności': '/privacy-policy',
+        RODO: '/gdpr',
+    },
+};
 function isRecord(value) {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 function getString(value) {
     return typeof value === 'string' && value.trim().length > 0 ? value : null;
+}
+function getMissingLanguageSwitcherSettings(existing, defaults) {
+    const nextData = {};
+    for (const key of ['showEnglish', 'showUkrainian', 'showRussian', 'showPolish']) {
+        if (typeof existing[key] !== 'boolean' && typeof defaults[key] === 'boolean') {
+            nextData[key] = defaults[key];
+        }
+    }
+    return nextData;
+}
+function addMissingLegalFooterLinks(locale, footerLinkGroups) {
+    if (!Array.isArray(footerLinkGroups)) {
+        return null;
+    }
+    const hrefsByLabel = LEGAL_FOOTER_HREFS[locale];
+    if (!hrefsByLabel) {
+        return null;
+    }
+    let hasChanges = false;
+    const nextGroups = footerLinkGroups.map((group) => {
+        if (!isRecord(group) || !Array.isArray(group.items)) {
+            return group;
+        }
+        const nextItems = group.items.map((item) => {
+            if (!isRecord(item) || getString(item.href)) {
+                return item;
+            }
+            const label = getString(item.label);
+            const href = label ? hrefsByLabel[label] : null;
+            if (!href) {
+                return item;
+            }
+            hasChanges = true;
+            return {
+                ...item,
+                href,
+            };
+        });
+        return {
+            ...group,
+            items: nextItems,
+        };
+    });
+    return hasChanges ? nextGroups : null;
 }
 async function transformMediaFields(strapi, value, cache) {
     var _a, _b, _c, _d;
@@ -173,6 +237,7 @@ async function ensureSiteSettingsFields(strapi) {
             continue;
         }
         const nextData = {};
+        Object.assign(nextData, getMissingLanguageSwitcherSettings(existing, kidsfera_1.kidsferaSeed.siteSettings[locale]));
         if (!existing.navAboutLabel) {
             nextData.navAboutLabel = kidsfera_1.kidsferaSeed.siteSettings[locale].navAboutLabel;
         }
@@ -181,6 +246,12 @@ async function ensureSiteSettingsFields(strapi) {
         }
         if (!Array.isArray(existing.footerLinkGroups) || existing.footerLinkGroups.length === 0) {
             nextData.footerLinkGroups = kidsfera_1.kidsferaSeed.siteSettings[locale].footerLinkGroups;
+        }
+        else {
+            const nextFooterGroups = addMissingLegalFooterLinks(locale, existing.footerLinkGroups);
+            if (nextFooterGroups) {
+                nextData.footerLinkGroups = nextFooterGroups;
+            }
         }
         if (!Array.isArray(existing.footerBadges) || existing.footerBadges.length === 0) {
             nextData.footerBadges = kidsfera_1.kidsferaSeed.siteSettings[locale].footerBadges;
@@ -509,6 +580,8 @@ exports.default = {
             await createLocalizedSingle(strapi, 'api::about-page.about-page', kidsfera_1.kidsferaSeed.aboutPage, mediaCache);
             await createLocalizedSingle(strapi, 'api::blog-page.blog-page', kidsfera_1.kidsferaSeed.blogPage, mediaCache);
             await createLocalizedSingle(strapi, 'api::delivery-payment-page.delivery-payment-page', kidsfera_1.kidsferaSeed.deliveryPaymentPage, mediaCache);
+            await createLocalizedSingle(strapi, 'api::privacy-policy-page.privacy-policy-page', kidsfera_1.kidsferaSeed.privacyPolicyPage, mediaCache);
+            await createLocalizedSingle(strapi, 'api::gdpr-page.gdpr-page', kidsfera_1.kidsferaSeed.gdprPage, mediaCache);
             await createLocalizedSingle(strapi, 'api::categories-page.categories-page', kidsfera_1.kidsferaSeed.categoriesPage, mediaCache);
             await createLocalizedSingle(strapi, 'api::catalog-page.catalog-page', kidsfera_1.kidsferaSeed.catalogPage, mediaCache);
             await createLocalizedSingle(strapi, 'api::projects-page.projects-page', kidsfera_1.kidsferaSeed.projectsPage, mediaCache);
@@ -524,6 +597,8 @@ exports.default = {
             await ensureLocalizedSingle(strapi, 'api::about-page.about-page', kidsfera_1.kidsferaSeed.aboutPage, mediaCache);
             await ensureLocalizedSingle(strapi, 'api::blog-page.blog-page', kidsfera_1.kidsferaSeed.blogPage, mediaCache);
             await ensureLocalizedSingle(strapi, 'api::delivery-payment-page.delivery-payment-page', kidsfera_1.kidsferaSeed.deliveryPaymentPage, mediaCache);
+            await ensureLocalizedSingle(strapi, 'api::privacy-policy-page.privacy-policy-page', kidsfera_1.kidsferaSeed.privacyPolicyPage, mediaCache);
+            await ensureLocalizedSingle(strapi, 'api::gdpr-page.gdpr-page', kidsfera_1.kidsferaSeed.gdprPage, mediaCache);
             await ensureLocalizedSingle(strapi, 'api::projects-page.projects-page', kidsfera_1.kidsferaSeed.projectsPage, mediaCache);
             await ensureSiteSettingsFields(strapi);
             await ensureCategories(strapi, mediaCache);

@@ -41,6 +41,10 @@ exports.kidsferaSeed = {
                 metaDescription: "Multilingual showroom for indoor parks, outdoor playgrounds, climbing walls, and soft play systems.",
                 canonicalPath: "/en",
             },
+            showEnglish: true,
+            showUkrainian: true,
+            showRussian: true,
+            showPolish: true,
             navCategoriesLabel: "Categories",
             navCatalogLabel: "Catalog",
             navProjectsLabel: "Projects",
@@ -67,10 +71,10 @@ exports.kidsferaSeed = {
                 footerGroup('Products', ['Labyrinths', 'Playgrounds', 'Climbing Walls', 'Ball Pits']),
                 footerGroup('Company', ['About Us', 'Our Factory', 'Projects', 'Certifications']),
                 footerGroup('Legal', [
-                    'Privacy Policy',
+                    { label: 'Privacy Policy', href: '/privacy-policy' },
                     { label: 'Terms of Sale', href: '/delivery-payment' },
                     'EN 1176 Docs',
-                    'GDPR',
+                    { label: 'GDPR', href: '/gdpr' },
                 ]),
             ],
             footerBadges: footerBadges(),
@@ -83,6 +87,10 @@ exports.kidsferaSeed = {
                 metaDescription: "Мультимовний шоурум для критих парків, вуличних майданчиків, скелодромів і м'яких ігрових систем.",
                 canonicalPath: "/uk",
             },
+            showEnglish: true,
+            showUkrainian: true,
+            showRussian: true,
+            showPolish: true,
             navCategoriesLabel: "Категорії",
             navCatalogLabel: "Каталог",
             navProjectsLabel: "Проєкти",
@@ -109,10 +117,10 @@ exports.kidsferaSeed = {
                 footerGroup('Продукція', ['Лабіринти', 'Майданчики', 'Скелодроми', 'Сухі басейни']),
                 footerGroup('Компанія', ['Про нас', 'Наш завод', 'Проєкти', 'Сертифікати']),
                 footerGroup('Документи', [
-                    'Конфіденційність',
+                    { label: 'Конфіденційність', href: '/privacy-policy' },
                     { label: 'Умови продажу', href: '/delivery-payment' },
                     'EN 1176',
-                    'GDPR',
+                    { label: 'GDPR', href: '/gdpr' },
                 ]),
             ],
             footerBadges: footerBadges(),
@@ -125,6 +133,10 @@ exports.kidsferaSeed = {
                 metaDescription: "Мультиязычный шоурум для крытых парков, уличных площадок, скалодромов и мягких игровых систем.",
                 canonicalPath: "/ru",
             },
+            showEnglish: true,
+            showUkrainian: true,
+            showRussian: true,
+            showPolish: true,
             navCategoriesLabel: "Категории",
             navCatalogLabel: "Каталог",
             navProjectsLabel: "Проекты",
@@ -151,10 +163,10 @@ exports.kidsferaSeed = {
                 footerGroup('Продукция', ['Лабиринты', 'Площадки', 'Скалодромы', 'Сухие бассейны']),
                 footerGroup('Компания', ['О нас', 'Наш завод', 'Проекты', 'Сертификаты']),
                 footerGroup('Документы', [
-                    'Конфиденциальность',
+                    { label: 'Конфиденциальность', href: '/privacy-policy' },
                     { label: 'Условия продажи', href: '/delivery-payment' },
                     'EN 1176',
-                    'GDPR',
+                    { label: 'GDPR', href: '/gdpr' },
                 ]),
             ],
             footerBadges: footerBadges(),
@@ -167,6 +179,10 @@ exports.kidsferaSeed = {
                 metaDescription: "Wielojęzyczny showroom dla parków krytych, placów zabaw, ścianek wspinaczkowych i stref soft play.",
                 canonicalPath: "/pl",
             },
+            showEnglish: true,
+            showUkrainian: true,
+            showRussian: true,
+            showPolish: true,
             navCategoriesLabel: "Kategorie",
             navCatalogLabel: "Katalog",
             navProjectsLabel: "Realizacje",
@@ -193,10 +209,10 @@ exports.kidsferaSeed = {
                 footerGroup('Produkty', ['Labirynty', 'Place zabaw', 'Ścianki', 'Suche baseny']),
                 footerGroup('Firma', ['O nas', 'Nasza fabryka', 'Realizacje', 'Certyfikaty']),
                 footerGroup('Dokumenty', [
-                    'Polityka prywatności',
+                    { label: 'Polityka prywatności', href: '/privacy-policy' },
                     { label: 'Warunki sprzedaży', href: '/delivery-payment' },
                     'EN 1176',
-                    'RODO',
+                    { label: 'RODO', href: '/gdpr' },
                 ]),
             ],
             footerBadges: footerBadges(),
@@ -2008,6 +2024,214 @@ exports.kidsferaSeed = {
             ctaPrimaryHref: "/#contact",
             ctaSecondaryLabel: "Przeglądaj katalog",
             ctaSecondaryHref: "/catalog",
+        },
+    },
+    privacyPolicyPage: {
+        en: {
+            seo: {
+                metaTitle: "Kidsfera | Privacy Policy",
+                metaDescription: "Learn how Kidsfera collects, uses, stores, and protects personal data shared through the website and business communication.",
+                canonicalPath: "/en/privacy-policy",
+            },
+            heroEyebrow: "Legal",
+            title: "Privacy Policy",
+            subtitle: "How we handle personal data collected through our website, forms, and direct communication.",
+            content: `## 1. Data Controller
+Kidsfera acts as the controller of personal data submitted through the website, quote forms, and direct email or phone communication.
+
+## 2. What Data We Collect
+- contact details such as name, email address, and phone number
+- company details provided in an enquiry
+- message content, project requirements, and attachments
+- basic analytics and technical data needed to secure and improve the website
+
+## 3. Why We Use Personal Data
+We use personal data to respond to enquiries, prepare quotations, manage orders, provide customer support, and improve our services. We only process data when we have a legal basis to do so.
+
+## 4. Data Sharing and Storage
+We may share data with trusted service providers involved in hosting, communication, logistics, accounting, or legal compliance. Data is stored only for as long as necessary for the purpose for which it was collected or to meet legal obligations.
+
+## 5. Your Rights
+You may request access to your data, correction, deletion, restriction of processing, objection, or data portability where applicable. To exercise your rights, contact us using the details published on this website.`,
+        },
+        uk: {
+            seo: {
+                metaTitle: "Kidsfera | Політика конфіденційності",
+                metaDescription: "Дізнайтеся, як Kidsfera збирає, використовує, зберігає та захищає персональні дані, передані через сайт і ділову комунікацію.",
+                canonicalPath: "/uk/privacy-policy",
+            },
+            heroEyebrow: "Документи",
+            title: "Політика конфіденційності",
+            subtitle: "Як ми працюємо з персональними даними, отриманими через сайт, форми та пряме спілкування.",
+            content: `## 1. Володілець персональних даних
+Kidsfera є володільцем персональних даних, які надсилаються через сайт, форми запиту комерційної пропозиції, електронну пошту або телефон.
+
+## 2. Які дані ми збираємо
+- контактні дані, зокрема ім'я, email та номер телефону
+- дані компанії, зазначені у зверненні
+- зміст повідомлення, вимоги до проєкту та вкладення
+- базові аналітичні й технічні дані, потрібні для безпеки та покращення сайту
+
+## 3. Для чого ми використовуємо дані
+Ми використовуємо персональні дані для відповіді на звернення, підготовки пропозицій, супроводу замовлень, клієнтської підтримки та покращення сервісу. Обробка здійснюється лише за наявності законної підстави.
+
+## 4. Передача та зберігання даних
+Ми можемо передавати дані надійним постачальникам послуг, які беруть участь у хостингу, комунікації, логістиці, бухгалтерії або юридичному супроводі. Дані зберігаються лише стільки, скільки це потрібно для відповідної мети або для виконання вимог закону.
+
+## 5. Ваші права
+Ви можете звернутися із запитом на доступ до даних, виправлення, видалення, обмеження обробки, заперечення або перенесення даних, якщо це застосовно. Щоб скористатися своїми правами, зв'яжіться з нами за контактами, вказаними на сайті.`,
+        },
+        ru: {
+            seo: {
+                metaTitle: "Kidsfera | Политика конфиденциальности",
+                metaDescription: "Узнайте, как Kidsfera собирает, использует, хранит и защищает персональные данные, переданные через сайт и деловую коммуникацию.",
+                canonicalPath: "/ru/privacy-policy",
+            },
+            heroEyebrow: "Документы",
+            title: "Политика конфиденциальности",
+            subtitle: "Как мы работаем с персональными данными, полученными через сайт, формы и прямое общение.",
+            content: `## 1. Оператор персональных данных
+Kidsfera выступает оператором персональных данных, которые передаются через сайт, формы запроса предложения, электронную почту или телефон.
+
+## 2. Какие данные мы собираем
+- контактные данные, включая имя, email и номер телефона
+- данные компании, указанные в обращении
+- содержание сообщения, требования к проекту и вложения
+- базовые аналитические и технические данные, необходимые для безопасности и улучшения сайта
+
+## 3. Для чего мы используем данные
+Мы используем персональные данные для ответа на запросы, подготовки предложений, сопровождения заказов, поддержки клиентов и улучшения сервиса. Обработка выполняется только при наличии законного основания.
+
+## 4. Передача и хранение данных
+Мы можем передавать данные надежным поставщикам услуг, которые участвуют в хостинге, коммуникации, логистике, бухгалтерии или юридическом сопровождении. Данные хранятся только столько, сколько необходимо для соответствующей цели или выполнения требований закона.
+
+## 5. Ваши права
+Вы можете запросить доступ к данным, исправление, удаление, ограничение обработки, возражение или перенос данных, если это применимо. Чтобы воспользоваться своими правами, свяжитесь с нами по контактам, указанным на сайте.`,
+        },
+        pl: {
+            seo: {
+                metaTitle: "Kidsfera | Polityka prywatności",
+                metaDescription: "Dowiedz się, jak Kidsfera zbiera, wykorzystuje, przechowuje i chroni dane osobowe przekazywane przez stronę i komunikację biznesową.",
+                canonicalPath: "/pl/privacy-policy",
+            },
+            heroEyebrow: "Dokumenty",
+            title: "Polityka prywatności",
+            subtitle: "W jaki sposób przetwarzamy dane osobowe pozyskiwane przez stronę, formularze i bezpośredni kontakt.",
+            content: `## 1. Administrator danych
+Kidsfera jest administratorem danych osobowych przekazywanych przez stronę internetową, formularze zapytań ofertowych oraz kontakt e-mailowy lub telefoniczny.
+
+## 2. Jakie dane zbieramy
+- dane kontaktowe, takie jak imię, adres e-mail i numer telefonu
+- dane firmy podane w zapytaniu
+- treść wiadomości, wymagania projektu i załączniki
+- podstawowe dane analityczne i techniczne potrzebne do zabezpieczenia i ulepszania strony
+
+## 3. W jakim celu używamy danych
+Dane osobowe wykorzystujemy do odpowiadania na zapytania, przygotowywania ofert, obsługi zamówień, wsparcia klienta i ulepszania usług. Przetwarzamy dane wyłącznie wtedy, gdy mamy do tego podstawę prawną.
+
+## 4. Udostępnianie i przechowywanie danych
+Możemy udostępniać dane zaufanym dostawcom usług wspierającym hosting, komunikację, logistykę, księgowość lub zgodność prawną. Dane przechowujemy tylko przez okres niezbędny do realizacji celu albo spełnienia obowiązków prawnych.
+
+## 5. Twoje prawa
+Możesz zażądać dostępu do danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, wniesienia sprzeciwu lub przeniesienia danych, jeśli ma to zastosowanie. Aby skorzystać ze swoich praw, skontaktuj się z nami, używając danych kontaktowych opublikowanych na stronie.`,
+        },
+    },
+    gdprPage: {
+        en: {
+            seo: {
+                metaTitle: "Kidsfera | GDPR Information",
+                metaDescription: "Overview of GDPR-related rights, legal bases for processing, and how to contact Kidsfera regarding personal data requests.",
+                canonicalPath: "/en/gdpr",
+            },
+            heroEyebrow: "Legal",
+            title: "GDPR Information",
+            subtitle: "Your rights under the General Data Protection Regulation and how we support data requests.",
+            content: `## 1. Legal Basis for Processing
+Kidsfera processes personal data only when there is a valid legal basis, including contract performance, pre-contractual communication, legitimate interest, legal obligation, or consent where required.
+
+## 2. Data Subject Rights
+Under GDPR, you may request access to your personal data, rectification, erasure, restriction of processing, objection to processing, and data portability where applicable.
+
+## 3. Consent and Withdrawal
+Where processing is based on consent, you may withdraw that consent at any time. Withdrawal does not affect the lawfulness of processing carried out before the request was made.
+
+## 4. Complaints and Requests
+If you believe your data is being processed unlawfully, you may contact us first so we can resolve the issue quickly. You also have the right to lodge a complaint with the competent supervisory authority.
+
+## 5. How to Contact Us
+To submit a GDPR-related request, please contact Kidsfera using the contact details listed on this website and include enough information for us to identify your request securely.`,
+        },
+        uk: {
+            seo: {
+                metaTitle: "Kidsfera | Інформація щодо GDPR",
+                metaDescription: "Огляд прав за GDPR, правових підстав обробки та способів звернення до Kidsfera щодо персональних даних.",
+                canonicalPath: "/uk/gdpr",
+            },
+            heroEyebrow: "Документи",
+            title: "Інформація щодо GDPR",
+            subtitle: "Ваші права за Загальним регламентом захисту даних та наш порядок опрацювання запитів.",
+            content: `## 1. Правові підстави обробки
+Kidsfera обробляє персональні дані лише за наявності належної правової підстави, зокрема для виконання договору, переддоговірного спілкування, законного інтересу, юридичного обов'язку або згоди, якщо вона потрібна.
+
+## 2. Права суб'єкта даних
+Відповідно до GDPR ви можете вимагати доступ до своїх даних, їх виправлення, видалення, обмеження обробки, заперечення проти обробки та перенесення даних, якщо це застосовно.
+
+## 3. Згода та її відкликання
+Якщо обробка ґрунтується на згоді, ви можете відкликати її в будь-який момент. Відкликання не впливає на законність обробки, здійсненої до моменту звернення.
+
+## 4. Скарги та звернення
+Якщо ви вважаєте, що ваші дані обробляються неправомірно, спершу зверніться до нас, щоб ми могли оперативно вирішити питання. Ви також маєте право подати скаргу до компетентного наглядового органу.
+
+## 5. Як з нами зв'язатися
+Щоб надіслати запит щодо GDPR, зверніться до Kidsfera за контактами, вказаними на сайті, та надайте достатньо інформації для безпечної ідентифікації вашого запиту.`,
+        },
+        ru: {
+            seo: {
+                metaTitle: "Kidsfera | Информация по GDPR",
+                metaDescription: "Обзор прав по GDPR, правовых оснований обработки и способов обращения в Kidsfera по вопросам персональных данных.",
+                canonicalPath: "/ru/gdpr",
+            },
+            heroEyebrow: "Документы",
+            title: "Информация по GDPR",
+            subtitle: "Ваши права по Общему регламенту защиты данных и порядок обработки запросов в Kidsfera.",
+            content: `## 1. Правовые основания обработки
+Kidsfera обрабатывает персональные данные только при наличии надлежащего правового основания, включая исполнение договора, преддоговорное общение, законный интерес, юридическую обязанность или согласие, если оно требуется.
+
+## 2. Права субъекта данных
+Согласно GDPR вы можете запросить доступ к своим данным, их исправление, удаление, ограничение обработки, возражение против обработки и перенос данных, если это применимо.
+
+## 3. Согласие и его отзыв
+Если обработка основана на согласии, вы можете отозвать его в любое время. Отзыв не влияет на законность обработки, выполненной до момента обращения.
+
+## 4. Жалобы и обращения
+Если вы считаете, что ваши данные обрабатываются неправомерно, сначала свяжитесь с нами, чтобы мы могли быстро решить вопрос. Вы также имеете право подать жалобу в компетентный надзорный орган.
+
+## 5. Как с нами связаться
+Чтобы отправить запрос по GDPR, свяжитесь с Kidsfera по контактам, указанным на сайте, и предоставьте достаточно информации для безопасной идентификации вашего запроса.`,
+        },
+        pl: {
+            seo: {
+                metaTitle: "Kidsfera | Informacje o RODO",
+                metaDescription: "Przegląd praw wynikających z RODO, podstaw przetwarzania oraz sposobów kontaktu z Kidsfera w sprawach danych osobowych.",
+                canonicalPath: "/pl/gdpr",
+            },
+            heroEyebrow: "Dokumenty",
+            title: "Informacje o RODO",
+            subtitle: "Twoje prawa wynikające z RODO oraz sposób, w jaki obsługujemy wnioski dotyczące danych osobowych.",
+            content: `## 1. Podstawy prawne przetwarzania
+Kidsfera przetwarza dane osobowe wyłącznie wtedy, gdy istnieje odpowiednia podstawa prawna, w tym wykonanie umowy, działania przed zawarciem umowy, prawnie uzasadniony interes, obowiązek prawny lub zgoda, gdy jest wymagana.
+
+## 2. Prawa osoby, której dane dotyczą
+Zgodnie z RODO możesz żądać dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, wniesienia sprzeciwu oraz przeniesienia danych, jeśli ma to zastosowanie.
+
+## 3. Zgoda i jej cofnięcie
+Jeżeli przetwarzanie opiera się na zgodzie, możesz ją wycofać w dowolnym momencie. Wycofanie zgody nie wpływa na zgodność z prawem przetwarzania dokonanego przed zgłoszeniem.
+
+## 4. Skargi i wnioski
+Jeśli uważasz, że Twoje dane są przetwarzane niezgodnie z prawem, skontaktuj się z nami w pierwszej kolejności, abyśmy mogli szybko wyjaśnić sprawę. Masz również prawo złożyć skargę do właściwego organu nadzorczego.
+
+## 5. Jak się z nami skontaktować
+Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając z danych kontaktowych podanych na stronie, i podaj informacje wystarczające do bezpiecznej identyfikacji Twojego zgłoszenia.`,
         },
     },
     productPage: {

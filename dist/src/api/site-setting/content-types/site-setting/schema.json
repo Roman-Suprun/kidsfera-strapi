@@ -41,6 +41,22 @@
                 }
             }
         },
+        "showEnglish": {
+            "type": "boolean",
+            "default": true
+        },
+        "showUkrainian": {
+            "type": "boolean",
+            "default": true
+        },
+        "showRussian": {
+            "type": "boolean",
+            "default": true
+        },
+        "showPolish": {
+            "type": "boolean",
+            "default": true
+        },
         "navCategoriesLabel": {
             "type": "string",
             "required": true,
