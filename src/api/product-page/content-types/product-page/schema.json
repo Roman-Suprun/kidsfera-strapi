@@ -32,15 +32,6 @@
         }
       }
     },
-    "ageLabel": {
-      "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "sizeLabel": {
       "type": "string",
       "required": true,

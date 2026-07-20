@@ -1597,7 +1597,7 @@ export const kidsferaSeed = {
     en: {
       seo: {
         metaTitle: "Kidsfera | Catalog",
-        metaDescription: "Filter multilingual products by category and age range.",
+        metaDescription: "Filter multilingual products by category.",
         canonicalPath: "/en/catalog",
       },
       eyebrow: "Filter by",
@@ -1606,7 +1606,6 @@ export const kidsferaSeed = {
         "Compare play systems, explore categories, and move into product details without leaving the storefront.",
       filterByLabel: "Filters",
       categoryLabel: "Category",
-      ageRangeLabel: "Age Range",
       allLabel: "All",
       noResultsLabel: "No products found. Try adjusting your filters.",
       viewDetailsLabel: "View Details",
@@ -1616,7 +1615,7 @@ export const kidsferaSeed = {
     uk: {
       seo: {
         metaTitle: "Kidsfera | Каталог",
-        metaDescription: "Фільтруйте мультимовні товари за категорією та віковою групою.",
+        metaDescription: "Фільтруйте мультимовні товари за категорією.",
         canonicalPath: "/uk/catalog",
       },
       eyebrow: "Фільтрувати за",
@@ -1625,7 +1624,6 @@ export const kidsferaSeed = {
         "Порівнюйте ігрові системи, досліджуйте категорії та переходьте до деталей товару прямо у storefront.",
       filterByLabel: "Фільтри",
       categoryLabel: "Категорія",
-      ageRangeLabel: "Вікова група",
       allLabel: "Усі",
       noResultsLabel: "Товарів не знайдено. Спробуйте змінити фільтри.",
       viewDetailsLabel: "Детальніше",
@@ -1635,7 +1633,7 @@ export const kidsferaSeed = {
     ru: {
       seo: {
         metaTitle: "Kidsfera | Каталог",
-        metaDescription: "Фильтруйте мультиязычные товары по категории и возрасту.",
+        metaDescription: "Фильтруйте мультиязычные товары по категории.",
         canonicalPath: "/ru/catalog",
       },
       eyebrow: "Фильтровать по",
@@ -1644,7 +1642,6 @@ export const kidsferaSeed = {
         "Сравнивайте игровые системы, изучайте категории и переходите к деталям товара прямо внутри storefront.",
       filterByLabel: "Фильтры",
       categoryLabel: "Категория",
-      ageRangeLabel: "Возрастная группа",
       allLabel: "Все",
       noResultsLabel: "Товары не найдены. Попробуйте изменить фильтры.",
       viewDetailsLabel: "Подробнее",
@@ -1654,7 +1651,7 @@ export const kidsferaSeed = {
     pl: {
       seo: {
         metaTitle: "Kidsfera | Katalog",
-        metaDescription: "Filtruj wielojęzyczne produkty według kategorii i wieku.",
+        metaDescription: "Filtruj wielojęzyczne produkty według kategorii.",
         canonicalPath: "/pl/catalog",
       },
       eyebrow: "Filtruj według",
@@ -1663,7 +1660,6 @@ export const kidsferaSeed = {
         "Porównuj systemy zabaw, przeglądaj kategorie i przechodź do szczegółów produktu bez opuszczania storefront.",
       filterByLabel: "Filtry",
       categoryLabel: "Kategoria",
-      ageRangeLabel: "Wiek",
       allLabel: "Wszystkie",
       noResultsLabel: "Nie znaleziono produktów. Spróbuj zmienić filtry.",
       viewDetailsLabel: "Szczegóły",
@@ -2471,7 +2467,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
     en: {
       galleryLabel: "Gallery",
       specsLabel: "Specifications",
-      ageLabel: "Age Range",
       sizeLabel: "Dimensions",
       capacityLabel: "Capacity",
       materialLabel: "Material",
@@ -2486,7 +2481,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
     uk: {
       galleryLabel: "Галерея",
       specsLabel: "Характеристики",
-      ageLabel: "Вікова група",
       sizeLabel: "Розміри",
       capacityLabel: "Місткість",
       materialLabel: "Матеріал",
@@ -2501,7 +2495,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
     ru: {
       galleryLabel: "Галерея",
       specsLabel: "Характеристики",
-      ageLabel: "Возрастная группа",
       sizeLabel: "Размеры",
       capacityLabel: "Вместимость",
       materialLabel: "Материал",
@@ -2516,7 +2509,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
     pl: {
       galleryLabel: "Galeria",
       specsLabel: "Specyfikacja",
-      ageLabel: "Wiek",
       sizeLabel: "Wymiary",
       capacityLabel: "Pojemność",
       materialLabel: "Materiał",
@@ -3180,7 +3172,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Flagship shopping-centre labyrinth with bridges, tunnels, and slides.",
           description:
             "Our flagship shopping-centre labyrinth keeps families engaged for hours with multi-level circulation, bridges, tubes, and high-visibility color blocking.",
-          ageRange: "3–12",
           priceLabel: "€28,000–€65,000",
           size: "80–400 m²",
           capacity: "60–200 children",
@@ -3196,7 +3187,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Флагманський лабіринт для торгових центрів з мостами, тунелями та гірками.",
           description:
             "Флагманська система лабіринту для молів, яка утримує увагу сімей багаторівневими маршрутами, мостами, тунелями та виразною кольоровою композицією.",
-          ageRange: "3–12",
           priceLabel: "€28,000–€65,000",
           size: "80–400 м²",
           capacity: "60–200 дітей",
@@ -3208,7 +3198,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Флагманский лабиринт для торговых центров с мостами, тоннелями и горками.",
           description:
             "Флагманская система лабиринта для моллов, которая удерживает внимание семей за счёт многоуровневых маршрутов, мостов, тоннелей и яркой цветовой композиции.",
-          ageRange: "3–12",
           priceLabel: "€28,000–€65,000",
           size: "80–400 м²",
           capacity: "60–200 детей",
@@ -3220,7 +3209,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Flagowy labirynt do galerii z mostami, tunelami i zjeżdżalniami.",
           description:
             "Flagowy system labiryntowy do galerii handlowych, który angażuje rodziny dzięki wielopoziomowemu układowi, mostom, tunelom i wyrazistej kolorystyce.",
-          ageRange: "3–12",
           priceLabel: "€28,000–€65,000",
           size: "80–400 m²",
           capacity: "60–200 dzieci",
@@ -3251,7 +3239,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "High-capacity multi-level tower with toddler zone and slide package.",
           description:
             "A tall soft-play tower configured for large family centres with multiple routes, slides, climbing challenges, and an integrated toddler area.",
-          ageRange: "1–10",
           priceLabel: "€35,000–€90,000",
           size: "120–600 m²",
           capacity: "100–300 children",
@@ -3263,7 +3250,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Багаторівнева вежа великої місткості з toddler-зоною та комплектом гірок.",
           description:
             "Висока soft-play вежа для великих сімейних центрів з кількома маршрутами, гірками, елементами для лазіння та інтегрованою зоною для малюків.",
-          ageRange: "1–10",
           priceLabel: "€35,000–€90,000",
           size: "120–600 м²",
           capacity: "100–300 дітей",
@@ -3275,7 +3261,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Многоуровневая башня большой вместимости с toddler-зоной и комплектом горок.",
           description:
             "Высокая soft-play башня для больших семейных центров с несколькими маршрутами, горками, элементами для лазания и встроенной зоной для малышей.",
-          ageRange: "1–10",
           priceLabel: "€35,000–€90,000",
           size: "120–600 м²",
           capacity: "100–300 детей",
@@ -3287,7 +3272,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Wielopoziomowa wieża o dużej pojemności ze strefą dla maluchów i pakietem zjeżdżalni.",
           description:
             "Wysoka wieża soft-play dla dużych centrów rodzinnych z wieloma trasami, zjeżdżalniami, wyzwaniami wspinaczkowymi i zintegrowaną strefą dla maluchów.",
-          ageRange: "1–10",
           priceLabel: "€35,000–€90,000",
           size: "120–600 m²",
           capacity: "100–300 dzieci",
@@ -3314,7 +3298,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Classic FSC-certified outdoor playground with swings, slides, and climbing.",
           description:
             "A balanced outdoor playground system with wood aesthetics, steel reinforcement, slides, swings, and monkey-bar movement paths.",
-          ageRange: "2–12",
           priceLabel: "€8,000–€25,000",
           size: "40–200 m²",
           capacity: "20–60 children",
@@ -3326,7 +3309,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Класичний сертифікований FSC вуличний майданчик з гойдалками, гірками та лазінням.",
           description:
             "Збалансована зовнішня система майданчика з дерев'яною естетикою, сталевим підсиленням, гірками, гойдалками та маршрутами для руху.",
-          ageRange: "2–12",
           priceLabel: "€8,000–€25,000",
           size: "40–200 м²",
           capacity: "20–60 дітей",
@@ -3338,7 +3320,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Классическая сертифицированная FSC уличная площадка с качелями, горками и лазанием.",
           description:
             "Сбалансированная уличная система с древесной эстетикой, стальным усилением, горками, качелями и маршрутами для движения.",
-          ageRange: "2–12",
           priceLabel: "€8,000–€25,000",
           size: "40–200 м²",
           capacity: "20–60 детей",
@@ -3350,7 +3331,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Klasyczny certyfikowany plac zabaw FSC z huśtawkami, zjeżdżalniami i wspinaniem.",
           description:
             "Zrównoważony system zewnętrzny o drewnianej estetyce, stalowym wzmocnieniu, zjeżdżalniach, huśtawkach i ścieżkach ruchowych.",
-          ageRange: "2–12",
           priceLabel: "€8,000–€25,000",
           size: "40–200 m²",
           capacity: "20–60 dzieci",
@@ -3377,7 +3357,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Compact timber backyard playground with slide, swings, and rope wall.",
           description:
             "A private-home play set built for quick installation and safe daily play in gardens, courtyards, and hospitality villas.",
-          ageRange: "2–10",
           priceLabel: "€1,200–€4,500",
           size: "4×3 m – 8×5 m",
           capacity: "3–8 children",
@@ -3389,7 +3368,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Компактний дерев'яний майданчик для двору з гіркою, гойдалками та канатною стіною.",
           description:
             "Приватний ігровий комплект, розрахований на швидкий монтаж і безпечну щоденну гру у садах, подвір'ях та гостьових віллах.",
-          ageRange: "2–10",
           priceLabel: "€1,200–€4,500",
           size: "4×3 м – 8×5 м",
           capacity: "3–8 дітей",
@@ -3401,7 +3379,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Компактная деревянная площадка для двора с горкой, качелями и канатной стеной.",
           description:
             "Частный игровой комплект для быстрого монтажа и безопасной ежедневной игры в садах, дворах и виллах.",
-          ageRange: "2–10",
           priceLabel: "€1,200–€4,500",
           size: "4×3 м – 8×5 м",
           capacity: "3–8 детей",
@@ -3413,7 +3390,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Kompaktowy drewniany plac zabaw do ogrodu ze zjeżdżalnią, huśtawkami i ścianą linową.",
           description:
             "Prywatny zestaw zabawowy zaprojektowany z myślą o szybkim montażu i bezpiecznej codziennej zabawie w ogrodach oraz na dziedzińcach.",
-          ageRange: "2–10",
           priceLabel: "€1,200–€4,500",
           size: "4×3 m – 8×5 m",
           capacity: "3–8 dzieci",
@@ -3440,7 +3416,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Full-scale trampoline arena for high-energy entertainment centers.",
           description:
             "Commercial jump arena with interconnected trampolines, wall jumps, active courts, and modular support zones.",
-          ageRange: "4–16",
           priceLabel: "€40,000–€120,000",
           size: "300–1 500 m²",
           capacity: "80–250 persons",
@@ -3452,7 +3427,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Повноформатна батутна арена для енергійних розважальних центрів.",
           description:
             "Комерційна jump-арена зі з'єднаними батутами, стінками для стрибків, активними кортами та модульними додатковими зонами.",
-          ageRange: "4–16",
           priceLabel: "€40,000–€120,000",
           size: "300–1 500 м²",
           capacity: "80–250 осіб",
@@ -3464,7 +3438,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Полноформатная батутная арена для энергичных развлекательных центров.",
           description:
             "Коммерческая jump-арена с объединёнными батутами, стенками для прыжков, активными кортами и модульными дополнительными зонами.",
-          ageRange: "4–16",
           priceLabel: "€40,000–€120,000",
           size: "300–1 500 м²",
           capacity: "80–250 человек",
@@ -3476,7 +3449,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Pełnowymiarowa arena trampolinowa dla dynamicznych centrów rozrywki.",
           description:
             "Komercyjna arena jump z połączonymi trampolinami, ścianami do skoków, aktywnymi boiskami i modułowymi strefami wsparcia.",
-          ageRange: "4–16",
           priceLabel: "€40,000–€120,000",
           size: "300–1 500 m²",
           capacity: "80–250 osób",
@@ -3503,7 +3475,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Commercial bouldering wall with color-coded routes and crash mat.",
           description:
             "A flexible climbing product for parks and family centers, with interchangeable holds and configurable visual identity.",
-          ageRange: "4–16",
           priceLabel: "€4,000–€18,000",
           size: "10–100 m²",
           capacity: "5–30 climbers",
@@ -3515,7 +3486,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Комерційна боулдерингова стіна з кольоровими трасами та матом.",
           description:
             "Гнучкий продукт для парків і сімейних центрів зі змінними зачепами та налаштовуваною візуальною ідентикою.",
-          ageRange: "4–16",
           priceLabel: "€4,000–€18,000",
           size: "10–100 м²",
           capacity: "5–30 скелелазів",
@@ -3527,7 +3497,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Коммерческая боулдеринговая стена с цветными трассами и матом.",
           description:
             "Гибкий продукт для парков и семейных центров со сменными зацепами и настраиваемой визуальной айдентикой.",
-          ageRange: "4–16",
           priceLabel: "€4,000–€18,000",
           size: "10–100 м²",
           capacity: "5–30 скалолазов",
@@ -3539,7 +3508,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Komercyjna ściana bulderowa z kolorowymi trasami i materacem.",
           description:
             "Elastyczny produkt do parków i centrów rodzinnych z wymiennymi chwytami i konfigurowalną identyfikacją wizualną.",
-          ageRange: "4–16",
           priceLabel: "€4,000–€18,000",
           size: "10–100 m²",
           capacity: "5–30 wspinaczy",
@@ -3566,7 +3534,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Rope structures with bridges, crossings, and active adventure movement.",
           description:
             "A scalable rope-based attraction line for indoor and outdoor projects that mixes walking, climbing, and balance challenges.",
-          ageRange: "3–14",
           priceLabel: "€6,000–€30,000",
           size: "20–200 m²",
           capacity: "15–60 children",
@@ -3578,7 +3545,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Мотузкові конструкції з мостами, переходами та активним пригодницьким рухом.",
           description:
             "Масштабована лінійка мотузкових атракціонів для зовнішніх і внутрішніх проєктів, що поєднує ходьбу, лазіння та баланс.",
-          ageRange: "3–14",
           priceLabel: "€6,000–€30,000",
           size: "20–200 м²",
           capacity: "15–60 дітей",
@@ -3590,7 +3556,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Канатные конструкции с мостами, переходами и активным приключенческим движением.",
           description:
             "Масштабируемая линейка канатных аттракционов для уличных и внутренних проектов, сочетающая ходьбу, лазание и баланс.",
-          ageRange: "3–14",
           priceLabel: "€6,000–€30,000",
           size: "20–200 м²",
           capacity: "15–60 детей",
@@ -3602,7 +3567,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Konstrukcje linowe z mostami, przejściami i aktywnym ruchem przygodowym.",
           description:
             "Skalowalna linia atrakcji linowych do projektów zewnętrznych i wewnętrznych, łącząca chodzenie, wspinanie i balans.",
-          ageRange: "3–14",
           priceLabel: "€6,000–€30,000",
           size: "20–200 m²",
           capacity: "15–60 dzieci",
@@ -3629,7 +3593,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Commercial dry pool with slides and sanitation-friendly ball handling.",
           description:
             "A large dry-pool attraction designed for repeat commercial use with integrated slide package and maintenance-conscious detailing.",
-          ageRange: "1–8",
           priceLabel: "€8,000–€28,000",
           size: "20–120 m²",
           capacity: "20–80 children",
@@ -3641,7 +3604,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Комерційний сухий басейн з гірками та рішеннями для гігієнічного обслуговування.",
           description:
             "Великий атракціон сухого басейну для регулярного комерційного використання з інтегрованим пакетом гірок і продуманим сервісним доглядом.",
-          ageRange: "1–8",
           priceLabel: "€8,000–€28,000",
           size: "20–120 м²",
           capacity: "20–80 дітей",
@@ -3653,7 +3615,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Коммерческий сухой бассейн с горками и решениями для гигиеничного обслуживания.",
           description:
             "Большой аттракцион сухого бассейна для регулярного коммерческого использования с интегрированным пакетом горок и продуманным сервисом.",
-          ageRange: "1–8",
           priceLabel: "€8,000–€28,000",
           size: "20–120 м²",
           capacity: "20–80 детей",
@@ -3665,7 +3626,6 @@ Aby złożyć wniosek dotyczący RODO, skontaktuj się z Kidsfera, korzystając 
           shortDescription: "Komercyjny suchy basen ze zjeżdżalniami i rozwiązaniami higienicznymi.",
           description:
             "Duża atrakcja suchego basenu do intensywnego użytku komercyjnego z pakietem zjeżdżalni i detalami ułatwiającymi utrzymanie.",
-          ageRange: "1–8",
           priceLabel: "€8,000–€28,000",
           size: "20–120 m²",
           capacity: "20–80 dzieci",

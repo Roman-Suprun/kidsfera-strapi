@@ -68,15 +68,6 @@
         }
       }
     },
-    "ageRangeLabel": {
-      "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "allLabel": {
       "type": "string",
       "required": true,
