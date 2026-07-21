@@ -200,6 +200,15 @@
         }
       }
     },
+    "showTeamSection": {
+      "type": "boolean",
+      "default": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
     "teamEyebrow": {
       "type": "string",
       "required": true,
@@ -222,6 +231,15 @@
       "type": "component",
       "repeatable": true,
       "component": "shared.team-member",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "showCertificationsSection": {
+      "type": "boolean",
+      "default": true,
       "pluginOptions": {
         "i18n": {
           "localized": true

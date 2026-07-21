@@ -1050,6 +1050,7 @@ export const kidsferaSeed = {
         { value: "6", label: "Production lines" },
         { value: "80+", label: "Projects per year" },
       ],
+      showTeamSection: true,
       teamEyebrow: "The Team",
       teamTitle: "The people behind Kidsfera",
       teamMembers: [
@@ -1082,6 +1083,7 @@ export const kidsferaSeed = {
             "https://images.unsplash.com/photo-1581091212991-8891c7d4bd9b?w=400&h=400&fit=crop&crop=face&auto=format",
         },
       ],
+      showCertificationsSection: true,
       certificationsEyebrow: "Certifications",
       certificationsTitle: "Verified by independent bodies",
       certifications: [
@@ -1192,6 +1194,7 @@ export const kidsferaSeed = {
         { value: "6", label: "Виробничих ліній" },
         { value: "80+", label: "Проєктів на рік" },
       ],
+      showTeamSection: true,
       teamEyebrow: "Команда",
       teamTitle: "Люди за Kidsfera",
       teamMembers: [
@@ -1224,6 +1227,7 @@ export const kidsferaSeed = {
             "https://images.unsplash.com/photo-1581091212991-8891c7d4bd9b?w=400&h=400&fit=crop&crop=face&auto=format",
         },
       ],
+      showCertificationsSection: true,
       certificationsEyebrow: "Сертифікати",
       certificationsTitle: "Перевірено незалежними органами",
       certifications: [
@@ -1334,6 +1338,7 @@ export const kidsferaSeed = {
         { value: "6", label: "Производственных линий" },
         { value: "80+", label: "Проектов в год" },
       ],
+      showTeamSection: true,
       teamEyebrow: "Команда",
       teamTitle: "Люди за Kidsfera",
       teamMembers: [
@@ -1366,6 +1371,7 @@ export const kidsferaSeed = {
             "https://images.unsplash.com/photo-1581091212991-8891c7d4bd9b?w=400&h=400&fit=crop&crop=face&auto=format",
         },
       ],
+      showCertificationsSection: true,
       certificationsEyebrow: "Сертификаты",
       certificationsTitle: "Проверено независимыми органами",
       certifications: [
@@ -1476,6 +1482,7 @@ export const kidsferaSeed = {
         { value: "6", label: "Linii produkcyjnych" },
         { value: "80+", label: "Projektów rocznie" },
       ],
+      showTeamSection: true,
       teamEyebrow: "Zespół",
       teamTitle: "Ludzie za Kidsfera",
       teamMembers: [
@@ -1508,6 +1515,7 @@ export const kidsferaSeed = {
             "https://images.unsplash.com/photo-1581091212991-8891c7d4bd9b?w=400&h=400&fit=crop&crop=face&auto=format",
         },
       ],
+      showCertificationsSection: true,
       certificationsEyebrow: "Certyfikaty",
       certificationsTitle: "Weryfikowane przez niezależne jednostki",
       certifications: [

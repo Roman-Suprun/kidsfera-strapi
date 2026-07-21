@@ -428,6 +428,54 @@ async function ensureSiteSettingsFields(strapi: Core.Strapi) {
   }
 }
 
+async function findAboutPageDocument(
+  strapi: Core.Strapi,
+  locale: string,
+) {
+  const entries = await strapi.documents('api::about-page.about-page').findMany({
+    locale,
+    status: PUBLISHED_STATUS,
+    populate: '*',
+  } as any);
+
+  return (Array.isArray(entries) ? entries[0] : entries) as
+    | ({ documentId?: string | null } & Record<string, unknown>)
+    | null;
+}
+
+async function ensureAboutPageFields(strapi: Core.Strapi) {
+  for (const locale of kidsferaSeed.languages) {
+    const existing = await findAboutPageDocument(strapi, locale);
+
+    if (!existing?.documentId) {
+      continue;
+    }
+
+    const nextData: Record<string, unknown> = {};
+
+    if (typeof existing.showTeamSection !== 'boolean') {
+      nextData.showTeamSection =
+        kidsferaSeed.aboutPage[locale].showTeamSection ?? true;
+    }
+
+    if (typeof existing.showCertificationsSection !== 'boolean') {
+      nextData.showCertificationsSection =
+        kidsferaSeed.aboutPage[locale].showCertificationsSection ?? true;
+    }
+
+    if (!Object.keys(nextData).length) {
+      continue;
+    }
+
+    await strapi.documents('api::about-page.about-page').update({
+      documentId: existing.documentId,
+      locale,
+      status: PUBLISHED_STATUS,
+      data: nextData as any,
+    });
+  }
+}
+
 async function seedCategories(strapi: Core.Strapi, cache: MediaCache) {
   const categoryIds = new Map<string, string>();
 
@@ -940,6 +988,7 @@ export default {
         kidsferaSeed.projectsPage,
         mediaCache,
       );
+      await ensureAboutPageFields(strapi);
       await ensureSiteSettingsFields(strapi);
       const existingSiteSettings = await strapi.db.query('api::site-setting.site-setting').findOne({
         where: { locale: DEFAULT_LOCALE },
