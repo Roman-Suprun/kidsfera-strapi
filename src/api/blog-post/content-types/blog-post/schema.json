@@ -45,7 +45,6 @@
     },
     "authorName": {
       "type": "string",
-      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -54,7 +53,6 @@
     },
     "authorRole": {
       "type": "string",
-      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
