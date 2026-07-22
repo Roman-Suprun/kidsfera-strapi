@@ -1,0 +1,23 @@
+{
+    "collectionName": "components_shared_contact_items",
+    "info": {
+        "displayName": "Contact Item",
+        "icon": "phone"
+    },
+    "attributes": {
+        "label": {
+            "type": "string",
+            "required": true
+        },
+        "value": {
+            "type": "string",
+            "required": true
+        },
+        "type": {
+            "type": "enumeration",
+            "enum": ["phone", "email", "address"],
+            "default": "phone",
+            "required": true
+        }
+    }
+}

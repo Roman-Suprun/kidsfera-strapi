@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_shared_feature_items",
+  "info": {
+    "displayName": "Feature Item",
+    "icon": "bulletList"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "iconKey": {
+      "type": "enumeration",
+      "enum": ["shield", "wrench", "zap", "globe"],
+      "default": "shield",
+      "required": true
+    }
+  }
+}

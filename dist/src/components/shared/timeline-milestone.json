@@ -1,0 +1,17 @@
+{
+    "collectionName": "components_shared_timeline_milestones",
+    "info": {
+        "displayName": "Timeline Milestone",
+        "icon": "time"
+    },
+    "attributes": {
+        "year": {
+            "type": "string",
+            "required": true
+        },
+        "text": {
+            "type": "text",
+            "required": true
+        }
+    }
+}

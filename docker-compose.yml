@@ -8,8 +8,9 @@ services:
     volumes:
       - ./config:/opt/app/config
       - ./src:/opt/app/src
-      - ./package.json:/opt/package.json
-      - ./package-lock.json:/opt/package-lock.json
+      - ./scripts:/opt/app/scripts
+      - ./package.json:/opt/app/package.json
+      - ./package-lock.json:/opt/app/package-lock.json
       - ./.env:/opt/app/.env  # Needed because Strapi uses dotenv to read .env in development
       - ./public/uploads:/opt/app/public/uploads
     ports:

@@ -1,0 +1,35 @@
+{
+    "collectionName": "components_shared_seos",
+    "info": {
+        "displayName": "SEO",
+        "icon": "earth"
+    },
+    "attributes": {
+        "metaTitle": {
+            "type": "string",
+            "required": true
+        },
+        "metaDescription": {
+            "type": "text",
+            "required": true
+        },
+        "ogTitle": {
+            "type": "string"
+        },
+        "ogDescription": {
+            "type": "text"
+        },
+        "canonicalPath": {
+            "type": "string"
+        },
+        "noIndex": {
+            "type": "boolean",
+            "default": false
+        },
+        "ogImage": {
+            "type": "media",
+            "multiple": false,
+            "allowedTypes": ["images"]
+        }
+    }
+}

@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_shared_about_values",
+  "info": {
+    "displayName": "About Value",
+    "icon": "bulletList"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "icon": {
+      "type": "string",
+      "required": true
+    },
+    "theme": {
+      "type": "enumeration",
+      "enum": ["orange", "blue", "yellow", "green"],
+      "default": "orange",
+      "required": true
+    }
+  }
+}

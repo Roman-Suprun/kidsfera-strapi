@@ -1,0 +1,17 @@
+{
+    "collectionName": "components_shared_process_phases",
+    "info": {
+        "displayName": "Process Phase",
+        "icon": "dashboard"
+    },
+    "attributes": {
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "subtitle": {
+            "type": "string",
+            "required": true
+        }
+    }
+}

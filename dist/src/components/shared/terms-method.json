@@ -1,0 +1,27 @@
+{
+    "collectionName": "components_shared_terms_methods",
+    "info": {
+        "displayName": "Terms Method",
+        "icon": "truck"
+    },
+    "attributes": {
+        "icon": {
+            "type": "string",
+            "required": true
+        },
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "description": {
+            "type": "text",
+            "required": true
+        },
+        "badge": {
+            "type": "string"
+        },
+        "accentColor": {
+            "type": "string"
+        }
+    }
+}

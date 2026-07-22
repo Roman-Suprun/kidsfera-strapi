@@ -1,0 +1,17 @@
+{
+    "collectionName": "components_shared_article_sections",
+    "info": {
+        "displayName": "Article Section",
+        "icon": "file"
+    },
+    "attributes": {
+        "heading": {
+            "type": "string",
+            "required": true
+        },
+        "text": {
+            "type": "text",
+            "required": true
+        }
+    }
+}
