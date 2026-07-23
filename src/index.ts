@@ -476,6 +476,49 @@ async function ensureAboutPageFields(strapi: Core.Strapi) {
   }
 }
 
+async function findProductPageDocument(
+  strapi: Core.Strapi,
+  locale: string,
+) {
+  const entries = await strapi.documents('api::product-page.product-page').findMany({
+    locale,
+    status: PUBLISHED_STATUS,
+    populate: '*',
+  } as any);
+
+  return (Array.isArray(entries) ? entries[0] : entries) as
+    | ({ documentId?: string | null; priceOnRequestLabel?: string | null } & Record<string, unknown>)
+    | null;
+}
+
+async function ensureProductPageFields(strapi: Core.Strapi) {
+  for (const locale of kidsferaSeed.languages) {
+    const existing = await findProductPageDocument(strapi, locale);
+
+    if (!existing?.documentId) {
+      continue;
+    }
+
+    const nextData: Record<string, unknown> = {};
+    const seedLabels = kidsferaSeed.productPage[locale];
+
+    if (existing.priceOnRequestLabel !== seedLabels.priceOnRequestLabel) {
+      nextData.priceOnRequestLabel = seedLabels.priceOnRequestLabel;
+    }
+
+    if (!Object.keys(nextData).length) {
+      continue;
+    }
+
+    await strapi.documents('api::product-page.product-page').update({
+      documentId: existing.documentId,
+      locale,
+      status: PUBLISHED_STATUS,
+      data: nextData as any,
+    });
+  }
+}
+
 async function seedCategories(strapi: Core.Strapi, cache: MediaCache) {
   const categoryIds = new Map<string, string>();
 
@@ -989,6 +1032,7 @@ export default {
         mediaCache,
       );
       await ensureAboutPageFields(strapi);
+      await ensureProductPageFields(strapi);
       await ensureSiteSettingsFields(strapi);
       const existingSiteSettings = await strapi.db.query('api::site-setting.site-setting').findOne({
         where: { locale: DEFAULT_LOCALE },
