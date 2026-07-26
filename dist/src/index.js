@@ -121,41 +121,6 @@ async function syncSiteSettingLanguageSwitcherSettings(strapi, documentId, sourc
         isSyncingSiteSettingLanguages = false;
     }
 }
-function addMissingLegalFooterLinks(locale, footerLinkGroups) {
-    if (!Array.isArray(footerLinkGroups)) {
-        return null;
-    }
-    const hrefsByLabel = LEGAL_FOOTER_HREFS[locale];
-    if (!hrefsByLabel) {
-        return null;
-    }
-    let hasChanges = false;
-    const nextGroups = footerLinkGroups.map((group) => {
-        if (!isRecord(group) || !Array.isArray(group.items)) {
-            return group;
-        }
-        const nextItems = group.items.map((item) => {
-            if (!isRecord(item) || getString(item.href)) {
-                return item;
-            }
-            const label = getString(item.label);
-            const href = label ? hrefsByLabel[label] : null;
-            if (!href) {
-                return item;
-            }
-            hasChanges = true;
-            return {
-                ...item,
-                href,
-            };
-        });
-        return {
-            ...group,
-            items: nextItems,
-        };
-    });
-    return hasChanges ? nextGroups : null;
-}
 async function transformMediaFields(strapi, value, cache) {
     var _a, _b, _c, _d;
     if (Array.isArray(value)) {
@@ -291,11 +256,17 @@ async function ensureLocalizedSingle(strapi, uid, dataByLocale, cache) {
         await createLocalizedSingle(strapi, uid, dataByLocale, cache);
     }
 }
+async function findSiteSettingsDocument(strapi, locale) {
+    const entries = await strapi.documents('api::site-setting.site-setting').findMany({
+        locale,
+        status: PUBLISHED_STATUS,
+        populate: '*',
+    });
+    return (Array.isArray(entries) ? entries[0] : entries);
+}
 async function ensureSiteSettingsFields(strapi) {
     for (const locale of kidsfera_1.kidsferaSeed.languages) {
-        const existing = await strapi.db.query('api::site-setting.site-setting').findOne({
-            where: { locale },
-        });
+        const existing = await findSiteSettingsDocument(strapi, locale);
         if (!(existing === null || existing === void 0 ? void 0 : existing.documentId)) {
             continue;
         }
@@ -307,22 +278,83 @@ async function ensureSiteSettingsFields(strapi) {
         if (!existing.navBlogLabel) {
             nextData.navBlogLabel = kidsfera_1.kidsferaSeed.siteSettings[locale].navBlogLabel;
         }
-        if (!Array.isArray(existing.footerLinkGroups) || existing.footerLinkGroups.length === 0) {
+        // Only seed footer arrays when the field does not exist yet.
+        // An existing empty array means someone intentionally cleared it in Strapi.
+        if (!Array.isArray(existing.footerLinkGroups)) {
             nextData.footerLinkGroups = kidsfera_1.kidsferaSeed.siteSettings[locale].footerLinkGroups;
         }
-        else {
-            const nextFooterGroups = addMissingLegalFooterLinks(locale, existing.footerLinkGroups);
-            if (nextFooterGroups) {
-                nextData.footerLinkGroups = nextFooterGroups;
-            }
-        }
-        if (!Array.isArray(existing.footerBadges) || existing.footerBadges.length === 0) {
+        if (!Array.isArray(existing.footerBadges)) {
             nextData.footerBadges = kidsfera_1.kidsferaSeed.siteSettings[locale].footerBadges;
         }
         if (!Object.keys(nextData).length) {
             continue;
         }
         await strapi.documents('api::site-setting.site-setting').update({
+            documentId: existing.documentId,
+            locale,
+            status: PUBLISHED_STATUS,
+            data: nextData,
+        });
+    }
+}
+async function findAboutPageDocument(strapi, locale) {
+    const entries = await strapi.documents('api::about-page.about-page').findMany({
+        locale,
+        status: PUBLISHED_STATUS,
+        populate: '*',
+    });
+    return (Array.isArray(entries) ? entries[0] : entries);
+}
+async function ensureAboutPageFields(strapi) {
+    var _a, _b;
+    for (const locale of kidsfera_1.kidsferaSeed.languages) {
+        const existing = await findAboutPageDocument(strapi, locale);
+        if (!(existing === null || existing === void 0 ? void 0 : existing.documentId)) {
+            continue;
+        }
+        const nextData = {};
+        if (typeof existing.showTeamSection !== 'boolean') {
+            nextData.showTeamSection =
+                (_a = kidsfera_1.kidsferaSeed.aboutPage[locale].showTeamSection) !== null && _a !== void 0 ? _a : true;
+        }
+        if (typeof existing.showCertificationsSection !== 'boolean') {
+            nextData.showCertificationsSection =
+                (_b = kidsfera_1.kidsferaSeed.aboutPage[locale].showCertificationsSection) !== null && _b !== void 0 ? _b : true;
+        }
+        if (!Object.keys(nextData).length) {
+            continue;
+        }
+        await strapi.documents('api::about-page.about-page').update({
+            documentId: existing.documentId,
+            locale,
+            status: PUBLISHED_STATUS,
+            data: nextData,
+        });
+    }
+}
+async function findProductPageDocument(strapi, locale) {
+    const entries = await strapi.documents('api::product-page.product-page').findMany({
+        locale,
+        status: PUBLISHED_STATUS,
+        populate: '*',
+    });
+    return (Array.isArray(entries) ? entries[0] : entries);
+}
+async function ensureProductPageFields(strapi) {
+    for (const locale of kidsfera_1.kidsferaSeed.languages) {
+        const existing = await findProductPageDocument(strapi, locale);
+        if (!(existing === null || existing === void 0 ? void 0 : existing.documentId)) {
+            continue;
+        }
+        const nextData = {};
+        const seedLabels = kidsfera_1.kidsferaSeed.productPage[locale];
+        if (existing.priceOnRequestLabel !== seedLabels.priceOnRequestLabel) {
+            nextData.priceOnRequestLabel = seedLabels.priceOnRequestLabel;
+        }
+        if (!Object.keys(nextData).length) {
+            continue;
+        }
+        await strapi.documents('api::product-page.product-page').update({
             documentId: existing.documentId,
             locale,
             status: PUBLISHED_STATUS,
@@ -680,6 +712,8 @@ exports.default = {
             await ensureLocalizedSingle(strapi, 'api::privacy-policy-page.privacy-policy-page', kidsfera_1.kidsferaSeed.privacyPolicyPage, mediaCache);
             await ensureLocalizedSingle(strapi, 'api::gdpr-page.gdpr-page', kidsfera_1.kidsferaSeed.gdprPage, mediaCache);
             await ensureLocalizedSingle(strapi, 'api::projects-page.projects-page', kidsfera_1.kidsferaSeed.projectsPage, mediaCache);
+            await ensureAboutPageFields(strapi);
+            await ensureProductPageFields(strapi);
             await ensureSiteSettingsFields(strapi);
             const existingSiteSettings = await strapi.db.query('api::site-setting.site-setting').findOne({
                 where: { locale: DEFAULT_LOCALE },
