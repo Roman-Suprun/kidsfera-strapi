@@ -2,6 +2,19 @@
 
 Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
 
+## Liveness probe
+
+Use `GET /healthz` (or `HEAD /healthz`) for uptime monitoring:
+
+```sh
+curl -i https://your-strapi-domain/healthz
+```
+
+It returns `204 No Content` as soon as the Strapi HTTP server is alive. The
+middleware is first in the application stack and does not continue to Strapi's
+routes, authentication, or database layer. It is intentionally a liveness
+probe, not a database-readiness check.
+
 ### `develop`
 
 Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
