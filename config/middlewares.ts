@@ -1,6 +1,9 @@
 import type { Core } from '@strapi/strapi';
 
 const config: Core.Config.Middlewares = [
+  // Keep this first: /healthz returns before the standard Strapi request
+  // pipeline, so it never reaches routes or the database.
+  'global::health',
   'strapi::logger',
   'strapi::errors',
   {
