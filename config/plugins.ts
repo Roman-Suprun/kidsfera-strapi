@@ -1,5 +1,7 @@
 import type { Core } from '@strapi/strapi';
 
+import { responsiveImageBreakpoints, s3AssetCacheControl } from '../src/utils/media-formats';
+
 const hasAwsS3Provider = () => {
   try {
     require.resolve('@strapi/provider-upload-aws-s3');
@@ -16,21 +18,30 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin =>
   const secretAccessKey = env('S3_ACCESS_SECRET');
   const endpoint = env('S3_ENDPOINT');
   const rootPath = env('S3_ROOT_PATH', 'local');
+  const awsS3ProviderAvailable = hasAwsS3Provider();
 
-  if (!bucket || !region || !accessKeyId || !secretAccessKey) {
-    return {};
-  }
+  const uploadConfig = {
+    breakpoints: responsiveImageBreakpoints,
+  };
 
-  if (!hasAwsS3Provider()) {
-    console.warn(
-      'S3 upload is configured via env vars, but @strapi/provider-upload-aws-s3 is not installed in the current runtime. Falling back to the local upload provider.',
-    );
-    return {};
+  if (!bucket || !region || !accessKeyId || !secretAccessKey || !awsS3ProviderAvailable) {
+    if (bucket && region && accessKeyId && secretAccessKey && !awsS3ProviderAvailable) {
+      console.warn(
+        'S3 upload is configured via env vars, but @strapi/provider-upload-aws-s3 is not installed in the current runtime. Falling back to the local upload provider.',
+      );
+    }
+
+    return {
+      upload: {
+        config: uploadConfig,
+      },
+    };
   }
 
   return {
     upload: {
       config: {
+        ...uploadConfig,
         provider: 'aws-s3',
         providerOptions: {
           ...(endpoint ? { baseUrl: endpoint } : {}),
@@ -52,6 +63,15 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin =>
                 }
               : {}),
           },
+        },
+        actionOptions: {
+          upload: {
+            CacheControl: s3AssetCacheControl,
+          },
+          uploadStream: {
+            CacheControl: s3AssetCacheControl,
+          },
+          delete: {},
         },
       },
     },
