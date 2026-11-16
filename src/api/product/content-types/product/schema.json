@@ -49,7 +49,44 @@
     },
     "priceLabel": {
       "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "pricingMode": {
+      "type": "enumeration",
+      "enum": [
+        "legacy",
+        "on_request",
+        "from"
+      ],
+      "default": "legacy",
       "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "fromPrice": {
+      "type": "decimal",
+      "min": 0.01,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "priceCurrency": {
+      "type": "enumeration",
+      "enum": [
+        "UAH",
+        "EUR",
+        "USD",
+        "PLN"
+      ],
       "pluginOptions": {
         "i18n": {
           "localized": true

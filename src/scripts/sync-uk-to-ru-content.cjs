@@ -1009,6 +1009,9 @@ function translateProduct(ukEntry) {
   data.shortDescription = translation.shortDescription;
   data.description = translation.description;
   data.priceLabel = ukEntry.priceLabel;
+  data.pricingMode = ukEntry.pricingMode;
+  data.fromPrice = ukEntry.fromPrice;
+  data.priceCurrency = ukEntry.priceCurrency;
   data.size = ukEntry.size;
   data.capacity = translateSimpleValue(ukEntry.capacity);
   data.material = translateSimpleValue(ukEntry.material);
